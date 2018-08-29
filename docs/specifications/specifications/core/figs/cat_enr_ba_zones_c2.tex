@@ -1,0 +1,360 @@
+
+\begin{figure}[htbp]
+    \centering
+    
+    % these dimensions are determined in arrow_dimms.ods
+
+    \def\scale{1.0}
+
+    \def\latWidth{0.2673473684*\scale}
+    
+    \def\RPVOR{3*\scale}
+    \def\rectW{0.75*\scale}
+    \def\RPVIR{2.7315789474*\scale}
+    \def\BarrelIR{2.3368421053*\scale}
+    \def\BarrelOR{2.4078947368*\scale}
+    \def\ShieldIR{2.4223787816*\scale}
+    \def\ShieldOR{2.5067965189*\scale}
+    \def\LinerIR{2.7246166598*\scale}
+
+    \def\bafCIRx{0.9357157895*\scale}
+    \def\bafCIRy{2.0051052632*\scale}
+    \def\bafCORx{0.9633473684*\scale}
+    \def\bafCORy{2.0327368421*\scale}
+    \def\bafMIRx{1.7377578947*\scale}
+    \def\bafMIRy{1.4704105263*\scale}
+    \def\bafMORx{1.7653894737*\scale}
+    \def\bafMORy{1.4980421053*\scale}
+    
+    \tikzset{Assembly/.style={
+        inner sep=0pt,
+        text width=\latWidth in,
+        minimum size=\latWidth in,
+        draw=black,
+        align=center
+        }
+    }
+    
+    \def\tkzRPV{(0,0) circle (\RPVIR) (0,0) circle (\RPVOR)}
+    \def\tkzLiner{(0,0) circle (\LinerIR) (0,0) circle (\RPVIR)}
+    \def\tkzBarrel{(0,0) circle (\BarrelIR) (0,0) circle (\BarrelOR)}
+    \def\tkzShields{(0,0) circle (\ShieldIR) (0,0) circle (\ShieldOR)}
+    
+    \def\tkzBaffCOR{(-\bafCORx, -\bafCORy) rectangle (\bafCORx, \bafCORy)}
+    \def\tkzBaffCIR{(-\bafCIRx, -\bafCIRy) rectangle (\bafCIRx, \bafCIRy)} 
+    \def\tkzBaffMOR{(-\bafMORx, -\bafMORy) rectangle (\bafMORx, \bafMORy)}
+    \def\tkzBaffMIR{(-\bafMIRx, -\bafMIRy) rectangle (\bafMIRx, \bafMIRy) }
+    \def\tkzBaffleC{ \tkzBaffCIR \tkzBaffCOR }
+    \def\tkzBaffleM{ \tkzBaffMIR \tkzBaffMOR }
+
+    \def\tkzBaffCClip{\tkzBaffCIR (-\RPVOR, -\RPVOR) rectangle (\RPVOR, \RPVOR)}
+    \def\tkzBaffMClip{\tkzBaffMIR (-\RPVOR, -\RPVOR) rectangle (\RPVOR, \RPVOR)}
+
+    \def\noenr{black!10}
+    \def\lowenr{green!60!black}
+    \def\highenr{orange!90}
+
+    \scalebox{1.0}{
+
+      \begin{tikzpicture}[x=1in,y=1in]
+      
+        % draw RPV, barrel, and shield panels
+        
+        \path[fill=black!90!white,even odd rule] \tkzRPV;
+        \path[fill=black,even odd rule] \tkzLiner;
+        \path[fill=black,even odd rule] \tkzBarrel;
+        \begin{scope}
+          \clip (0,0) -- +(61:\RPVOR) arc (61:29:\RPVOR) --
+                (0,0) -- +(151:\RPVOR) arc (151:119:\RPVOR) -- 
+                (0,0) -- +(241:\RPVOR) arc (241:209:\RPVOR) -- 
+                (0,0) -- +(331:\RPVOR) arc (331:299:\RPVOR) -- cycle;
+          \path[fill=black,even odd rule] \tkzShields;
+        \end{scope}
+
+        % draw baffle north/south
+        
+        \begin{scope}[even odd rule]
+          \clip[rotate=90] \tkzBaffMClip;
+          \path[fill=black] \tkzBaffleC;
+        \end{scope}
+        \begin{scope}[even odd rule]
+          \clip \tkzBaffCClip;
+          \clip \tkzBaffMClip;
+          \path[fill=black, rotate=90] \tkzBaffleM;
+        \end{scope}
+        
+        % draw baffle east/west
+        
+        \begin{scope}[rotate=90]
+          \begin{scope}[even odd rule]
+            \clip[rotate=90] \tkzBaffMClip;
+            \path[fill=black] \tkzBaffleC;
+          \end{scope}
+          \begin{scope}[even odd rule]
+            \clip \tkzBaffCClip;
+            \clip \tkzBaffMClip;
+            \path[fill=black, rotate=90] \tkzBaffleM;
+          \end{scope}
+        \end{scope}
+        
+        % draw assembly row/column headers
+        
+        \draw[red, thick] ($(-7*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[above, anchor=south] {R} -- ($(-7*\latWidth,4*\latWidth)$);
+        \draw[red, thick] ($(-6*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[above, anchor=south] {P} -- ($(-6*\latWidth,6*\latWidth)$);
+        \draw[red, thick] ($(-5*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[above, anchor=south] {N} -- ($(-5*\latWidth,7*\latWidth)$);
+        \draw[red, thick] ($(-4*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[above, anchor=south] {M} -- ($(-4*\latWidth,7*\latWidth)$);
+        \draw[red, thick] ($(-3*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[above, anchor=south] {L} -- ($(-3*\latWidth,8*\latWidth)$);
+        \draw[red, thick] ($(-2*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[above, anchor=south] {K} -- ($(-2*\latWidth,8*\latWidth)$);
+        \draw[red, thick] ($(-1*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[above, anchor=south] {J} -- ($(-1*\latWidth,8*\latWidth)$);
+        \draw[red, thick] ($(-0*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[above, anchor=south] {H} -- ($(-0*\latWidth,8*\latWidth)$);
+        \draw[red, thick] ($(1*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[above, anchor=south] {G} -- ($(1*\latWidth,8*\latWidth)$);
+        \draw[red, thick] ($(2*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[above, anchor=south] {F} -- ($(2*\latWidth,8*\latWidth)$);
+        \draw[red, thick] ($(3*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[above, anchor=south] {E} -- ($(3*\latWidth,8*\latWidth)$);
+        \draw[red, thick] ($(4*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[above, anchor=south] {D} -- ($(4*\latWidth,7*\latWidth)$);
+        \draw[red, thick] ($(5*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[above, anchor=south] {C} -- ($(5*\latWidth,7*\latWidth)$);
+        \draw[red, thick] ($(6*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[above, anchor=south] {B} -- ($(6*\latWidth,6*\latWidth)$);
+        \draw[red, thick] ($(7*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[above, anchor=south] {A} -- ($(7*\latWidth,4*\latWidth)$);
+        
+        \begin{scope}[rotate=90]
+          \draw[red, thick] ($(-7*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[left, anchor=east] {15} -- ($(-7*\latWidth,4*\latWidth)$);
+          \draw[red, thick] ($(-6*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[left, anchor=east] {14} -- ($(-6*\latWidth,6*\latWidth)$);
+          \draw[red, thick] ($(-5*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[left, anchor=east] {13} -- ($(-5*\latWidth,7*\latWidth)$);
+          \draw[red, thick] ($(-4*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[left, anchor=east] {12} -- ($(-4*\latWidth,7*\latWidth)$);
+          \draw[red, thick] ($(-3*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[left, anchor=east] {11} -- ($(-3*\latWidth,8*\latWidth)$);
+          \draw[red, thick] ($(-2*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[left, anchor=east] {10} -- ($(-2*\latWidth,8*\latWidth)$);
+          \draw[red, thick] ($(-1*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[left, anchor=east] {9} -- ($(-1*\latWidth,8*\latWidth)$);
+          \draw[red, thick] ($(-0*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[left, anchor=east] {8} -- ($(-0*\latWidth,8*\latWidth)$);
+          \draw[red, thick] ($(1*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[left, anchor=east] {7} -- ($(1*\latWidth,8*\latWidth)$);
+          \draw[red, thick] ($(2*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[left, anchor=east] {6} -- ($(2*\latWidth,8*\latWidth)$);
+          \draw[red, thick] ($(3*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[left, anchor=east] {5} -- ($(3*\latWidth,8*\latWidth)$);
+          \draw[red, thick] ($(4*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[left, anchor=east] {4} -- ($(4*\latWidth,7*\latWidth)$);
+          \draw[red, thick] ($(5*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[left, anchor=east] {3} -- ($(5*\latWidth,7*\latWidth)$);
+          \draw[red, thick] ($(6*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[left, anchor=east] {2} -- ($(6*\latWidth,6*\latWidth)$);
+          \draw[red, thick] ($(7*\latWidth,\RPVOR/\latWidth*\latWidth)$) node[left, anchor=east] {1} -- ($(7*\latWidth,4*\latWidth)$);
+        \end{scope}
+        
+        % draw fuel assembly nodes
+        
+        \node [Assembly, fill=\noenr] at ($(-3*\latWidth,7*\latWidth)$) {\scriptsize L10}; % L1
+        \node [Assembly, fill=\highenr] at ($(-2*\latWidth,7*\latWidth)$) {}; % K1
+        \node [Assembly, fill=\lowenr] at ($(-1*\latWidth,7*\latWidth)$) {}; % J1
+        \node [Assembly, fill=\highenr] at ($(-0*\latWidth,7*\latWidth)$) {}; % H1
+        \node [Assembly, fill=\lowenr] at ($( 1*\latWidth,7*\latWidth)$) {}; % G1
+        \node [Assembly, fill=\highenr] at ($( 2*\latWidth,7*\latWidth)$) {}; % F1
+        \node [Assembly, fill=\noenr] at ($( 3*\latWidth,7*\latWidth)$) {\scriptsize E10}; % E1
+
+        \node [Assembly, fill=\noenr] at ($(-5*\latWidth,6*\latWidth)$) {\scriptsize G10}; % N2
+        \node [Assembly, fill=\lowenr] at ($(-4*\latWidth,6*\latWidth)$) {}; % M2
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_4ba_target] at ($(-3*\latWidth,6*\latWidth)$) {\small 4}; % L2
+        \node [Assembly, fill=\noenr] at ($(-2*\latWidth,6*\latWidth)$) {\scriptsize L02}; % K2
+        \node [Assembly, fill=\noenr] at ($(-1*\latWidth,6*\latWidth)$) {\scriptsize P12}; % J2
+        \node [Assembly, fill=\noenr] at ($(-0*\latWidth,6*\latWidth)$) {\scriptsize N03}; % H2
+        \node [Assembly, fill=\noenr] at ($( 1*\latWidth,6*\latWidth)$) {\scriptsize B12}; % G2
+        \node [Assembly, fill=\noenr] at ($( 2*\latWidth,6*\latWidth)$) {\scriptsize E02}; % F2
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_4ba_target] at ($( 3*\latWidth,6*\latWidth)$) {\small 4}; % E2
+        \node [Assembly, fill=\lowenr] at ($( 4*\latWidth,6*\latWidth)$) {}; % D2
+        \node [Assembly, fill=\noenr] at ($( 5*\latWidth,6*\latWidth)$) {\scriptsize J10}; % C2
+
+        \node [Assembly, fill=\noenr] at ($(-6*\latWidth,5*\latWidth)$) {\scriptsize F09}; % P3
+        \node [Assembly, fill=\highenr] at ($(-5*\latWidth,5*\latWidth)$) {}; % N3
+        \node [Assembly, fill=\noenr] at ($(-4*\latWidth,5*\latWidth)$) {\scriptsize N02}; % M3
+        \node [Assembly, fill=\noenr] at ($(-3*\latWidth,5*\latWidth)$) {\scriptsize N10}; % L3
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_8ba_target] at ($(-2*\latWidth,5*\latWidth)$) {\small 8}; % K3
+        \node [Assembly, fill=\noenr] at ($(-1*\latWidth,5*\latWidth)$) {\scriptsize D11}; % J3
+        \node [Assembly, fill=\noenr] at ($(-0*\latWidth,5*\latWidth)$) {\scriptsize R10}; % H3
+        \node [Assembly, fill=\noenr] at ($( 1*\latWidth,5*\latWidth)$) {\scriptsize M11}; % G3
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_8ba_target] at ($( 2*\latWidth,5*\latWidth)$) {\small 8}; % F3
+        \node [Assembly, fill=\noenr] at ($( 3*\latWidth,5*\latWidth)$) {\scriptsize C10}; % E3
+        \node [Assembly, fill=\noenr] at ($( 4*\latWidth,5*\latWidth)$) {\scriptsize C02}; % D3
+        \node [Assembly, fill=\highenr] at ($( 5*\latWidth,5*\latWidth)$) {}; % C3
+        \node [Assembly, fill=\noenr] at ($( 6*\latWidth,5*\latWidth)$) {\scriptsize K09}; % B3
+
+        \node [Assembly, fill=\lowenr] at ($(-6*\latWidth,4*\latWidth)$) {}; % P4
+        \node [Assembly, fill=\noenr] at ($(-5*\latWidth,4*\latWidth)$) {\scriptsize P03}; % N4
+        \node [Assembly, fill=\noenr] at ($(-4*\latWidth,4*\latWidth)$) {\scriptsize L08}; % M4
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_12ba_c2_target] at ($(-3*\latWidth,4*\latWidth)$) {\small 12}; % L4
+        \node [Assembly, fill=\noenr] at ($(-2*\latWidth,4*\latWidth)$) {\scriptsize M09}; % K4
+        \node [Assembly, fill=\noenr] at ($(-1*\latWidth,4*\latWidth)$) {\scriptsize E15}; % J4
+        \node [Assembly, fill=\noenr] at ($(-0*\latWidth,4*\latWidth)$) {\scriptsize G08}; % H4
+        \node [Assembly, fill=\noenr] at ($( 1*\latWidth,4*\latWidth)$) {\scriptsize L15}; % G4
+        \node [Assembly, fill=\noenr] at ($( 2*\latWidth,4*\latWidth)$) {\scriptsize D09}; % F4
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_12ba_c2_target] at ($( 3*\latWidth,4*\latWidth)$) {\small 12}; % E4
+        \node [Assembly, fill=\noenr] at ($( 4*\latWidth,4*\latWidth)$) {\scriptsize H05}; % D4
+        \node [Assembly, fill=\noenr] at ($( 5*\latWidth,4*\latWidth)$) {\scriptsize B03}; % C4
+        \node [Assembly, fill=\lowenr] at ($( 6*\latWidth,4*\latWidth)$) {}; % B4
+
+        \node [Assembly, fill=\noenr] at ($(-7*\latWidth,3*\latWidth)$) {\scriptsize F05}; % R5
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_4ba_target] at ($(-6*\latWidth,3*\latWidth)$) {\small 4}; % P5
+        \node [Assembly, fill=\noenr] at ($(-5*\latWidth,3*\latWidth)$) {\scriptsize F03}; % N5
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_12ba_c2_target] at ($(-4*\latWidth,3*\latWidth)$) {\small 12}; % M5
+        \node [Assembly, fill=\noenr] at ($(-3*\latWidth,3*\latWidth)$) {\scriptsize M04}; % L5
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_8ba_target] at ($(-2*\latWidth,3*\latWidth)$) {\small 8}; % K5
+        \node [Assembly, fill=\noenr] at ($(-1*\latWidth,3*\latWidth)$) {\scriptsize M03}; % J5
+        \node [Assembly, fill=\noenr] at ($(-0*\latWidth,3*\latWidth)$) {\scriptsize A10}; % H5
+        \node [Assembly, fill=\noenr] at ($( 1*\latWidth,3*\latWidth)$) {\scriptsize D03}; % G5
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_8ba_target] at ($( 2*\latWidth,3*\latWidth)$) {\small 8}; % F5
+        \node [Assembly, fill=\noenr] at ($( 3*\latWidth,3*\latWidth)$) {\scriptsize D04}; % E5
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_12ba_c2_target] at ($( 4*\latWidth,3*\latWidth)$) {\small 12}; % D5
+        \node [Assembly, fill=\noenr] at ($( 5*\latWidth,3*\latWidth)$) {\scriptsize K03}; % C5
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_4ba_target] at ($( 6*\latWidth,3*\latWidth)$) {\small 4}; % B5
+        \node [Assembly, fill=\noenr] at ($( 7*\latWidth,3*\latWidth)$) {\scriptsize K05}; % A5
+
+        \node [Assembly, fill=\highenr] at ($(-7*\latWidth,2*\latWidth)$) {}; % R6
+        \node [Assembly, fill=\noenr] at ($(-6*\latWidth,2*\latWidth)$) {\scriptsize P05}; % P6
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_8ba_target] at ($(-5*\latWidth,2*\latWidth)$) {\small 8}; % N6
+        \node [Assembly, fill=\noenr] at ($(-4*\latWidth,2*\latWidth)$) {\scriptsize G04}; % M6
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_8ba_target] at ($(-3*\latWidth,2*\latWidth)$) {\small 8}; % L6
+        \node [Assembly, fill=\noenr] at ($(-2*\latWidth,2*\latWidth)$) {\scriptsize N08}; % K6
+        \node [Assembly, fill=\noenr] at ($(-1*\latWidth,2*\latWidth)$) {\scriptsize R09}; % J6
+        \node [Assembly, fill=\noenr] at ($(-0*\latWidth,2*\latWidth)$) {\scriptsize G14}; % H6
+        \node [Assembly, fill=\noenr] at ($( 1*\latWidth,2*\latWidth)$) {\scriptsize A09}; % G6
+        \node [Assembly, fill=\noenr] at ($( 2*\latWidth,2*\latWidth)$) {\scriptsize H03}; % F6
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_8ba_target] at ($( 3*\latWidth,2*\latWidth)$) {\small 8}; % E6
+        \node [Assembly, fill=\noenr] at ($( 4*\latWidth,2*\latWidth)$) {\scriptsize J04}; % D6
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_8ba_target] at ($( 5*\latWidth,2*\latWidth)$) {\small 8}; % C6
+        \node [Assembly, fill=\noenr] at ($( 6*\latWidth,2*\latWidth)$) {\scriptsize B05}; % B6
+        \node [Assembly, fill=\highenr] at ($( 7*\latWidth,2*\latWidth)$) {}; % A6
+
+        \node [Assembly, fill=\lowenr] at ($(-7*\latWidth,1*\latWidth)$) {}; % R7
+        \node [Assembly, fill=\noenr] at ($(-6*\latWidth,1*\latWidth)$) {\scriptsize D02}; % P7
+        \node [Assembly, fill=\noenr] at ($(-5*\latWidth,1*\latWidth)$) {\scriptsize E12}; % N7
+        \node [Assembly, fill=\noenr] at ($(-4*\latWidth,1*\latWidth)$) {\scriptsize A11}; % M7
+        \node [Assembly, fill=\noenr] at ($(-3*\latWidth,1*\latWidth)$) {\scriptsize N04}; % L7
+        \node [Assembly, fill=\noenr] at ($(-2*\latWidth,1*\latWidth)$) {\scriptsize G01}; % K7
+        \node [Assembly, fill=\noenr] at ($(-1*\latWidth,1*\latWidth)$) {\scriptsize B09}; % J7
+        \node [Assembly, fill=\noenr] at ($(-0*\latWidth,1*\latWidth)$) {\scriptsize H15}; % H7
+        \node [Assembly, fill=\noenr] at ($( 1*\latWidth,1*\latWidth)$) {\scriptsize J14}; % G7
+        \node [Assembly, fill=\noenr] at ($( 2*\latWidth,1*\latWidth)$) {\scriptsize J01}; % F7
+        \node [Assembly, fill=\noenr] at ($( 3*\latWidth,1*\latWidth)$) {\scriptsize C04}; % E7
+        \node [Assembly, fill=\noenr] at ($( 4*\latWidth,1*\latWidth)$) {\scriptsize R11}; % D7
+        \node [Assembly, fill=\noenr] at ($( 5*\latWidth,1*\latWidth)$) {\scriptsize L12}; % C7
+        \node [Assembly, fill=\noenr] at ($( 6*\latWidth,1*\latWidth)$) {\scriptsize M02}; % B7
+        \node [Assembly, fill=\lowenr] at ($( 7*\latWidth,1*\latWidth)$) {}; % A7
+
+        \node [Assembly, fill=\highenr] at ($(-7*\latWidth,0*\latWidth)$) {}; % R8
+        \node [Assembly, fill=\noenr] at ($(-6*\latWidth,0*\latWidth)$) {\scriptsize N13}; % P8
+        \node [Assembly, fill=\noenr] at ($(-5*\latWidth,0*\latWidth)$) {\scriptsize F15}; % N8
+        \node [Assembly, fill=\noenr] at ($(-4*\latWidth,0*\latWidth)$) {\scriptsize H07}; % M8
+        \node [Assembly, fill=\noenr] at ($(-3*\latWidth,0*\latWidth)$) {\scriptsize F01}; % L8
+        \node [Assembly, fill=\noenr] at ($(-2*\latWidth,0*\latWidth)$) {\scriptsize B07}; % K8
+        \node [Assembly, fill=\noenr] at ($(-1*\latWidth,0*\latWidth)$) {\scriptsize A08}; % J8
+        \node [Assembly, fill=\noenr] at ($(-0*\latWidth,0*\latWidth)$) {\scriptsize F14}; % H8
+        \node [Assembly, fill=\noenr] at ($( 1*\latWidth,0*\latWidth)$) {\scriptsize R08}; % G8
+        \node [Assembly, fill=\noenr] at ($( 2*\latWidth,0*\latWidth)$) {\scriptsize P09}; % F8
+        \node [Assembly, fill=\noenr] at ($( 3*\latWidth,0*\latWidth)$) {\scriptsize K15}; % E8
+        \node [Assembly, fill=\noenr] at ($( 4*\latWidth,0*\latWidth)$) {\scriptsize H09}; % D8
+        \node [Assembly, fill=\noenr] at ($( 5*\latWidth,0*\latWidth)$) {\scriptsize K01}; % C8
+        \node [Assembly, fill=\noenr] at ($( 6*\latWidth,0*\latWidth)$) {\scriptsize C03}; % B8
+        \node [Assembly, fill=\highenr] at ($( 7*\latWidth,0*\latWidth)$) {}; % A8
+
+        \node [Assembly, fill=\lowenr] at ($(-7*\latWidth,-1*\latWidth)$) {}; % R9
+        \node [Assembly, fill=\noenr] at ($(-6*\latWidth,-1*\latWidth)$) {\scriptsize D14}; % P9
+        \node [Assembly, fill=\noenr] at ($(-5*\latWidth,-1*\latWidth)$) {\scriptsize E04}; % N9
+        \node [Assembly, fill=\noenr] at ($(-4*\latWidth,-1*\latWidth)$) {\scriptsize A05}; % M9
+        \node [Assembly, fill=\noenr] at ($(-3*\latWidth,-1*\latWidth)$) {\scriptsize N12}; % L9
+        \node [Assembly, fill=\noenr] at ($(-2*\latWidth,-1*\latWidth)$) {\scriptsize G15}; % K9
+        \node [Assembly, fill=\noenr] at ($(-1*\latWidth,-1*\latWidth)$) {\scriptsize G02}; % J9
+        \node [Assembly, fill=\noenr] at ($(-0*\latWidth,-1*\latWidth)$) {\scriptsize H01}; % H9
+        \node [Assembly, fill=\noenr] at ($( 1*\latWidth,-1*\latWidth)$) {\scriptsize P07}; % G9
+        \node [Assembly, fill=\noenr] at ($( 2*\latWidth,-1*\latWidth)$) {\scriptsize J15}; % F9
+        \node [Assembly, fill=\noenr] at ($( 3*\latWidth,-1*\latWidth)$) {\scriptsize C12}; % E9
+        \node [Assembly, fill=\noenr] at ($( 4*\latWidth,-1*\latWidth)$) {\scriptsize R05}; % D9
+        \node [Assembly, fill=\noenr] at ($( 5*\latWidth,-1*\latWidth)$) {\scriptsize L04}; % C9
+        \node [Assembly, fill=\noenr] at ($( 6*\latWidth,-1*\latWidth)$) {\scriptsize M14}; % B9
+        \node [Assembly, fill=\lowenr] at ($( 7*\latWidth,-1*\latWidth)$) {}; % A9
+
+        \node [Assembly, fill=\highenr] at ($(-7*\latWidth,-2*\latWidth)$) {}; % R10
+        \node [Assembly, fill=\noenr] at ($(-6*\latWidth,-2*\latWidth)$) {\scriptsize P11}; % P10
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_8ba_target] at ($(-5*\latWidth,-2*\latWidth)$) {\small 8}; % N10
+        \node [Assembly, fill=\noenr] at ($(-4*\latWidth,-2*\latWidth)$) {\scriptsize G12}; % M10
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_8ba_target] at ($(-3*\latWidth,-2*\latWidth)$) {\small 8}; % L10
+        \node [Assembly, fill=\noenr] at ($(-2*\latWidth,-2*\latWidth)$) {\scriptsize H13}; % K10
+        \node [Assembly, fill=\noenr] at ($(-1*\latWidth,-2*\latWidth)$) {\scriptsize R07}; % J10
+        \node [Assembly, fill=\noenr] at ($(-0*\latWidth,-2*\latWidth)$) {\scriptsize J02}; % H10
+        \node [Assembly, fill=\noenr] at ($( 1*\latWidth,-2*\latWidth)$) {\scriptsize A07}; % G10
+        \node [Assembly, fill=\noenr] at ($( 2*\latWidth,-2*\latWidth)$) {\scriptsize C08}; % F10
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_8ba_target] at ($( 3*\latWidth,-2*\latWidth)$) {\small 8}; % E10
+        \node [Assembly, fill=\noenr] at ($( 4*\latWidth,-2*\latWidth)$) {\scriptsize J12}; % D10
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_8ba_target] at ($( 5*\latWidth,-2*\latWidth)$) {\small 8}; % C10
+        \node [Assembly, fill=\noenr] at ($( 6*\latWidth,-2*\latWidth)$) {\scriptsize B11}; % B10
+        \node [Assembly, fill=\highenr] at ($( 7*\latWidth,-2*\latWidth)$) {}; % A10
+
+        \node [Assembly, fill=\noenr] at ($(-7*\latWidth,-3*\latWidth)$) {\scriptsize F11}; % R11
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_4ba_target] at ($(-6*\latWidth,-3*\latWidth)$) {\small 4}; % P11
+        \node [Assembly, fill=\noenr] at ($(-5*\latWidth,-3*\latWidth)$) {\scriptsize F13}; % N11
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_12ba_c2_target] at ($(-4*\latWidth,-3*\latWidth)$) {\small 12}; % M11
+        \node [Assembly, fill=\noenr] at ($(-3*\latWidth,-3*\latWidth)$) {\scriptsize M12}; % L11
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_8ba_target] at ($(-2*\latWidth,-3*\latWidth)$) {\small 8}; % K11
+        \node [Assembly, fill=\noenr] at ($(-1*\latWidth,-3*\latWidth)$) {\scriptsize M13}; % J11
+        \node [Assembly, fill=\noenr] at ($(-0*\latWidth,-3*\latWidth)$) {\scriptsize R06}; % H11
+        \node [Assembly, fill=\noenr] at ($( 1*\latWidth,-3*\latWidth)$) {\scriptsize D13}; % G11
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_8ba_target] at ($( 2*\latWidth,-3*\latWidth)$) {\small 8}; % F11
+        \node [Assembly, fill=\noenr] at ($( 3*\latWidth,-3*\latWidth)$) {\scriptsize D12}; % E11
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_12ba_c2_target] at ($( 4*\latWidth,-3*\latWidth)$) {\small 12}; % D11
+        \node [Assembly, fill=\noenr] at ($( 5*\latWidth,-3*\latWidth)$) {\scriptsize K13}; % C11
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_4ba_target] at ($( 6*\latWidth,-3*\latWidth)$) {\small 4}; % B11
+        \node [Assembly, fill=\noenr] at ($( 7*\latWidth,-3*\latWidth)$) {\scriptsize K11}; % A11
+
+        \node [Assembly, fill=\lowenr] at ($(-6*\latWidth,-4*\latWidth)$) {}; % P12
+        \node [Assembly, fill=\noenr] at ($(-5*\latWidth,-4*\latWidth)$) {\scriptsize P13}; % N12
+        \node [Assembly, fill=\noenr] at ($(-4*\latWidth,-4*\latWidth)$) {\scriptsize H11}; % M12
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_12ba_c2_target] at ($(-3*\latWidth,-4*\latWidth)$) {\small 12}; % L12
+        \node [Assembly, fill=\noenr] at ($(-2*\latWidth,-4*\latWidth)$) {\scriptsize M07}; % K12
+        \node [Assembly, fill=\noenr] at ($(-1*\latWidth,-4*\latWidth)$) {\scriptsize E01}; % J12
+        \node [Assembly, fill=\noenr] at ($(-0*\latWidth,-4*\latWidth)$) {\scriptsize J08}; % H12
+        \node [Assembly, fill=\noenr] at ($( 1*\latWidth,-4*\latWidth)$) {\scriptsize L01}; % G12
+        \node [Assembly, fill=\noenr] at ($( 2*\latWidth,-4*\latWidth)$) {\scriptsize D07}; % F12
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_12ba_c2_target] at ($( 3*\latWidth,-4*\latWidth)$) {\small 12}; % E12
+        \node [Assembly, fill=\noenr] at ($( 4*\latWidth,-4*\latWidth)$) {\scriptsize E08}; % D12
+        \node [Assembly, fill=\noenr] at ($( 5*\latWidth,-4*\latWidth)$) {\scriptsize B13}; % C12
+        \node [Assembly, fill=\lowenr] at ($( 6*\latWidth,-4*\latWidth)$) {}; % B12
+
+        \node [Assembly, fill=\noenr] at ($(-6*\latWidth,-5*\latWidth)$) {\scriptsize F07}; % P13
+        \node [Assembly, fill=\highenr] at ($(-5*\latWidth,-5*\latWidth)$) {}; % N13
+        \node [Assembly, fill=\noenr] at ($(-4*\latWidth,-5*\latWidth)$) {\scriptsize N14}; % M13
+        \node [Assembly, fill=\noenr] at ($(-3*\latWidth,-5*\latWidth)$) {\scriptsize N06}; % L13
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_8ba_target] at ($(-2*\latWidth,-5*\latWidth)$) {\small 8}; % K13
+        \node [Assembly, fill=\noenr] at ($(-1*\latWidth,-5*\latWidth)$) {\scriptsize D05}; % J13
+        \node [Assembly, fill=\noenr] at ($(-0*\latWidth,-5*\latWidth)$) {\scriptsize A06}; % H13
+        \node [Assembly, fill=\noenr] at ($( 1*\latWidth,-5*\latWidth)$) {\scriptsize M05}; % G13
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_8ba_target] at ($( 2*\latWidth,-5*\latWidth)$) {\small 8}; % F13
+        \node [Assembly, fill=\noenr] at ($( 3*\latWidth,-5*\latWidth)$) {\scriptsize C06}; % E13
+        \node [Assembly, fill=\noenr] at ($( 4*\latWidth,-5*\latWidth)$) {\scriptsize C14}; % D13
+        \node [Assembly, fill=\highenr] at ($( 5*\latWidth,-5*\latWidth)$) {}; % C13
+        \node [Assembly, fill=\noenr] at ($( 6*\latWidth,-5*\latWidth)$) {\scriptsize K07}; % B13
+
+        \node [Assembly, fill=\noenr] at ($(-5*\latWidth,-6*\latWidth)$) {\scriptsize G06}; % N14
+        \node [Assembly, fill=\lowenr] at ($(-4*\latWidth,-6*\latWidth)$) {}; % M14
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_4ba_target] at ($(-3*\latWidth,-6*\latWidth)$) {\small 4}; % L14
+        \node [Assembly, fill=\noenr] at ($(-2*\latWidth,-6*\latWidth)$) {\scriptsize L14}; % K14
+        \node [Assembly, fill=\noenr] at ($(-1*\latWidth,-6*\latWidth)$) {\scriptsize P04}; % J14
+        \node [Assembly, fill=\noenr] at ($(-0*\latWidth,-6*\latWidth)$) {\scriptsize C13}; % H14
+        \node [Assembly, fill=\noenr] at ($( 1*\latWidth,-6*\latWidth)$) {\scriptsize B04}; % G14
+        \node [Assembly, fill=\noenr] at ($( 2*\latWidth,-6*\latWidth)$) {\scriptsize E14}; % F14
+        \node [Assembly, fill=\lowenr, hyperlink node=ass_4ba_target] at ($( 3*\latWidth,-6*\latWidth)$) {\small 4}; % E14
+        \node [Assembly, fill=\lowenr] at ($( 4*\latWidth,-6*\latWidth)$) {}; % D14
+        \node [Assembly, fill=\noenr] at ($( 5*\latWidth,-6*\latWidth)$) {\scriptsize J06}; % C14
+
+        \node [Assembly, fill=\noenr] at ($(-3*\latWidth,-7*\latWidth)$) {\scriptsize L06}; % L15
+        \node [Assembly, fill=\highenr] at ($(-2*\latWidth,-7*\latWidth)$) {}; % K15
+        \node [Assembly, fill=\lowenr] at ($(-1*\latWidth,-7*\latWidth)$) {}; % J15
+        \node [Assembly, fill=\highenr] at ($(-0*\latWidth,-7*\latWidth)$) {}; % H15
+        \node [Assembly, fill=\lowenr] at ($( 1*\latWidth,-7*\latWidth)$) {}; % G15
+        \node [Assembly, fill=\highenr] at ($( 2*\latWidth,-7*\latWidth)$) {}; % F15
+        \node [Assembly, fill=\noenr] at ($( 3*\latWidth,-7*\latWidth)$) {\scriptsize E06}; % E15
+        
+      \end{tikzpicture}
+    }
+    
+    % make the legend
+    \begin{tikzpicture}
+      \matrix [matrix of nodes]
+          {
+              \node [Assembly, fill=\lowenr, hyperlink node=mat_fuel32] at (0,0) {}; & \hyperref[mat_fuel32]{Fresh 3.2 w/o U235}~~~ & \node [Assembly, fill=\highenr, hyperlink node=mat_fuel34] at (0,0) {}; & \hyperref[mat_fuel34]{Fresh 3.4 w/o U235}~~~ \\
+              \node [Assembly, fill=\noenr] at (0,0) {}; & Shuffled Assembly~~~ & ~~~ & ~~~\\
+          };
+    \end{tikzpicture}
+
+    \caption[Cycle 2 shuffling pattern and burnable absorber positions]{Cycle 2 shuffling pattern, burnable absorber positions, and enrichment loading pattern of fresh assemblies. Sources: \ref{num:assycore}, \ref{num:c2shuffle} \label{fig_enr_ba_pos_c2}}
+\end{figure}
+

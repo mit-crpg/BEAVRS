@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -x
+
+BASE=`pwd`
+
+./scripts/make_core_figs.py "$BASE"
+./scripts/make_pin_figs.py "$BASE"
+./scripts/make_assy_figs.py "$BASE"
+./scripts/make_axial_figs.py "$BASE"
+./scripts/make_grid_figs.py "$BASE"
+unset OPENMC_CROSS_SECTIONS
+./scripts/make_materials.py "$BASE"

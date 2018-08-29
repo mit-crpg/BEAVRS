@@ -1,0 +1,36 @@
+* -----------------------------------------------------*
+*              BEAVRS PWR MODEL                        *
+* -----------------------------------------------------*
+
+TTL  * BEAVRS PWR MODEL - FUEL PWRU310W14 BASE AND BRANCHES
+
+***** Details from RELEASE rev. 3.0
+***** Source of info indicated by [page number] in comments
+
+INC 'c5.general.inc'
+INC 'c5.bp.inc'
+
+***** SEGMENT SPECIFIC
+*      SEGNAME
+SIM, 'PWRU310W14'
+FUE 1, 10.30166 / 3.10 * Fuel enrichment [132]
+
+LPI
+2 1 1 4 1 1 3 1 1
+1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1
+4 1 1 4 1 1 3 1 1
+1 1 1 1 1 1 1 1 1
+1 1 1 1 1 3 1 1 1
+4 1 1 4 1 1 1 1 1
+1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1
+
+* 14 BP (top right quadrant of 15 BP) [20]
+*****
+
+ROD 'PYR'
+DEP,-60.00
+S3C 'HOT'
+STA
+END

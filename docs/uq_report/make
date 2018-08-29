@@ -1,0 +1,7 @@
+#!/bin/sh
+
+find -name \*.aux -exec rm {} \;
+pdflatex -interaction nonstopmode uq_report
+bibtex uq_report
+pdflatex -interaction nonstopmode uq_report
+pdflatex -interaction nonstopmode uq_report

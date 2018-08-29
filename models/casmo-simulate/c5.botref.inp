@@ -1,0 +1,41 @@
+MEM 20 20
+* -----------------------------------------------------*
+*              BEAVRS PWR MODEL                        *
+* -----------------------------------------------------*
+
+TTL * BEAVRS PWR MODEL - PWR BOTTOM REFLECTOR
+
+***** Details from RELEASE rev. 3.0
+***** Source of info indicated by [page number] in comments
+
+INC 'c5.general.inc'
+
+***** SEGMENT SPECIFIC
+*      SEGNAME    ENR  EBA BAP BAO
+SIM, 'BOTREF'
+FUE 1, 10.30166 / 3.10 * Fuel enrichment [132]
+
+LPI
+2
+1  1
+1  1  1
+3  1  1  3
+1  1  1  1  1
+1  1  1  1  1  3
+3  1  1  3  1  1  1
+1  1  1  1  1  1  1  1
+1  1  1  1  1  1  1  1  1
+*****
+
+*
+* Region 1 volumes are .51% Steel 58.45% Moderator 9.62% Zircaloy 31.42% helium (zirc pin)
+* Region 2 volumes are 10.13% Steel 58.45% Moderator 31.42% helium (ss pin)
+* Region 3 volume is 100% Moderator (water)
+*
+
+HO1 'CRS' = 0.0051 'MOD' = 0.5845  'BOX' = 0.0962 'AIR' = 0.3142
+HO2 'CRS' = 0.1013 'MOD' = 0.5845  'AIR' = 0.3142
+
+REF,1.748,15,20.0/'HO1' 'HO2' 'MOD'///'BOT'
+S3C 'HOT'
+END

@@ -1,0 +1,250 @@
+'COM'  * --------------------------------------------*
+'COM'  *                                             *
+'COM'  *                    BEAVRS                   *
+'COM'  *                 UO 2 DESGIGN                *
+'COM'  *                C Y C L E    1               *
+'COM'  *                                             *
+'COM'  * --------------------------------------------*
+
+'COM' Details from RELEASE rev. 3.0
+'COM' Source of info indicated by [page number] in comments
+
+'COM' Restarting from HZP...
+
+'RES' 's3.pwr.uo2.c01.hzp.ft.res' 0.0/       * load restart
+
+'CMS.EDT' 'ON' '2EXP' '3EXP'  '3RPF' '3PIN' '2PIN'  /  * Turn on desired edits (output data)
+
+'WRE' 's3.pwr.uo2.c01.hfp.ft.res'/       * Save results at first, last exposure values
+
+'LIB' 'cms.pwr-all.lib'/
+'COM' 'ERR.CHK' 'PERMIT'/  * Uncomment to allow runs with error checking faults
+'CRD.BNK' 165 8*228/       * Control rod positions [?]
+'COM' 'number 4'
+'COR.TIN' 537.5/
+'COR.OPE' 20.31, 100.0, 2250/                    * Set core operating power, flow and pressure
+'DEP.STA' 'AVE' 0.0 -.038 0.038/
+'STA'/
+'WRE'/
+'DEP.STA' 'AVE' 0.038 -.1 0.0922/
+'STA'/
+'COM' 'number 5'
+'COR.TIN' 544.7/
+'CRD.BNK' 199 8*228/
+'COR.OPE' 0.0, 100.0, 2250/
+'STA'/
+'WRE'/
+'COM' 'number 6'
+'COR.TIN' 544.7/
+'CRD.BNK' 162 8*228/       * Control rod positions [?]
+'COR.OPE' 32.42, 100.0, 2250/
+'DEP.STA' 'AVE' 0.0922 -.1 0.1494/
+'STA'/
+'WRE'/
+'COM' 'number 10'
+'COR.TIN' 543.65/
+'CRD.BNK' 228 8*228/
+'COR.OPE' 48.7, 100.0, 2250/
+'DEP.STA' 'AVE' 0.1494 -.1 .2682/
+'STA'/
+'WRE'/
+'COM' 'number 11'
+'COR.TIN' 543.3/
+'CRD.BNK' 204 8*228/
+'COR.OPE' 48.92, 100.0, 2250/
+'DEP.STA' 'AVE' 0.2682 -.05 .3265/
+'STA'/
+'WRE'/
+'COM' 'number 15'
+'COR.TIN' 547.4/
+'CRD.BNK' 192 8*228/
+'COR.OPE' 74.03, 100.0, 2250/
+'DEP.STA' 'AVE' 0.3265 -.1 .6448/
+'STA'/
+'WRE'/
+'COM' 'number 19'
+'COR.TIN' 545.63/
+'CRD.BNK' 158 8*228/
+'COR.OPE' 73.16, 100.0, 2250/
+'DEP.STA' 'AVE' 0.6448 -.02 .6693/
+'STA'/
+'WRE'/
+'COM' 'number 24'
+'COR.TIN' 547.434/
+'CRD.BNK' 217 8*228/
+'COR.OPE' 89.47, 100.0, 2250/
+'DEP.STA' 'AVE' 0.6693 -.1 .8787/
+'STA'/
+'WRE'/
+'COM' 'number 25'
+'COR.TIN' 551.934/
+'CRD.BNK' 207 8*228/
+'COR.OPE' 98.67, 100.0, 2250/
+'DEP.STA' 'AVE' 0.8787 -.1 1.0233/
+'STA'/
+'WRE'/
+'COR.TIN' 551.934/
+'CRD.BNK' 207 8*228/
+'COR.OPE' 48.67, 100.0, 2250/
+'DEP.STA' 'AVE' 1.0233 -.1 1.218/
+'STA'/
+'COR.TIN' 541.494/
+'CRD.BNK' 199 8*228/
+'COR.OPE' 0.0, 100.0, 2250/
+'STA'/
+'WRE'/
+'COM' 'number 26'
+'COR.TIN' 541.494/
+'CRD.BNK' 187 8*228/
+'COR.OPE' 62.78, 100.0, 2250/
+'DEP.STA' 'AVE' 1.218 -.1 1.2955/
+'STA'/
+'WRE'/
+'COM' 'number 27'
+'COR.TIN' 550.134/
+'CRD.BNK' 198 8*228/
+'COR.OPE' 99.78, 100.0, 2250/
+'DEP.STA' 'AVE' 1.2955 -.1 1.5068/
+'STA'/
+'WRE'/
+'COM' 'number 28'
+'COR.TIN' 550.854/
+'CRD.BNK' 200 8*228/
+'COR.OPE' 99.98, 100.0, 2250/
+'DEP.STA' 'AVE' 1.5068 -.5 2.1625/
+'STA'/
+'WRE'/
+'COM' 'number 38'
+'COR.TIN' 550.494/
+'CRD.BNK' 195 8*228/
+'COR.OPE' 93.77, 100.0, 2250/
+'DEP.STA' 'AVE' 2.1625 -.5 3.2971/
+'STA'/
+'WRE'/
+'COM' 'number 39'
+'COR.TIN' 549.774/
+'CRD.BNK' 194 8*228/
+'COR.OPE' 99.6, 100.0, 2250/
+'DEP.STA' 'AVE' 3.2971 -.5 4.6135/
+'STA'/
+'WRE'/
+'COR.TIN' 549.774/
+'CRD.BNK' 194 8*228/
+'COR.OPE' 99.6, 100.0, 2250/
+'DEP.STA' 'AVE' 4.6135 -.5 5.8/
+'STA'/
+'COR.TIN' 541.134/
+'CRD.BNK' 199 8*228/
+'COR.OPE' 0.0, 100.0, 2250/
+'STA'/
+'WRE'/
+'COM' 'number 40'
+'COR.TIN' 541.134/
+'CRD.BNK' 176 8*228/
+'COR.OPE' 63.65, 100.0, 2250/
+'DEP.STA' 'AVE' 5.8 -0.1 6.0122/
+'STA'/
+'WRE'/
+'COM' 'number 43'
+'COR.TIN' 548.334/
+'CRD.BNK' 199 8*228/
+'COR.OPE' 99.7, 100.0, 2250/
+'DEP.STA' 'AVE' 6.0122 -0.25 6.4904/
+'STA'/
+'WRE'/
+'COM' 'number 50'
+'COR.TIN' 548.334/
+'CRD.BNK' 215 8*228/
+'COR.OPE' 99.3, 100.0, 2250/
+'DEP.STA' 'AVE' 6.4904 -0.5 7.508/
+'STA'/
+'WRE'/
+'COM' 'number 51'
+'COR.TIN' 548.334/
+'CRD.BNK' 223 8*228/
+'COR.OPE' 99.86, 100.0, 2250/
+'DEP.STA' 'AVE' 7.508 -0.5 8.701/
+'STA'/
+'WRE'/
+'COR.TIN' 548.334/
+'CRD.BNK' 223 8*228/
+'COR.OPE' 99.86, 100.0, 2250/
+'DEP.STA' 'AVE' 8.701 -0.5 9.57/
+'STA'/
+'COR.TIN' 549.234/
+'CRD.BNK' 199 8*228/
+'COR.OPE' 0.0, 100.0, 2250/
+'STA'/
+'WRE'/
+'COR.TIN' 549.234/
+'CRD.BNK' 207 8*228/
+'COR.OPE' 99.51, 100.0, 2250/
+'DEP.STA' 'AVE' 9.57 -0.1 9.74/
+'STA'/
+'WRE'/
+'COR.TIN' 549.234/
+'CRD.BNK' 207 8*228/
+'COR.OPE' 50.0, 100.0, 2250/
+'STA'/
+'COM' 'number 52'
+'COR.TIN' 549.234/
+'CRD.BNK' 207 8*228/
+'COR.OPE' 99.51, 100.0, 2250/
+'DEP.STA' 'AVE' 9.74 -0.1 9.8029/
+'STA'/
+'WRE'/
+'COR.TIN' 549.234/
+'CRD.BNK' 207 8*228/
+'COR.OPE' 99.51, 100.0, 2250/
+'DEP.STA' 'AVE' 9.8029 -0.1 11.0/
+'STA'/
+'COR.TIN' 549.234/
+'CRD.BNK' 199 8*228/
+'COR.OPE' 0.0, 100.0, 2250/
+'STA'/
+'WRE'/
+'COM' 'number 61'
+'COR.TIN' 549.234/
+'CRD.BNK' 217 8*228/
+'COR.OPE' 99.91, 100.0, 2250/
+'DEP.STA' 'AVE' 11.0 -0.1 11.0839/
+'STA'/
+'WRE'/
+'COM' 'number 62'
+'COR.TIN' 548.334/
+'CRD.BNK' 215 8*228/
+'COR.OPE' 99.78, 100.0, 2250/
+'DEP.STA' 'AVE' 11.0839 -0.5 12.3412/
+'STA'/
+'WRE'/
+'COR.TIN' 548.334/
+'CRD.BNK' 215 8*228/
+'COR.OPE' 99.78, 100.0, 2250/
+'DEP.STA' 'AVE' 12.3412 -0.1 12.67/
+'STA'/
+'COR.TIN' 549.234/
+'CRD.BNK' 199 8*228/
+'COR.OPE' 0.0, 100.0, 2250/
+'STA'/
+'CRD.BNK' 215 8*228/
+'COR.OPE' 75, 100.0, 2250/
+'DEP.STA' 'AVE' 12.67 -0.1 12.77/
+'STA'/
+'COM' 'number 63'
+'COR.TIN' 546.534/
+'CRD.BNK' 216 8*228/
+'COR.OPE' 84.48, 100.0, 2250/
+'DEP.STA' 'AVE' 12.77 -0.1 12.9152/
+'STA'/
+'WRE'/
+'DEP.STA' 'AVE' 12.9152 -0.5 13.4152/
+'STA'/
+'WRE'/
+'COM' 'number 71'
+'COR.TIN' 542.934/
+'CRD.BNK' 208 8*228/
+'COR.OPE' 69.86, 100.0, 2250/
+'DEP.STA' 'AVE' 13.4152 -0.5 13.6034/
+'STA'/
+'WRE'/
+'END'/

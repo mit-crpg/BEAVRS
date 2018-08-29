@@ -1,0 +1,66 @@
+{
+\pagestyle{plain}
+\begin{titlepage}
+  \setcounter{page}{0}
+  \thispagestyle{empty}
+  \begin{minipage}[T]{0.05\textwidth}
+   \color{mitred}
+   \rule{10pt}{1.0\textheight}
+  \end{minipage}
+  \hspace{0.05\textwidth}
+  \begin{minipage}[T]{0.95\textwidth}
+  \resizebox{2in}{!}{
+    \Large{MIT}
+  }
+  \resizebox{4in}{!}{
+    \begin{tabular}{l}
+      \Huge{{\textbf{\color{mitred}B}}}\Large{\color{black}enchmark} {\color{mitgray}for} \\
+      \Huge{{\textbf{\color{mitred}E}}}\Large{\color{black}valuation} \\
+      \Huge{{\textbf{\color{mitred}A}}}\Large{\color{black}nd} \\
+      \Huge{{\textbf{\color{mitred}V}}}\Large{\color{black}alidation} {\color{mitgray}of} \\
+      \Huge{{\textbf{\color{mitred}R}}}\Large{\color{black}eactor} \\
+      \Huge{{\textbf{\color{mitred}S}}}\Large{\color{black}imulations} \\ 
+    \end{tabular}
+
+  }
+ 
+  \begin{center}
+    \vspace{2em}
+    \includegraphics[width=3in]{beaver.png}
+    \vspace{2em}
+    {\color{mitred}\rule{\textwidth}{3pt}}
+    \resizebox{5in}{!}{
+      \begin{tabular}{c}
+        {\textbf{\large \mode\phantom{~}rev.\phantom{~}\theversion}} \\
+        ~\\
+        \emph{MIT \textbf{C}omputational \textbf{R}eactor \textbf{P}hysics \textbf{G}roup} \\
+        ~\\
+        \today
+      \end{tabular}
+    }
+  \end{center}
+  \end{minipage}
+
+\end{titlepage}
+\newpage
+\setcounter{page}{1}
+\pagenumbering{roman}
+\input{./frontmatter/authors}
+\newpage
+\input{./frontmatter/changelog}
+\newpage
+\input{./frontmatter/abstract}
+\newpage
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+\listoftables
+\newpage
+\listofnumref
+\newpage
+\input{./frontmatter/acronyms}
+\newpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+}

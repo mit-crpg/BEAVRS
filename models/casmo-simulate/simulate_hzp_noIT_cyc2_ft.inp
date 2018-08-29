@@ -1,0 +1,115 @@
+'COM'  * --------------------------------------------*
+'COM'  *                                             *
+'COM'  *                    BEAVERS                  *
+'COM'  *                 UO 2 DESGIGN                *
+'COM'  *                C Y C L E    2               *
+'COM'  *                                             *
+'COM'  * --------------------------------------------*
+
+'COM' Details from RELEASE rev. 3.0
+'COM' Source of info indicated by [page number] in comments
+
+'DIM.PWR' 15/                                      * PWR with 15 rows of fuel assemblies  [27]
+'DIM.CAL' 24, 4/                                   * 24 axial nodes in the fuel, FULL core
+'DIM.DEP' 'EXP' 'SAM' 'HBOR' 'HTMO' 'PIN' 'EBP' 'HTF'/  * Select depletion arguments
+
+'FUE.LAB' 6
+ 1  1                             L-10   TYPE05 TYPE01 TYPE05 TYPE01 TYPE05 E-10
+ 2  1               G-10   TYPE01 TYPE02 L-02   P-12   N-03   B-12   E-02   TYPE02 TYPE01 J-10
+ 3  1        F-09   TYPE05 N-02   N-10   TYPE03 D-11   R-10   M-11   TYPE03 C-10   C-02   TYPE05 K-09
+ 4  1        TYPE01 P-03   L-08   TYPE04 M-09   E-15   G-08   L-15   D-09   TYPE04 H-05   B-03   TYPE01
+ 5  1 F-05   TYPE02 F-03   TYPE04 M-04   TYPE03 M-03   A-10   D-03   TYPE03 D-04   TYPE04 K-03   TYPE02 K-05
+ 6  1 TYPE05 P-05   TYPE03 G-04   TYPE03 N-08   R-09   G-14   A-09   H-03   TYPE03 J-04   TYPE03 B-05   TYPE05
+ 7  1 TYPE01 D-02   E-12   A-11   N-04   G-01   B-09   H-15   J-14   J-01   C-04   R-11   L-12   M-02   TYPE01
+ 8  1 TYPE05 N-13   F-15   H-07   F-01   B-07   A-08   F-14   R-08   P-09   K-15   H-09   K-01   C-03   TYPE05
+ 9  1 TYPE01 D-14   E-04   A-05   N-12   G-15   G-02   H-01   P-07   J-15   C-12   R-05   L-04   M-14   TYPE01
+10  1 TYPE05 P-11   TYPE03 G-12   TYPE03 H-13   R-07   J-02   A-07   C-08   TYPE03 J-12   TYPE03 B-11   TYPE05
+11  1 F-11   TYPE02 F-13   TYPE04 M-12   TYPE03 M-13   R-06   D-13   TYPE03 D-12   TYPE04 K-13   TYPE02 K-11
+12  1        TYPE01 P-13   H-11   TYPE04 M-07   E-01   J-08   L-01   D-07   TYPE04 E-08   B-13   TYPE01
+13  1        F-07   TYPE05 N-14   N-06   TYPE03 D-05   A-06   M-05   TYPE03 C-06   C-14   TYPE05 K-07
+14  1               G-06   TYPE01 TYPE02 L-14   P-04   C-13   B-04   E-14   TYPE02 TYPE01 J-06
+15  1                             L-06   TYPE05 TYPE01 TYPE05 TYPE01 TYPE05 E-06
+ 0  0
+
+'FUE.NEW','TYPE01','01-001', 16,  52,,,  2 /
+'FUE.NEW','TYPE02','02-001',  8,  53,,,  2 /
+'FUE.NEW','TYPE03','03-001', 16,  54,,,  2 /
+'FUE.NEW','TYPE04','04-001',  8,  55,,,  2 /
+'FUE.NEW','TYPE05','05-001', 16,  56,,,  2 /
+
+'RES' 's3.pwr.uo2.c01.hfp.ft.res' 20000.  /
+
+'TIT.CAS' 'PWR CYCLE 2 U02 CORE - NOMINAL CYCLE'/      * Title for each case in run
+'TIT.PRO' 'BEAVERS PWR EQUILIBRIUM CYCLE'/        * Project name
+'BAT.LAB'  2 'CYC-2' /
+
+
+'SEG.ADF'  0 1,2,3,4,5,6,7,8/
+'COM' Enrichment data [127 - 136]
+'SEG.LIB'  52 'PWRU320C00'/
+'SEG.DAT'  52 3.2,, 0, 0/
+
+'SEG.LIB'  53 'PWRU320W04'/
+'SEG.DAT'  53 3.2,, 4, 4/
+
+'SEG.LIB'  54 'PWRU320W08'/
+'SEG.DAT'  54 3.2,, 8, 8/
+
+'SEG.LIB'  55 'PWRU320W12'/
+'SEG.DAT'  55 3.2,, 12, 12/
+
+'SEG.LIB'  56 'PWRU340C00'/
+'SEG.DAT'  56 3.4,, 0, 0/
+
+'SEG.LIB'  06 'PWRU240P12'/
+'SEG.DAT'  06 2.40,, 0,12/
+
+'SEG.LIB'  07 'PWRU240P16'/
+'SEG.DAT'  07 2.40,,  0, 16/
+
+'SEG.LIB'  09 'PWRU310P08'/
+'SEG.DAT'  09 3.10,, 0,08/
+
+'SEG.LIB'  10 'PWRU310P14'/
+'SEG.DAT'  10 3.10,, 0,14/
+
+'SEG.LIB'  11 'PWRU310P12'/
+'SEG.DAT'  11 3.10,, 0,12/
+
+'SEG.LIB'  12 'PWRU310P16'/
+'SEG.DAT'  12 3.10,, 0,16/
+
+'SEG.LIB'  13 'PWRU310P20'/
+'SEG.DAT'  13 3.10,, 0,20/
+
+'SEG.LIB'  14 'PWRU310P24'/
+'SEG.DAT'  14 3.10,, 0,24/
+
+'FUE.ZON'  52, 1, 'PWRU320C00'  3,0.0  52,365.76  2/
+'FUE.ZON'  53, 1, 'PWRU320W04'  3,0.0  53,365.76  2/
+'FUE.ZON'  54, 1, 'PWRU320W08'  3,0.0  54,365.76  2/
+'FUE.ZON'  55, 1, 'PWRU320W12'  3,0.0  55,365.76  2/
+'FUE.ZON'  56, 1, 'PWRU340C00'  3,0.0  56,365.76  2/
+
+
+'COR.BOR' 975/                                * Critical boron for HZP [63]
+'ITE.BOR' 900/                                * Soluble boron criticality search
+'DEP.CYC' 'CYCLE2' 0.0, 02/
+'COM' Execute the pin reconstruction and edit given parameters in sum. list
+'PIN.EDT' 'ON' 'SUMM' '2PIN' '2PLO' '2RR1' /
+'PIN.DET' 92235/                             * Use U-235 fission detectors
+
+
+'PRI.STA' '2EXP' '2RPF' /
+
+
+'CMS.EDT' 'ON' '2EXP' '3EXP'  '3RPF' '3PIN' '2PIN'  / * Turn on desired edits (output data)
+
+'COR.TIN' 560/                                 * Set core inlet temperature [63]
+'COR.OPE' 0.7, 100.0, 2250/                    * Set core operating power, flow and pressure [63]
+
+'COM' 'ERR.CHK' 'PERMIT'/  * Uncomment to allow runs with error checking faults
+'CRD.BNK' 213 8*228/       * D bank insertion to 213 / 228 [63]
+'WRE' 's3.pwr.uo2.c02.hzp.ft.res' 0.0/       * Save results at first, last exposure values
+'STA'/
+'END'/

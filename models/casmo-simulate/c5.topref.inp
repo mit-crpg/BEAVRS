@@ -1,0 +1,72 @@
+MEM 20 20
+* -----------------------------------------------------*
+*              BEAVRS PWR MODEL                        *
+* -----------------------------------------------------*
+
+TIT * BEAVRS PWR MODEL - PWR TOP AXIAL  REFLECTOR
+
+***** Details from RELEASE rev. 3.0
+***** Source of info indicated by [page number] in comments
+
+INC 'c5.general.inc'
+
+***** SEGMENT SPECIFIC
+*      SEGNAME    ENR  EBA BAP BAO
+SIM, 'TOPREF'
+FUE 1, 10.30166 / 3.10 * Fuel enrichment [132]
+
+LPI
+2
+1  1
+1  1  1
+3  1  1  3
+1  1  1  1  1
+1  1  1  1  1  3
+3  1  1  3  1  1  1
+1  1  1  1  1  1  1  1
+1  1  1  1  1  1  1  1  1
+*****
+
+* Region 1:  Fuel Rod Plenum Pincell
+*   Composition       Vol. Fract.
+*     H2O               58.44
+*     SS                 0.51
+*     Zr                 9.62
+*     Inc                0.82
+*     Air               30.60
+
+* Density of Inconel [48]
+MI1 8.20 / 718 = 100
+
+HO1 'COO' = 0.5845 'CRS' =  0.0051 'BOX' =  0.0962 'MI1' =  0.0082 'AIR' = .3060
+
+* Region 2:  Fuel Rod Plenum Pincell w/ Grid
+*   Composition       Vol. Fract.
+*     H2O               55.99
+*     SS                 0.51
+*     Zr                 9.62
+*     Inc                3.27
+*     Air               30.60
+
+HO2 'COO' = 0.5600 'CRS' =  0.0051 'BOX' =  0.0962 'MI1' =  0.0327 'AIR' = .3060
+
+* Region 3:  Zircaloy Pin
+*   Composition       Vol. Fract.
+*     H2O               58.44
+*     SS                 0.51
+*     Zr                 9.62
+*     Air               31.42
+
+HO3 'COO' = 0.5845 'CRS' =  0.0051 'BOX' =  0.0962 'AIR' = 0.3142
+
+* Region 4:  Top Three Axial Zones Homogonized (water, ss pin, water)
+*   Composition       Vol. Fract.
+*     H2O               88.60
+*     SS                 2.78
+*     Air                8.62
+
+HO4 'COO' = 0.8860 'CRS' =  0.0278 'AIR' = 0.0862
+
+REF,9.298,3.358,2,2.54,40.296/'HO1' 'HO2' 'HO1' 'HO3' 'HO4'///'TOP'
+S3C 'HOT'
+END

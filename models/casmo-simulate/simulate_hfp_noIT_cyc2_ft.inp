@@ -1,0 +1,118 @@
+'COM'  * --------------------------------------------*
+'COM'  *                                             *
+'COM'  *                    BEAVRS                   *
+'COM'  *                 UO 2 DESGIGN                *
+'COM'  *                C Y C L E    1               *
+'COM'  *                                             *
+'COM'  * --------------------------------------------*
+
+'COM' Details from RELEASE rev. 3.0
+'COM' Source of info indicated by [page number] in comments
+
+'COM' Restarting from HZP...
+
+'RES' 's3.pwr.uo2.c02.hzp.ft.res' 0.0/       * load restart
+
+'CMS.EDT' 'ON' '2EXP' '3EXP'  '3RPF' '3PIN' '2PIN'  /  * Turn on desired edits (output data)
+
+'WRE' 's3.pwr.uo2.c02.hfp.ft.res' 10000 20000 /       * Save results at first, last exposure values
+
+
+'CRD.BNK' 211 8*228/       * Control rod positions [?]
+'COR.TIN' 541.4/
+'COR.OPE' 29.11, 100.0, 2250/                    * Set core operating power, flow and pressure
+'DEP.STA' 'AVE' 0.0 -0.01 0.013/
+'STA'/
+'WRE'/
+'CRD.BNK' 177 8*228/       * Control rod positions [?]
+'COR.TIN' 545./
+'COR.OPE' 80.474, 100.0, 2250/                    * Set core operating power, flow and pressure
+'DEP.STA' 'AVE' 0.013 -0.1 0.127/
+'STA'/
+'WRE'/
+'CRD.BNK' 202 8*228/       * Control rod positions [?]
+'COR.TIN' 548.6/
+'COR.OPE' 99.99, 100.0, 2250/                    * Set core operating power, flow and pressure
+'DEP.STA' 'AVE' 0.127 -0.1 0.227/
+'STA'/
+'WRE'/
+'CRD.BNK' 215 8*228/       * Control rod positions [?]
+'COR.TIN' 548.6/
+'COR.OPE' 99.68, 100.0, 2250/                    * Set core operating power, flow and pressure
+'DEP.STA' 'AVE' 0.227 -0.5 1.137/
+'STA'/
+'WRE'/
+'CRD.BNK' 215 8*228/       * Control rod positions [?]
+'COR.TIN' 548.6/
+'COR.OPE' 99.68, 100.0, 2250/                    * Set core operating power, flow and pressure
+'DEP.STA' 'AVE' 1.137 -0.1 1.308/
+'STA'/
+'CRD.BNK' 177 8*228/       * Control rod positions [?]
+'COR.TIN' 541.4/
+'COR.OPE' 65.00, 100.0, 2250/                    * Set core operating power, flow and pressure
+'DEP.STA' 'AVE' 1.308 -0.1 1.408/
+'STA'/
+'WRE'/
+'CRD.BNK' 220 8*228/       * Control rod positions [?]
+'COR.TIN' 548.6/
+'COR.OPE' 100.00, 100.0, 2250/
+'STA'/
+'COR.OPE' 100.16, 100.0, 2250/                    * Set core operating power, flow and pressure
+'DEP.STA' 'AVE' 1.408 -0.5 2.111/
+'STA'/
+'WRE'/
+'CRD.BNK' 210 8*228/       * Control rod positions [?]
+'COR.OPE' 99.90, 100.0, 2250/                    * Set core operating power, flow and pressure
+'DEP.STA' 'AVE' 2.111 -0.6 3.199/
+'STA'/
+'WRE'/
+'CRD.BNK' 211 8*228/       * Control rod positions [?]
+'COR.OPE' 100.08, 100.0, 2250/                    * Set core operating power, flow and pressure
+'DEP.STA' 'AVE' 3.199 -0.6 4.043/
+'STA'/
+'WRE'/
+'CRD.BNK' 211 8*228/       * Control rod positions [?]
+'COR.TIN' 549.5/
+'COR.OPE' 99.75, 100.0, 2250/                    * Set core operating power, flow and pressure
+'DEP.STA' 'AVE' 4.043 -0.6 5.226/
+'STA'/
+'WRE'/
+'CRD.BNK' 212 8*228/       * Control rod positions [?]
+'COR.TIN' 549.5/
+'COR.OPE' 99.91, 100.0, 2250/                    * Set core operating power, flow and pressure
+'DEP.STA' 'AVE' 5.226 -0.5 6.523/
+'STA'/
+'WRE'/
+'CRD.BNK' 210 8*228/       * Control rod positions [?]
+'COR.TIN' 550.4/
+'COR.OPE' 99.96, 100.0, 2250/                    * Set core operating power, flow and pressure
+'DEP.STA' 'AVE' 6.523 -0.6 7.715/
+'STA'/
+'WRE'/
+'CRD.BNK' 211 8*228/       * Control rod positions [?]
+'COR.TIN' 549.5/
+'COR.OPE' 99.55, 100.0, 2250/                    * Set core operating power, flow and pressure
+'DEP.STA' 'AVE' 7.715 -0.6 8.729/
+'STA'/
+'WRE'/
+'CRD.BNK' 210 8*228/       * Control rod positions [?]
+'COR.TIN' 550.4/
+'COR.OPE' 99.91, 100.0, 2250/                    * Set core operating power, flow and pressure
+'DEP.STA' 'AVE' 8.729 -0.3 9.357/
+'STA'/
+'WRE'/
+'DEP.STA' 'AVE' 9.357 -0.25 9.857/
+'STA'/
+'CRD.BNK' 20 20 7*228/       * Control rod positions [?]
+'COR.OPE' 1., 100.0, 2250/                    * Set core operating power, flow and pressure
+'STA'/
+'DEP.STA' 'AVE' 9.857 -0.1 9.957/
+'STA'/
+'CRD.BNK' 217 8*228/       * Control rod positions [?]
+'COR.TIN' 549.5/
+'COR.OPE' 99.92, 100.0, 2250/                    * Set core operating power, flow and pressure
+'STA'/
+'DEP.STA' 'AVE' 9.957 -0.25 10.433/
+'STA'/
+'WRE'/
+'END'/

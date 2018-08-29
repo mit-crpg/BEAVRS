@@ -1,0 +1,94 @@
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=1,x=1in,y=1in]
+      \node[inner sep=0pt,
+        text width=3.4 in,
+        minimum size=0.222222222222 in,
+        draw=black,
+        align=center,
+        shift={(0,0.0)},
+        hyperlink node=mat_water] (n0) {Water};
+      \draw[->] (1.9,-0.111111111111) node[right,anchor=west] {0.00000 ~~~~~~~ Lowest Extent} -- (1.7,-0.111111111111);
+      \node[anchor=east] (s0) at (n0.west) {};
+      \node[inner sep=0pt,
+        text width=3.4 in,
+        minimum size=0.222222222222 in,
+        draw=black,
+        align=center,
+        shift={(0,0.222222222222)},
+        hyperlink node=mat_water_spn] (n1) {Support Plate / Nozzle Borated Water};
+      \draw[->] (1.9,0.111111111111) node[right,anchor=west] {20.0000 ~~~~~~~ Bottom of Support Plate} -- (1.7,0.111111111111);
+      \node[anchor=east] (s1) at (n1.west) {\ref{num:missing}};
+      \node[inner sep=0pt,
+        text width=3.4 in,
+        minimum size=0.222222222222 in,
+        draw=black,
+        align=center,
+        shift={(0,0.444444444444)},
+        hyperlink node=mat_water] (n2) {Water};
+      \draw[->] (1.9,0.333333333333) node[right,anchor=west] {35.0000 ~~~~~~~ Bottom of Fuel Rod} -- (1.7,0.333333333333);
+      \node[anchor=east] (s2) at (n2.west) {};
+      \node[inner sep=0pt,
+        text width=3.4 in,
+        minimum size=0.222222222222 in,
+        draw=black,
+        align=center,
+        shift={(0,0.666666666667)},
+        hyperlink node=mat_SS304] (n3) {Stainless Steel Pin};
+      \draw[->] (1.9,0.555555555556) node[right,anchor=west] {39.9580 ~~~~~~~ Bottom of Control Rod} -- (1.7,0.555555555556);
+      \node[anchor=east] (s3) at (n3.west) {\ref{num:control_rod_axials}};
+      \node[inner sep=0pt,
+        text width=3.4 in,
+        minimum size=0.222222222222 in,
+        draw=black,
+        align=center,
+        shift={(0,0.888888888889)},
+        hyperlink node=fig_cr_pin] (n4) {Control Rod Lower Absorber Pincell};
+      \draw[->] (1.9,0.777777777778) node[right,anchor=west] {41.8280 ~~~~~~~ Bottom of Lower Absorber (AIC)} -- (1.7,0.777777777778);
+      \node[anchor=east] (s4) at (n4.west) {\ref{num:control_rod_axials}};
+      \node[inner sep=0pt,
+        text width=3.4 in,
+        minimum size=0.222222222222 in,
+        draw=black,
+        align=center,
+        shift={(0,1.11111111111)},
+        hyperlink node=fig_cr_pin_upper] (n5) {Control Rod Upper Absorber Pincell};
+      \draw[->] (1.9,1.0) node[right,anchor=west] {143.428 ~~~~~~~ Bottom of Upper Absorber (B4C)} -- (1.7,1.0);
+      \node[anchor=east] (s5) at (n5.west) {\ref{num:control_rod_axials}};
+      \node[inner sep=0pt,
+        text width=3.4 in,
+        minimum size=0.222222222222 in,
+        draw=black,
+        align=center,
+        shift={(0,1.33333333333)},
+        hyperlink node=fig_cr_pin_spacer] (n6) {Control Rod Spacer Pincell};
+      \draw[->] (1.9,1.22222222222) node[right,anchor=west] {402.508 ~~~~~~~ Bottom of Spacer} -- (1.7,1.22222222222);
+      \node[anchor=east] (s6) at (n6.west) {\ref{num:control_rod_axials}};
+      \node[inner sep=0pt,
+        text width=3.4 in,
+        minimum size=0.222222222222 in,
+        draw=black,
+        align=center,
+        shift={(0,1.55555555556)},
+        hyperlink node=fig_cr_pin_plenum] (n7) {Control Rod Upper Plenum};
+      \draw[->] (1.9,1.44444444444) node[right,anchor=west] {403.778 ~~~~~~~ Bottom of Control Rod Plenum} -- (1.7,1.44444444444);
+      \node[anchor=east] (s7) at (n7.west) {\ref{num:control_rod_axials}};
+      \node[inner sep=0pt,
+        text width=3.4 in,
+        minimum size=0.222222222222 in,
+        draw=black,
+        align=center,
+        shift={(0,1.77777777778)},
+        hyperlink node=mat_SS304] (n8) {Stainless Steel Pin};
+      \draw[->] (1.9,1.66666666667) node[right,anchor=west] {415.558 ~~~~~~~ Top of Control Rod Plenum} -- (1.7,1.66666666667);
+      \node[anchor=east] (s8) at (n8.west) {\ref{num:control_rod_axials}};
+      \path let \p1 = (n8.west) in node[anchor=west] (source) at (\x1,2.11111111111) {\underline{Source Reference}};
+      \draw[->] (source.west) -| (s8.north);
+      \draw[->] (1.9,1.88888888889) node[right,anchor=west] {460.000 ~~~~~~~ Highest Extent} -- (1.7,1.88888888889);
+      \draw (1.7,2.11111111111) node[right,anchor=west] {\underline{Elevation (cm)} ~ \underline{Description}};
+
+    \end{tikzpicture}
+
+
+    \caption[Control rod pincell axial specification]{Control rod pincell axial specification when fully-inserted.  This only shows axial sections for the control rod itself, which is inside one of the guide tubes.\label{fig_cr_axials}}
+\end{figure}

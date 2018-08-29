@@ -1,0 +1,492 @@
+\section{Operating Data}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Processing Measured In-Core Detector Data}
+\label{sec:process_measure}
+In this reactor plant, there are 58 assemblies that contain in-core detectors.
+This layout of in-core detectors is shown in Figure \ref{fig_instr_pos}. These
+detectors are typically U-235 fission chambers varying in mass of U-235.
+Although there are 58 locations, there are usually only a few detectors (6-10).
+When measurements are being taken, multiple \textit{passes} are performed to
+adequately measure all 58 assemblies. Each detector will, however, pass through
+one common assembly. This becomes important in the normalization process of
+detector signals.
+
+Before a measurement is taken, detectors are inserted into the core through 
+instrumentation tubes in assemblies until the top of the assembly is hit.
+Detector measurements are then taken as the detectors are pulled back through
+the core at a constant speed. Thus, each measurement reported is an integral of
+the signal over the recording time. Also, axial locations of where data is
+recorded may be slightly skewed. In these measurements, 61 axial data points
+were collected and processed with a Python script.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Example -- Hot Zero Power Measurements}
+
+This section will go through the process of filtering measured data for
+\ac{HZP}.  It should be noted that the algorithm developed to process \ac{HZP}
+data was used for all detector data. Therefore, some of the detector maps may
+show errors in processing. Current work is underway to develop an algorithm
+that can be applied to all data. Under \ac{HZP} conditions, the core power for
+these measurements is approximately 25 MWth.  Raw data was processed by first
+organizing it in Python objects. Each collection of measurements contain
+detector information for multiple passes through the core in various assemblies.
+Raw data for \ac{HZP} is shown in Figure \ref{fig:orig_all}. In order to show
+all detector signals on one plot, each raw data signal was normalized to a sum
+of unity.
+\begin{figure}
+    \centering
+    \includegraphics{expdata/figs/original_all.pdf}
+    \caption{Initial Raw Detector Measurements (top to bottom). \label{fig:orig_all}}
+\end{figure}
+
+The first step in this process is to remove any detector background signal. This 
+information was supplied with the raw data and can be subtracted from each 
+detector measurement pass. The corrected data for background is shown in Figure 
+\ref{fig:back_all}.
+\begin{figure}
+    \centering
+    \includegraphics{expdata/figs/background_all.pdf}
+    \caption{Detector Measurements Corrected for Background (top to bottom). \label{fig:back_all}}
+\end{figure}
+
+Depending on the strength of the signal being measured, the signal can be amplified
+by adjusting the gain on the detectors.  Gain factors are also reported with the raw data.  When 
+processing, these gain factors are multiplied by the measured data.  For \ac{HZP}, all 
+of the gain factors are unity.  Figure \ref{fig:gain_all} shows the measured data 
+after gain factors are applied.
+\begin{figure}
+    \centering
+    \includegraphics{expdata/figs/gain_all.pdf}
+    \caption{Detector Measurements Gain Factors Applied (top to bottom). \label{fig:gain_all}}
+\end{figure}
+
+In some of the detector signals, zero points exist where the detector failed.  These zero points are removed by performing
+a linear interpolation/extrapolation between/from the nearest two points.  The corrected data is shown 
+in Figure \ref{fig:zero}.
+\begin{figure}
+    \centering
+    \includegraphics{expdata/figs/zeros_all.pdf}
+    \caption{Detector Measurements with Zero Points Removed (top to bottom). \label{fig:zero}}
+\end{figure}
+
+As explained above, there is one common assembly where all detectors will pass. This is needed 
+for normalization of detector signals. In this plant, assembly J10 was chosen as the common
+assembly.  Figure \ref{fig:J10} shows the measurements taken in assembly J10.
+\begin{figure}
+    \centering
+    \includegraphics{expdata/figs/zeros.pdf}
+    \caption{Detector Measurements with in J10 Assembly (top to bottom). \label{fig:J10}}
+\end{figure}
+
+Each detector measurement represents a different measurement pass.  The core power
+during one pass may not be the same as the others. There is typically a small fluctuation present in the core power. To account for this, each signal
+is divided by the core power reported during that measurement pass. The resulting
+detector signals are shown in Figure \ref{fig:dividepower} for assembly J10.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{expdata/figs/divide_power.pdf}
+    \caption{J10 Detector Measurements Divided by Core Power (top to bottom). \label{fig:dividepower}}
+\end{figure}
+
+The next step in the process is to make sure that all detector signals line up with
+one another. We can verify this by plotting all 58 detector signals on top of each 
+other.  This is the same as plot as Figure \ref{fig:dividepower}, except all assemblies are plotted here with signals normalized for shape comparison. This is shown in Figure \ref{fig:beforerealign}.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{expdata/figs/before_realign.pdf}
+    \caption{All Detector Signals Before Realignment. \label{fig:beforerealign}}
+\end{figure}
+It is observed that not all of the signals are aligned with each other. Luckily, signals can be 
+aligned to grid depressions. Here, we align to three grid depression positions, 25, 34, and 42, which are located in the centerline of grid 5, grid 4 and grid 3 respectively.
+The first step in this process is to find the measurement indexes corresponding to the local minimum in three regions, 22 to 28, 31 to 37, and 39 to 45 respectively.
+Then for each assembly, if the measurement indexes are inconsistent with correct indexes,
+a shifting length is estimated to make all the measurement indexes best match the correct indexes.
+All grids are then shifted either left or right. Depending on the 
+shift direction, one end will lose a point and the other will gain one. The data point 
+that is lost is just deleted from the data array, while the point that is gained is 
+determined by a simple linear extrapolation from the nearest two points. The resulting 
+realignment is shown in Figure \ref{fig:afterrealign}.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{expdata/figs/after_realign.pdf}
+    \caption{All Detector Signals After Realignment. \label{fig:afterrealign}}
+\end{figure}
+Results show that all detector signals are more consistently aligned, however still not perfect. The span of these signals can also be attributed to measurement uncertainty as they should all have the same shape once normalized here. There 
+is one signal that is an outlier is observed between measurements 
+0 and 5. This assembly location corresponds to where control rod bank D 
+is slightly inserted. Therefore, we should expect this depression in the signal toward 
+the top of the core.
+
+The next step in the process is to average detector signals that were measured from
+the same detector. It is important to look at the raw signals before performing this
+step since measurements may be poor. If this is observed, the poor measurement
+is commented out in the data file. In Figure \ref{fig:dividepower} the two signals
+from detector 4 are close to each other and should be averaged. The resulting signals
+for assembly J10 are shown in Figure \ref{fig:averagemultiple}.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{expdata/figs/average_multiple.pdf}
+    \caption{Multiple Detector Signals Averaged in J10 (top to bottom). \label{fig:averagemultiple}}
+\end{figure}
+
+Each fission chamber detector contains a different amount of U-235. Therefore, some normalization 
+process is needed to account for this mass difference. To get these normalization factors,
+the average of all detector signals is determined first. Then, normalization factors
+are computed by taking the ratio of the integral of each individual detector signal
+to the integral of the mean of all detector signals. For example, for \ac{HZP} the 
+normalization factors for each detector are:
+\begin{itemize}
+  \item{Detector 1: 0.922}
+  \item{Detector 2: 0.901}
+  \item{Detector 3: 1.272}
+  \item{Detector 4: 1.002}
+  \item{Detector 6: 0.903}
+\end{itemize}
+These normalization factors are then multiplied to each corresponding detector signal 
+in the core. The resulting signals are now very close to each other as shown in
+Figure \ref{fig:detnorm} for assembly J10.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{expdata/figs/norm_factors.pdf}
+    \caption{Application of Detector Normalization Factors for J10. \label{fig:detnorm}}
+\end{figure}
+
+Lastly, detector signals need to be put on an axial coordinate grid corresponding 
+to points that range from the bottom to top of active fuel. To do this we use the same 
+grid point as before since we know that the centerline location of this grid is at 
+221.9 cm above bottom of active fuel. The distance between axial measurement locations 
+is assumed uniform and is equal to active core height divided by 60 intervals. A 2nd 
+order spline fit is then used to map from measured data axial locations to a axial map 
+has equal data points exactly at the \ac{TAF} and \ac{BAF}.  A comparison of 
+applying this spline is shown in Figure \ref{fig:splineassy}.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{expdata/figs/spline_assy.pdf}
+    \caption{Comparison of Splined Data for Assembly J10. \label{fig:splineassy}}
+\end{figure}
+The spline fit does well for this data, however grid depressions are now less since the 
+grid centerline does not match up with the final axial grid.  Before the spline, all 
+detector signals were averaged such that there is only one signal per assembly. All splined 
+signals are shown in Figure \ref{fig:splineall}. There is some spread in the data when they 
+are all normalized to one another. There is one detector signal that seems to not follow the 
+same shape at the top of the core. That measurement corresponds to assembly D12 where control 
+rod bank D is slightly inserted and thus there is a depression in the measurement signal.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{expdata/figs/spline_all.pdf}
+    \caption{Comparison of All Assemblies after Spline. \label{fig:splineall}}
+\end{figure}
+A separate Excel sheet contains all of the processed data organized by measurement 
+data file and by assembly.  A plot of the final measurements (not all normalized to sum of unity) is 
+shown in Figure \ref{fig:splineunnorm}.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{expdata/figs/spline_unnorm.pdf}
+    \caption{Final Processed \ac{HZP} Measurement Data. \label{fig:splineunnorm}}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Hot Zero Power Data Discussion}
+\label{sec:hzp_data_disc}
+
+Table \ref{tbl:hzp_c1} lists the thermal power of the reactor during initial physics testing the first available detector maps. Also included are the rod bank positions and critical boron concentration. This data can be used to evaluate how far off reactor models are from critical at \ac{HZP} conditions.
+\begin{table}[htp]
+  \centering
+  \caption{Cycle 1 hot zero power physics configuration.}
+  \label{tbl:hzp_c1}
+  \begin{tabular}{l r}
+    \toprule
+    Core Power & 25 MWth \\
+    Core Flow Rate & $61.5\times10^6$ kg/hr \\ 
+    Inlet Coolant Temperature & 560$^\circ$ F \\
+    Rod Bank A Position & Step 228 \\
+    Rod Bank B Position & Step 228 \\
+    Rod Bank C Position & Step 228 \\
+    Rod Bank D Position & Step 213 \\
+    Boron Concentration & 975 \acs{ppm} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Radial maps were also created to view the average relative power produced per assembly. 
+These were obtained by renormalizing the signals in Figure \ref{fig:splineunnorm} such that their total
+sum is the number of detector locations (in this case 58). Each measurement in an assembly was then 
+axially averaged to produce a relative radial peaking factor. In Figure \ref{fig:radial_meas}, this factor 
+is presented on each assembly where a measurement was taken.
+\input{expdata/figs/radial_measurements_full}
+Results show that measurement locations are consistent with the reported instrumentation 
+diagram shown in Figure \ref{fig_instr_pos}. Since the reactor is quarter-core symmetric (disregarding perturbations from instrument tubes), 
+measurements can be compared. For example, assemblies H13, C8, H3 and N8 are located in 
+symmetric positions. The measured values in these locations should be close. It is 
+observed that the measurements are on the same order, but not all that close. This can 
+happen at low powers and gives us an indication of measurement uncertainty. 
+
+Another way to look at the data is to collapse it to quarter core. 
+We can compare rotational quarter core positions. If more than one radial power is available, the mean and standard deviation are reported. Otherwise, the result from Figure \ref{fig:radial_meas} is listed without a standard deviation. This is shown in Figure \ref{fig:quarter_meas}.
+In each assembly, three values are reported. From top to bottom they are: 
+average of radial (axially averaged) signals, standard deviation of average and 
+number of measurements that were averaged. The standard deviations give us some idea 
+on the uncertainty in these measured values.  They can range all the way up to 
+5.4\%. A weighted average of the standard deviation was computed to get an idea 
+of the overall measurement uncertainty. This was determined by multiplying each uncertainty by the number of radial powers and then dividing by 58. For \ac{HZP}, this uncertainty is 3.7\%. This is 
+rather high since we really would like to see values below 1\%. However, when the power 
+is very low, power tilting can occur which contributes to this high uncertainty.
+\input{expdata/figs/radial_measurements_quarter}
+
+To compare simulation values to these measured data, axial edits of a tally such as U235 fission
+rate must be applied to each instrumented assembly in the core. To be fully
+consistent with the data a constant width 60 interval mesh (61 points) from
+bottom of active fuel to top of active fuel should be applied. All signals
+should be renormalized such that their average is 1.0 (or sum of all signals is
+58). 
+
+Table \ref{tbl:meas_c1phys} presents measured data for control rod bank worths
+and isothermal temperature coefficients for \ac{HZP} conditions. Also provided
+are the critical boron concentrations for each configuration. Likewise, Table
+\ref{tbl:meas_c2phys} presents the same data that is available for cycle 2. In
+contrast to cycle 1, control rod bank worths in cycle 2 were reported per
+individual bank.
+
+\begin{table}[htp]
+  \centering
+  \caption[Cycle 1 hot zero power physics data.]{Cycle 1 hot zero power physics
+  data, including critical boron concentrations, control rod bank worths for the
+  full insertion sequence, and isothermal temperature coefficients.
+  \label{tbl:meas_c1phys}}
+  \begin{tabular}{l r l r l r}
+    \toprule 
+    \multicolumn{2}{c}{Crit. Boron Concentrations (\acs{ppm})} &
+    \multicolumn{2}{c}{Control Rod Bank Worths (\acs{pcm})} &
+    \multicolumn{2}{c}{Temp. Coeffs. (\acs{pcm}/$^\circ$F)}\\
+    \midrule
+    \midrule
+
+    \ac{ARO} & 975 &  &  & \ac{ARO} & -1.75 \\
+    D in & 902 & D in & 788 & D in & -2.75 \\
+    C, D in & 810 & C with D in & 1203 & C, D in & -8.01 \\
+    &  & B with D, C in & 1171 & & \\
+    A, B, C, D in & 686 & A with D, C, B in & 548 & & \\
+    &  & SE with D, C, B, A in & 461 & & \\
+    &  & SD with D, C, B, A, SE in & 772 & & \\
+    A, B, C, D, SE, SD, SC in &  508 & SC with D, C, B, A, SE, SD in & 1099 & & \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+
+\begin{table}[htp]
+  \centering
+  \caption[Cycle 2 hot zero power physics data.]{Cycle 2 hot zero power physics
+  data, including critical boron concentrations, control rod bank worths for the
+  full insertion sequence, and isothermal temperature coefficients.
+  \label{tbl:meas_c2phys}}
+  \begin{tabular}{l r l r l r}
+    \toprule 
+    \multicolumn{2}{c}{Crit. Boron Concentrations (\acs{ppm})} &
+    \multicolumn{2}{c}{Control Rod Bank Worths (\acs{pcm})} &
+    \multicolumn{2}{c}{Temp. Coeffs. (\acs{pcm}/$^\circ$F)}\\
+    \midrule
+    \midrule
+	
+    \ac{ARO} & 1405 &       &       & \ac{ARO} & -1.71 \\
+             &      & D     & 426   &          &       \\
+    C in     & 1273 & C     & 1014  &          &       \\
+             &      & B     & 716   &          &       \\
+             &      & A     & 420   &          &       \\
+             &      & SE    & 438   &          &       \\
+             &      & SD    & 305   &          &       \\
+             &      & SC    & 307   &          &       \\
+             &      & SB    & 781   &          &       \\
+             &      & SA    & 326   &          &       \\
+             &      & Total & 4733  &          &       \\
+    
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cycle 1 and 2 Available Data}
+\label{sec:available_data}
+
+\subsubsection{Detector Measurement Maps}
+\label{sec:measurement_maps}
+For Cycle 1 and 2 operation of this reactor, there are detector measurement maps
+available at various times during operation. For each measurement file, data is
+given for core power, inlet coolant temperature, core burnup, critical boron
+concentration and rod bank configuration.
+Although these are not described here, each measurement file has been processed
+according to the methodology described in Section \ref{sec:process_measure}.
+These are available online at the
+{\color{blue}\href{http://crpg.mit.edu/pub/beavrs}{MIT-CRPG website}}.
+
+\subsubsection{Tilt Corrected Maps}
+\label{sec:tc_maps}
+The BEAVRS measured data presents a very large NW-SE (10\%) tilt at HZP 
+conditions that cannot be explained by detector measurements alone, since the 
+core loading pattern is known to be symmetric. Simulations of such maps produce 
+symmetric results, thus indicating a phenomenon that has not been accounted for. 
+The leading hypothesis for this tilt is that it is created by a larger water gap 
+in one corner of the core that stems from the core loading. As bundles are inserted 
+and leaning against the baffle, uneven gaps could occur in opposite corners of the 
+core. These gaps even out as the reactor heats up and fuel swells under irradiations. 
+A script is introduced to fit a planar x-y tilt using the available detector data, 
+and adjust the detector measurements so that the resulting radial map is eighth-core 
+symmetric. Figure \ref{fig:radial_meas_tc} illustrates a tilt-corrected radial map 
+at HZP conditions that is eighth-core symmetric. Figures \ref{fig:cyc_1_tilt} and 
+\ref{fig:cyc_2_tilt} plot the magnitude of the planar tilt over Cycle 1 and 2 
+respectively, and indeed as predicted, the tilt corrects itself as burnup increases.
+
+\input{expdata/figs/radial_measurements_full_tc}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=5.0in]{expdata/figs/tilt_cycle1.png}
+  \caption{Planar tilt for cycle 1
+  \label{fig:cyc_1_tilt}}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \centering
+  \includegraphics[width=5.0in]{expdata/figs/tilt_cycle2.png}
+  \caption{Planar tilt for cycle 2
+  \label{fig:cyc_2_tilt}}
+\end{figure}
+
+For each burnup, tilt-corrected data at each assembly, as well as tilt-corrected radial 
+maps are all available on the {\color{blue}\href{http://crpg.mit.edu/pub/beavrs}{MIT-CRPG website}}. It must be noted that there is no 
+definitive explanation for why this tilt in the data arises or the validity of the 
+planar tilt correction, so this data should be utilized at the user's own discretion.
+
+\subsubsection{Boron Letdown Curve}
+\label{sec:boron_letdown}
+Also available is the boron letdown curve during Cycle 1 and Cycle 2 operation.
+Figure \ref{fig:boron_letdown} and corresponding Table \ref{tab:boron_letdown}
+present the boron letdown data. Finally, the power history reference from
+\ac{BOC} for Cycle 1 operation is presented in Figure \ref{fig:power_historyc1}.
+Power history data is also available online at the
+{\color{blue}\href{http://crpg.mit.edu/pub/beavrs}{MIT-CRPG website}}. In Figure
+\ref{fig:power_historyc1}, locations of where detector maps are available are
+also shown. Note, the powers shown in Figure \ref{fig:power_historyc1} are 24-hr
+averages, whereas, in detector measurement files, powers reported are
+instantaneous at the time of measurement. In the plot they are shown to be
+coincident with the power history, however, in the files they may be slightly
+different. Similarly, Figure \ref{fig:power_historyc2} shows the power history
+of Cycle 2.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=5.5in]{expdata/figs/boron_letdown.pdf}
+  \caption{Measured boron letdown curves for two cycles of operation.
+  \label{fig:boron_letdown}}
+\end{figure}
+
+\begin{table}[htp]
+  \centering
+  \caption{Boron Letdown Curve Data for Cycles 1 and 2.\label{tab:boron_letdown}}
+  \begin{tabular}{l c l c}
+    \toprule
+    \multicolumn{2}{c}{Cycle 1} &
+    \multicolumn{2}{c}{Cycle 2}\\
+    \midrule
+    \midrule
+    \acs{EFPD} & Boron [\acs{ppm}] &  \acs{EFPD} & Boron [\acs{ppm}] \\
+    4  & 599 & 13 & 918 \\
+    11 & 610 & 23 & 882 \\
+    16 & 614 & 43 & 832 \\
+    22 & 621 & 63 & 764 \\
+    31 & 638 & 84 & 687 \\
+    36 & 610 & 103 & 623 \\
+    52 & 623 & 129 & 538 \\
+    69 & 598 & 150 & 466 \\
+    85 & 569 & 176 & 376 \\
+    96 & 559 & 202 & 292 \\
+   110 & 533 & 234 & 184 \\
+   124 & 506 & 257 & 104 \\
+   141 & 471 & & \\
+   144 & 461 & & \\ 
+   152 & 457 &  & \\
+   164 & 415 &  & \\
+   174 & 394 &  & \\
+   177 & 384 &  & \\
+   180 & 384 &  & \\
+   190 & 367 &  & \\
+   204 & 322 &  & \\
+   214 & 296 &  & \\
+   219 & 286 &  & \\
+   225 & 270 &  & \\
+   228 & 270 &  & \\
+   248 & 207 & & \\
+   271 & 149 &  & \\
+   295 & 72 &  & \\
+   326 & 0 &  & \\
+   \bottomrule
+  \end{tabular}
+\end{table} 
+\clearpage
+\begin{landscape}
+\begin{figure}[htb]
+  \centering
+  \includegraphics[scale=1.8]{expdata/figs/cycle1.pdf}
+  \caption{Power history of Cycle 1.
+  \label{fig:power_historyc1}}
+\end{figure}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\begin{figure}[htb]
+  \centering
+  \includegraphics[scale=1.8]{expdata/figs/cycle2.pdf}
+  \caption{Power history of Cycle 2.
+  \label{fig:power_historyc2}}
+\end{figure}
+\end{landscape}
+
+%Additional data collected, listed in Table \ref{tab:operdata}
+%shows how inlet temperature, critical boron
+%concentration, bank D rod position and percent of full power as 
+%a function of exposure for cycle 1.
+%
+%\begin{table}
+%  \centering
+%  \label{tab:operdata}
+%  \caption{Core operating data as a function of exposure}
+%  \begin{tabular}{c c c c c c}
+%  \toprule
+%  Exporsure (EFPD) &  Boron (ppm) & Inlet Temp. (F) & Bank D &  \% Power \\
+%  \midrule
+%  \midrule
+%   .00 &  709 &  559.2 &  212 &   48.6 \\
+%  6.00 &  674 &  559.2 &  212 &   48.6 \\
+% 21.00 &  609 &  561.1 &  217 &   89.5 \\
+% 25.00 &  598 &  561.5 &  207 &   98.5 \\
+% 36.00 &  596 &  561.6 &  198 &   99.8 \\
+% 52.00 &  590 &  561.6 &  228 &  100.0 \\
+% 80.00 &  556 &  561.3 &  195 &   94.0 \\
+%110.00 &  494 &  561.6 &  193 &  100.0 \\
+%140.00 &  437 &  561.6 &  208 &  100.0 \\
+%144.00 &  476 &  559.9 &  178 &   64.0 \\
+%150.00 &  416 &  561.6 &  199 &  100.0 \\
+%156.00 &  404 &  561.6 &  199 &  100.0 \\
+%180.00 &  352 &  561.6 &  215 &  100.0 \\
+%220.00 &  258 &  561.6 &  223 &  100.0 \\
+%235.00 &  218 &  561.6 &  208 &  100.0 \\
+%266.00 &  140 &  561.6 &  217 &  100.0 \\
+%296.00 &   58 &  561.6 &  215 &  100.0 \\
+%310.00 &   49 &  560.9 &  216 &   84.5 \\
+%326.00 &   31 &  560.2 &  208 &   70.0 \\
+%327.00 &   29 &  560.2 &  208 &   70.0 \\
+%  \bottomrule
+%  \end{tabular}
+%\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Uncertainty Quantification of Measurements}
+\label{sec:uq_measurements}
+
+In addition to the model parameters and measured data, the associated uncertainties
+are also essential for the validation of high-fidelity tools.
+A series of uncertainty quantification work has been carried out in the BEAVRS
+benchmark. Uncertainties of various measurements are available in the data package,
+while the evaluation methods are detailed in \cite{liang2017uq_beavrs} and \cite{kumar2018final_report}.

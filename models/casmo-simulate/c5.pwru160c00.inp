@@ -1,0 +1,35 @@
+* -----------------------------------------------------*
+*              BEAVRS PWR MODEL                        *
+* -----------------------------------------------------*
+
+TTL  * BEAVRS PWR MODEL - FUEL PWRU160C00 BASE AND BRANCHES
+
+***** Details from RELEASE rev. 3.0
+***** Source of info indicated by [page number] in comments
+
+INC 'c5.general.inc'
+INC 'c5.nobp.inc'
+
+***** SEGMENT SPECIFIC
+*      SEGNAME
+SIM, 'PWRU160C00'
+FUE 1, 10.31341 / 1.61  * Fuel enrichment [128]
+
+LPI
+2
+1  1
+1  1  1
+3  1  1  3
+1  1  1  1  1
+1  1  1  1  1  3
+3  1  1  3  1  1  1
+1  1  1  1  1  1  1  1
+1  1  1  1  1  1  1  1  1
+
+*  No BP [14]
+*****
+
+DEP,-60.00
+S3C 'HOT'
+STA
+END

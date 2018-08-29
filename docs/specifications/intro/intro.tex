@@ -1,0 +1,53 @@
+\section{Introduction}
+
+Advances in computing capabilities are further improving the feasibility of
+fast-running high-fidelity simulations of nuclear cores. Where current core
+simulations require a series of homogenization procedures to model reactors on a
+coarse-mesh in order to overcome memory and computer processing limitations
+\cite{Smith1986303}, modern techniques aspire to provide solutions using
+fully-detailed geometries with far fewer approximations. For instance, recent
+research efforts improving the scalability and efficiency of Monte Carlo neutron
+transport algorithms have resulted in very accurate solutions to the well-known
+Hoogenboom-Martin problem \cite{HM_bench} with the MC21 Monte Carlo code
+\cite{mc21_hoomartin2010} \cite{mc21_hoomartin2012}, with statistical
+uncertainties approaching the 1\% pin-power accuracy criterion proposed by Smith
+\cite{kordsmithchallenge} for full-core Monte Carlo analysis. Likewise, modern
+deterministic approaches are targeting similar accuracy on some of the world's
+largest supercomputers \cite{denovo_jaguar2012}. Indeed, the development of such
+high-fidelity full-core modelling capabilities for \acp{LWR} is the stated goal
+of several DOE projects such as \acs{CASL} (\acl{CASL}) \cite{casl_goals} and
+\acs{CESAR} (\acl{CESAR}) \cite{cesar_goals}. However, there is a lack of
+detailed and relevant benchmarks needed to validate these methods, and a more
+complete benchmark that includes measured reactor data is presented here.
+
+Nearly all non-proprietary benchmarks do not capture the detail of \acp{LWR}
+needed to validate high-fidelity methods being developed today. For instance,
+the OECD \ac{LWR} and \ac{PWR} reactor benchmark specifications
+\cite{oecd_bench} mostly refer to simple lattice experiments, limited physics
+testing configurations, and small test reactors. Whereas several full-core
+\acs{LMFR} models are available (\acs{FFTF}, JOYO, etc.), \acp{LWR} are markedly
+under represented. This is particularly true for full-core benchmarks of most
+interest to the methods development and regulatory community: production
+reactors similar to operating and planned commercial units. Some recent
+publications come close to satisfying this need, but they ultimately fall short
+either in scope or applicability. For instance, a 2011 \acs{EPRI} report
+\cite{epri2011bench} provides reactivity and depletion data with several
+benchmark specifications for \ac{PWR} assembly lattices. These benchmarks, while
+using full-core simulations and measured data, take the approach of reducing the
+benchmark to single-assembly calculations and do not provide detailed full-core
+tests or measured reactor data.
+
+A distinction should be noted between the kind of data-backed benchmark being
+pursued here and the code-comparison benchmarks often used to evaluate methods.
+For instance, several newer and widely-used \ac{LWR} benchmarking suites are not
+backed by measured data, such as the C5G7 \acs{MOX} benchmarks \cite{c5g7}, the
+Hoogenboom-Martin \ac{LWR} Monte Carlo benchmark \cite{mc21_hoomartin2010}, and
+the approximate \ac{PWR} specification by Douglas et al.
+\cite{Douglass20101384}. Instead, comparisons are based on results submitted by
+many different parties using a variety of codes. Measured reactor data is
+required for a credible validation.
+
+This document introduces a new benchmark that addresses many of the shortcomings
+of previous \ac{LWR} benchmarks by providing a highly-detailed \ac{PWR}
+specification with two cycles of measured operational data that can be used to
+validate high-fidelity core analysis methods.

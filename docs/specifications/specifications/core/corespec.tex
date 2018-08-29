@@ -1,0 +1,114 @@
+\subsubsection{Core Specification}
+\label{sec:corespec}
+
+The remainder of the radial specification is made up of the building blocks 
+defined in the previous sections. Specifically, the main core lattice of fuel
+assemblies is made up of the previously described fuel assemblies, separated by
+the fuel assembly lattice pitch specified in Table
+\ref{table_assembly_overview}. In addition, specifications for the structural
+components surrounding the fuel assembly lattice are given in Table
+\ref{table_baff_vess}.
+
+
+\begin{table}[htbp]
+  \centering
+  \caption{Structural component specifications. \label{table_baff_vess}}
+  
+  \begin{tabularx}{\textwidth}{l C c}
+    \toprule
+    & & Source \\
+    \midrule
+    \midrule 
+    Baffle Width & 2.22250 cm & \ref{num:core_baffle}\\
+    Baffle Water Gap & 0.1627 cm & \ref{num:rpv}\\
+    Baffle Material & \hyperlink{mat_SS304}{Stainless Steel 304} & \ref{num:rpv}\\
+    
+    \\
+    Core Barrel \ac{IR} & 187.960 cm & \ref{num:core_barrelIR}\\
+    Core Barrel \ac{OR} & 193.675 cm & \ref{num:core_barrelOR}\\
+    Core Barrel Material & \hyperlink{mat_SS304}{Stainless Steel 304} & \ref{num:core_barrelmat}\\
+    \\
+    Neutron Shield Panel \ac{IR} & 194.840 cm & \ref{num:rpv}\\
+    Neutron Shield Panel \ac{OR} & 201.630 cm & \ref{num:rpv}\\
+    Neutron Shield Panel Material & \hyperlink{mat_SS304}{Stainless Steel 304} & \ref{num:rpv}\\
+    Neutron Shield Panel Width & $32^{\circ}$ at the $45^{\circ}$ marks & \ref{num:rpv}\\
+    \\
+    Pressure Vessel Liner \ac{IR} & 219.150 cm & \ref{num:rpv}\\
+    Pressure Vessel Liner \ac{OR} & 219.710 cm & \ref{num:rpv}\\
+    Pressure Vessel Liner Material & \hyperlink{mat_SS304}{Stainless Steel 304} & \ref{num:catawba}\\
+    \\
+    Pressure Vessel \ac{IR} & 219.710 cm & \ref{num:rpv}\\
+    Pressure Vessel \ac{OR} & 241.300 cm & \ref{num:rpv}\\
+    Pressure Vessel Material & \hyperlink{mat_carbonsteel}{Carbon Steel 508} & \ref{num:catawba}\\
+    \bottomrule
+  \end{tabularx}
+
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\FloatBarrier
+\paragraph{Enrichment Zones and Burnable Absorber Positions}
+\label{sec:corespec_enrba}
+
+The initial cycle 1 fuel assembly loading pattern is shown in Figure
+\ref{fig_enr_ba_pos}, including the distribution of enrichments as well as
+burnable absorber locations.  The burnable absorber configurations here are
+described in Section \ref{sec:ba_configs}, rotated as appropriate for core
+symmetry.  A scale view of burnable absorber pins depicting these rotations is
+shown in Figure \ref{fig_ba_pos_real}.
+
+\input{specifications/core/figs/cat_enr_ba_zones} % label: fig_enr_ba_pos
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=6in]{specifications/core/figs/cat_ba_positions.png}
+    \caption[Cycle 1 detailed burnable absorber view]{Detailed scale view of
+    burnable absorber pins in cycle 1, showing proper rotations.
+    \label{fig_ba_pos_real}}
+\end{figure}
+
+Figure \ref{fig_enr_ba_pos_c2} shows the shuffling pattern for cycle 2, which
+includes 64 fresh assemblies and a different burnable absorber pattern.
+
+\input{specifications/core/figs/cat_enr_ba_zones_c2} % label: fig_enr_ba_pos_c2
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\FloatBarrier
+\paragraph{Control Rod Bank Positions}
+
+Each of the four control rod banks - specified by the identifiers A, B, C, and D
+- are made up of several control rod clusters in multiple fuel assemblies. In
+control rod clusters, every guide tube is filled with the control rod pincell
+described in section \ref{sec:pintypes}, with the exception of the center
+tube. Each of the clusters in a given control rod bank move together.
+
+In addition to the control rod banks, 5 shutdown banks of control rod clusters
+are included above the core - specified by $\mathrm{S}_\mathrm{A}$,
+$\mathrm{S}_\mathrm{B}$, $\mathrm{S}_\mathrm{C}$, $\mathrm{S}_\mathrm{D}$, and
+$\mathrm{S}_\mathrm{E}$. These clusters are not used in normal operation,
+however, their reactivity worth was measured and reported in Table
+\ref{tbl:meas_c1phys}.
+
+Figure \ref{fig_cr_pos} shows the radial locations of control rod clusters
+belonging to each control rod and shutdown bank. The axial specifications of
+each are described later in Section \ref{sec:axial_cr}.
+
+The positions of control rod banks do not change between cycle 1 and cycle 2.
+
+\input{specifications/core/figs/cat_cr_pos} % label: fig_cr_pos
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+\paragraph{Instrument Tube Positions}
+\label{sec:coreinstrpos}
+
+The central guide tube for many fuel assemblies in the core is filled by an
+instrument tube, as described in Section \ref{sec:pintypes}. Figure
+\ref{fig_instr_pos} shows these positions. Where not indicated, the central
+guide tube is filled with water, as described in section \ref{sec:pintypes}.
+
+The positions of instrument tubes do not change between cycle 1 and cycle 2.
+
+\input{specifications/core/figs/cat_instr_pos} % label: fig_instr_pos
+
+\FloatBarrier

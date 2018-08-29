@@ -1,0 +1,18 @@
+\begin{tikzpicture}[scale=8,auto]
+        \draw (0,0) circle (0.39218);
+      \draw[->] (0,0) -- node[pos=0.65] {1} (0.196,0.34);
+      \draw (0,0) circle (0.40005);
+      \draw[->] (0,0) -- node[pos=0.65] {2} (0.346,0.2);
+      \draw (0,0) circle (0.4572);
+      \draw[->] (0,0) -- node[pos=0.65] {3} (0.457,0.0);
+
+      \end{tikzpicture}
+      \begin{tikzpicture}
+       \matrix [matrix of nodes]
+      {
+          Arrow & Radius (cm) & Material & \numrefheader \\
+        1 & 0.39218 & \node[hyperlink node=mat_fuel16]{Fuel}; & \ref{num:fuelpellrad}\\ 
+        2 & 0.40005 & \node[hyperlink node=mat_helium]{Helium}; & \ref{num:fuelIRrad}\\ 
+        3 & 0.45720 & \node[hyperlink node=mat_zirc]{Zircaloy}; & \ref{num:fuelORrad}\\ 
+      };
+\end{tikzpicture}

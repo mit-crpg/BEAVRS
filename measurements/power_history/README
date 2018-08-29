@@ -1,0 +1,6 @@
+This directory contains power history information.
+
+cycle1.pdf: Plot of cycle 1 power history
+cycle2.pdf: Plot of cycle 2 power history
+power_history.csv: Comma-separated value list of cycle power history
+power_history.xlsx: Excel file with cycle power history data

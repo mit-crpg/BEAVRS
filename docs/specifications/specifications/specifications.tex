@@ -1,0 +1,199 @@
+\section{Benchmark Specifications}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Overview}
+
+The core geometry specifications are described in 3 levels of increasing scope,
+detailing each of the hierarchical elements of the model. First the radial
+geometry is described, followed by a section detailing the axial parameters.
+
+At the lowest level, the radial geometry of each of the pincell types used
+throughout the core is described. Next, the fuel assembly design is detailed, 
+including the possible configurations of burnable absorbers and the radial
+specification of the grid spacers. Finally, the greater core geometry is
+described, including the fuel assembly enrichment locations, the positions of
+burnable absorbers, instrument tubes, control rod banks, and shutdown banks, as
+well as the baffle that surrounds the fuel assemblies, the core barrel, four
+neutron shield panels, and the reactor pressure vessel and liner.
+
+After the radial and axial geometry descriptions, a material specifications
+section lists the details of each of the materials referred to.
+%Finally, the last section details the approximations made by this model and
+%suggests addition approximations that might be appropriate.
+Table \ref{overview_table} provides a summary of key model parameters that will
+be specified in greater detail in subsequent sections, and Figure
+\ref{fig_overview} shows a core cross section indicating the radial structures
+and assembly loading pattern.
+\newpage
+\begin{table}
+  \centering
+  \caption{Summary of key model parameters. \label{overview_table}}
+  \begin{tabularx}{\textwidth}{l C c}
+    \toprule
+    \multicolumn{3}{c}{\phantom{Source}\hfill Core Lattice \hfill Source}\\
+    \midrule
+    \midrule
+    & & \\
+    
+    No. Fuel Assemblies & 193 & \ref{num:assycore}\\
+    & & \\
+    Loading Pattern & w/o U235 & \\
+    ~~Region 1 (cycle 1) & 1.60$^\dagger$ & \ref{num:assycore}\\
+    ~~Region 2 (cycle 1) & 2.40$^\dagger$ & \ref{num:assycore}\\
+    ~~Region 3 (cycle 1) & 3.10$^\dagger$ & \ref{num:assycore}\\
+    ~~Region 4A (cycle 2) & 3.20$^{\dagger\dagger}$ & \ref{num:assycore}\\
+    ~~Region 4B (cycle 2) & 3.40$^{\dagger\dagger}$ & \ref{num:assycore}\\
+    & & \\
+    
+    Cycle 1 Heavy Metal Loading & 81.8 MT & \ref{num:assyload} \\
+    & & \\
+    \midrule 
+    \multicolumn{3}{c}{Fuel Assemblies}\\
+    \midrule
+    \midrule
+    & & \\
+    
+    Pin Lattice Configuration & $17 \times 17$ & \ref{num:fuellattice}\\
+    Active Fuel Length & 365.76 cm & \ref{num:fuelheight}\\
+    No. Fuel Rods & 264 & \ref{num:fuellattice}\\
+    No. Grid Spacers & 8 & \ref{num:fuellattice}\\
+    
+    & & \\
+    \midrule
+    \multicolumn{3}{c}{Control}\\
+    \midrule
+    \midrule
+    & & \\
+    
+    Control Rod Material (Upper Region) & \hyperlink{mat_b4c_rod}{B4C} & \ref{num:b4c_rod_mat}\\
+    Control Rod Material (Lower Region) & \hyperlink{mat_aic_rod}{Ag-In-Cd} & \ref{num:aic_rod_mat}\\
+    No. Control Rod Banks & 57 & \ref{num:assycore}\\
+    
+    & & \\
+    No. Burnable Poison Rods in Core & 1266 & \ref{num:assycore}\\
+    Burnable Poison Material & \hyperlink{mat_borosilicate}{Borosilicate Glass}, 12.5 w/o $\mathrm{B}_2\mathrm{O}_3$ & \ref{num:fuellattice}\\
+    
+    & & \\
+    \midrule
+    \multicolumn{3}{c}{Performance}\\
+    \midrule
+    \midrule
+    & & \\
+    
+    Core Power & 3411 MWth & \ref{num:measurement}\\
+    Operating Pressure & 2250 psia & \ref{num:measurement}\\
+    Core Flow Rate & $61.5\times10^6\,\mathrm{kg/hr}$ (5\% bypass$^\ddagger$) & \ref{num:flowrate} \\
+    \bottomrule 
+  \end{tabularx}
+  \begin{small}\begin{flushleft}
+    \noindent $^\dagger$ Cycle 1 Actual core-averaged enrichments calculated from detailed assembly loadings, see Source \ref{num:assy_load}. \\
+    \noindent $^{\dagger\dagger}$ Cycle 2 Actual core-averaged enrichments calculated from detailed assembly loadings, see Source \ref{num:assy_load_c2}. \\
+    \noindent $^\ddagger$ It is assumed that 5\% of core flow rate goes core into bypass region. A fraction of this flow rate passes through
+                          guide tubes. The flow rate should be estimated so that no boiling occurs in these regions.
+  \end{flushleft}\end{small}
+\end{table}
+\clearpage
+\begin{figure}[hptb]
+  \centering
+  
+  \begin{tikzpicture}[x=1cm, y=1cm]
+
+    \def\sqrttwo{1.4142135624}
+  
+    % actual dimensions in cm
+    \def\coreBarrelOR{193.6750}
+    \def\rpvOR{241.300}
+    \def\rpvIR{219.710}
+    \def\shieldOR{201.630}
+    \def\baffleOR{163.4998}  % lattice pitch * 7.5 + baffle width  (21.50364*7.5+2.2225)
+
+    \def\figwidth{10.16} % figure width in cm, assumes figure is cropped to rpvOR
+  
+    % all the dimensions set based on fig being inculded as 4in
+    \draw[white] (-6,-6) rectangle (6,6);
+    \node {\pgftext{\includegraphics[width=\figwidth cm]{specifications/figs/pwr_core.png}}};
+    \draw[red,thick,->]  (-2*2.54,2*2.54) node[left, anchor=south] {Pressure Vessel} --  (-\figwidth/2/\sqrttwo,\figwidth/2/\sqrttwo);
+    \draw[red,thick,->]  (2*2.54,2*2.54) node[right, anchor=south] {Neutron Shield Panel} --  (\shieldOR*\figwidth/2/\rpvOR/\sqrttwo,\shieldOR*\figwidth/2/\rpvOR/\sqrttwo);
+    \draw[red,thick,->]  (0,2.3*2.54) node[above, anchor=south] {Core Barrel} --  (0,\coreBarrelOR/\rpvOR*\figwidth/2);
+    \draw[red,thick,->]  (-2.3*2.54,0) node[left, anchor=east] {Baffle} --  (-\baffleOR/\rpvOR*\figwidth/2,0);
+    \draw[red,thick,->]  (2.3*2.54,0) node[right, anchor=west] {RPV Liner} --  (\rpvIR/\rpvOR*\figwidth/2,0);
+    
+  \end{tikzpicture}
+  
+  \caption[Core cross-section]{Core cross-section indicating radial structures
+  and enrichment loading pattern (cycle 1). Black denote stainless steel, dark
+  gray denotes carbon steel, light blue denotes water, and red, yellow, and dark
+  blue denote the 1.6, 2.4, and 3.1 w/o U235 regions, respectively.
+  \label{fig_overview}}
+\end{figure}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Radial Geometry}
+
+  \input{./specifications/pin/pintypes}
+  \input{./specifications/assy/assemblytypes}
+  \input{./specifications/core/corespec}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\subsection{Axial Geometry}
+
+  \input{./specifications/axial/axialspec}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Materials}
+
+  \input{./specifications/materials/fuel_disc}
+  \input{./specifications/materials/air_disc}
+  \input{./specifications/materials/borosilicate_disc}
+  \input{./specifications/materials/aic_rod_disc}
+  \input{./specifications/materials/b4c_rod_disc}
+  \input{./specifications/materials/helium_disc}
+  \input{./specifications/materials/inconel_disc}
+  \input{./specifications/materials/SS304_disc}
+  \input{./specifications/materials/zirc_disc}
+  \input{./specifications/materials/water_disc}
+  \input{./specifications/materials/water_spn_disc}
+  \input{./specifications/materials/ss_spn_disc}
+  \input{./specifications/materials/carbonsteel_disc}
+
+%\subsection{Notes on Simplifications}
+%\label{sec:simplifications}
+
+%\subsubsection{List of Simplifications}
+
+%A list of the main simplifications employed in the previously described model is
+%presented in Table \ref{table_simps}.
+
+%\begin{table}[htpb]
+
+%  \caption{Key simplifications. \label{table_simps}}
+%  \begin{tabular}{l}
+%    \\
+%    \hline\hline
+%    \\ undetailed support plate, nozzles, end plugs for fuel rods, BAs, and CRs
+%    \\ guessed pin plenum spring radius
+%    \\ guessed shield pad thickness
+%    \\ guessed RPV thickness
+%    \\ no startup rods (they replace BAs in some places)
+%    \\ inaccurate lower and upper core plenums
+%    \\ thermal pad positioning
+%  \end{tabular}
+
+%\end{table}
+
+%\subsubsection{Radial Symmetry}
+
+%The only source of radial asymmetry is from the instrument tubes. If ignored,
+%octant symmetry might be used to cut down the size of the problem significantly.
+
+
+%\subsubsection{Grid Spacer Simplifications}
+
+%The important thing here is to conserve the mass, so if desired the stainless
+%steel and inconel can be smeared together and distributed eveny accross the
+%assembly as desired, either with a similar box geometry as presented here or as
+%additional rings around each of the pins.  This could confine the construction
+%of the axial geometry to only the pincells, simplifying the fuel assembly
+%construction.

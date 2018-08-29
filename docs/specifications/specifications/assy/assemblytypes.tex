@@ -1,0 +1,154 @@
+\clearpage
+\subsubsection[Fuel Assemblies]{Fuel Assemblies\texorpdfstring{\protect\sechypt{fuel_ass}{}}{}}
+
+% some setup to make the assembly figures
+\input{specifications/assy/figs/ass_layout_setup}
+
+Each of the assemblies in the core is made up of a $17\times17$ array of pins
+described in Section \ref{sec:pintypes}. Table \ref{table_assembly_overview}
+outlines the important parameters of each, and the positions of the guide tubes
+are shown in Figure \ref{ass_base}.
+
+Assemblies are made up of one of three different enrichment fuel pins, and the
+guide tube positions can be filled with one of several different burnable
+absorber configurations described in Section \ref{sec:ba_configs}. For any
+configuration, the center guide tube may contain an instrument tube. The details
+of the layout of these features throughout the core are described in Section
+\ref{sec:corespec}.
+
+\begin{table}[htpb]
+  
+  \caption{Fuel assembly parameters. \label{table_assembly_overview}}
+  
+  \begin{tabularx}{\textwidth}{l C c}
+
+    \toprule
+    & & Source\\
+    \midrule
+    \midrule
+    Fuel Assembly Lattice Pitch & 21.50364 cm & \ref{num:ass_pitch}\\
+    Pin Lattice Pitch & 1.25984 cm & \ref{num:pin_pitch}\\
+    Pin Lattice Configuration & $17 \times 17$ & \ref{num:fuellattice}\\
+    No. Fuel Rods & 264 & \ref{num:fuellattice}\\
+    No. Guide Tube Positions & 24 & \ref{num:fuellattice}\\
+    No. Instrument Tube Positions & 1 & \ref{num:fuellattice}\\
+    \\
+    No. Grid Spacers & 8 & \ref{num:fuellattice}\\
+    Top/Bottom Grid Spacer Material & \hyperref[mat_inconel]{Inconel 718} & \ref{num:fuellattice} \\
+    Top/Bottom Grid Sleeve Material & \hyperref[mat_SS304]{Stainless Steel} 304 & \ref{num:fuellattice} \\
+    Intermediate Grid Spacer and Sleeve Material & \hyperref[mat_zirc]{Zircaloy} & \ref{num:fuellattice} \\
+    Weight of Inconel per Top/Bottom Grid & 780.273 g & \ref{num:grid_in_weight}\\
+    Weight of Stainless Steel per Top/Bottom Grid & 91.0329 g & \ref{num:grid_ss_weight}\\
+    Weight of Zircaloy per intermediate Grid & 1,169.23 g & \ref{num:grid_zr_weight}\\
+    \bottomrule 
+  \end{tabularx}
+  
+\end{table}
+\FloatBarrier
+\input{specifications/assy/figs/base}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+\paragraph{Burnable Absorber Configurations}
+\label{sec:ba_configs}
+
+Assemblies in the core that do not contain control rods may posses one of 5
+burnable absorber configurations, or have none at all. Figures \ref{ass_4ba}
+through \ref{ass_20ba} depict these configurations. Each configuration appears
+in all four quadrants of the core, and thus the 6BA and 5BA configurations need
+to be rotated as indicated. Note that the 12BA configuration is different
+between cycle 1 and cycle 2.
+
+\input{specifications/assy/figs/4ba} % label: ass_4ba
+\input{specifications/assy/figs/6ba} % label: ass_6ba
+\input{specifications/assy/figs/8ba} % label: ass_8ba
+\input{specifications/assy/figs/12ba} % label: ass_12ba
+\input{specifications/assy/figs/12ba_c2} % label: ass_12ba_c2
+\input{specifications/assy/figs/15ba} % label: ass_15ba
+\input{specifications/assy/figs/16ba} % label: ass_16ba
+\input{specifications/assy/figs/20ba} % label: ass_20ba
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+\paragraph[Radial Grid Spacer Specifications]{Radial Grid Spacer Specifications\texorpdfstring{\protect\sechypt{grid_spec}{}}{}}
+\label{sec:rad_grids}
+
+In axial regions containing spacers, dimensions are chosen to conserve the total
+weight of Inconel, Zircaloy, and stainless steel in each grid, as listed in
+Table \ref{table_assembly_overview}. The present model creates an egg-crate
+structure around each pincell as well as a sleeve around assemblies.
+%, but further
+%simplifications might be employed as discussed in Section
+%\ref{sec:simplifications}.
+
+The middle six grid spacers consist entirely of Zircaloy while the top and bottom
+spacers consist of a \ac{SS304} sleeve with Inconel internal structures. As described
+in Source \ref{num:grid_spacer}, for the top/bottom grids the entire mass of the
+Inconel was distributed evenly among each of the 289 pincells in box of
+appropriate thickness inside the outer edges of the pincells. Additionally, the
+stainless steel mass of the grid sleeve was placed in a box of
+appropriate thickness around the outside of the assembly, fitting inside the
+region between assemblies. The 6 intermediate grids also consist of both
+these regions (outer grid sleeve and inner egg-crate), filled with Zircaloy.
+This was done for a top/bottom grid height of 1.322in and an intermediate grid
+height of 2.25in, with the same grid sleeve dimensions for each grid type.  The
+inner egg-crate dimensions differ between each grid type.
+
+Figures \ref{fig_grid_pin_tb} and \ref{fig_grid_pin_i} show the modified pincell
+geometry used for the inner grid structure around a fuel pin for each grid type,
+where the box thicknesses are chosen to conserve mass in the total grid. The
+same box is also placed around the guide tube pincells for each grid type.
+
+\input{specifications/assy/figs/tikz_grid_tb}
+\input{specifications/assy/figs/tikz_grid_inter}
+
+~
+
+Figure \ref{fig_grid_assembly} shows the dimensions of the grid sleeve
+assemblies in all grid spacer regions. To see what this looks like
+in combination with the inner structural component in the pincells see Figure
+\ref{fig_grid_assembly_zoom}, which shows an image of what the aggregate grid
+spacer model looks like to scale.
+
+
+\begin{figure}[htbp]
+    \def\sleeveDim{10.74798}
+
+    \centering
+    \begin{tikzpicture}[scale=5,auto]
+      \draw (-0.35,-0.35) rectangle (0.35,0.35) ;
+      \draw[->,thick,red] (0,0) -- node[pos=0.4] {1} (0.0,0.35);
+      \draw (-0.4,-0.4) rectangle (0.4,0.4) ;
+      \draw[->,thick,green!60!black] (0,0) -- node[pos=0.4] {2} (0.4,0.0);
+      \draw[dashed] (-0.45,-0.45) rectangle (0.45,0.45);
+      \draw[->,thick,blue] (0,0) -- node[pos=0.4] {3} (0,-0.45);
+    \end{tikzpicture}
+    \begin{tikzpicture}
+     \matrix [matrix of nodes]
+    {
+        Arrow & Length (cm) & Material & \numrefheader \\
+        \node[red]{1}; & \node[red]{10.70864}; & \node[red]{(Assembly)}; & \node[red]{\ref{num:grid_spacer}};\\
+        \node[green!60!black]{2}; & \node[green!60!black]{\sleeveDim}; & \node[green!60!black]{(Grid Sleeve)}; & \node[green!60!black]{\ref{num:grid_spacer}};\\
+        \node[blue]{3}; & \node[blue]{10.75182}; & \node[blue,hyperlink node=mat_water]{Water}; & \node[blue]{\ref{num:ass_pitch}};\\  
+    };
+    \end{tikzpicture}
+
+    \caption[Schematic dimensions of stainless steel grid sleeve model]{Schematic
+    dimensions of stainless steel grid sleeve. Arrow 1 is the half-width of 17
+    times the pin lattice pitch; arrow 2 is the outer grid sleeve box
+    half-width; arrow 3 is the outer boundary of the assembly pitch in the
+    overall fuel assembly layout. The grid sleeve thickness was chosen as
+    0.00384cm to conserve the estimated stainless steel mass. Source:
+    \ref{num:grid_spacer}\label{fig_grid_assembly}}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=4in]{specifications/assy/figs/grid_zoom.png}
+
+    \caption[Scale view of grid spacer model]{Scale view of an intermediate grid
+    spacer showing inter-assembly spacing at a corner of position J14.
+    Grey is Zircaloy, black is stainless steel, light blue is water, green is
+    burnable absorber, white is air, and dark blue, red and yellow are the three
+    different fuel enrichments.\label{fig_grid_assembly_zoom}}
+\end{figure}

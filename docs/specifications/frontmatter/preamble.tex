@@ -1,0 +1,167 @@
+\documentclass[12pt]{article}
+\usepackage{etoolbox}
+\def\theversion{3.0}
+\csdef{mode}{RELEASE} % options are DRAFT or RELEASE
+\usepackage{amsmath}
+\usepackage[printonlyused]{acronym} % withpage: for showing page of use
+\usepackage{geometry}
+\geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{bibentry}
+\usepackage{xparse}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{environ}
+\usepackage{setspace}
+\usepackage{chngcntr}
+\usepackage[pdftex]{lscape}
+\usepackage[numbers]{natbib}
+\PassOptionsToPackage{normalem}{ulem}
+\usepackage{ulem}
+\usepackage{tocloft}
+\usepackage{tikz}
+\usetikzlibrary{matrix,calc,shadows}
+\usepackage{xstring,xspace}
+\usepackage{multirow}
+\usepackage[section,subsection,subsubsection]{frontmatter/extraplaceins}
+\usepackage[pdfborder={0 0 0}]{hyperref}
+\usepackage[all]{hypcap}
+\ifcsstring{mode}{DRAFT}{
+\usepackage{draftwatermark}
+\SetWatermarkScale{1.5}}{}
+\usepackage{fancyhdr}
+\expandafter\let\csname ver@amssymb.sty\endcsname\empty
+\expandafter\let\csname ver@amssymb.sty\endcsname\relax
+
+\usepackage[bitstream-charter]{mathdesign} % Use BT Charter font
+\usepackage[T1]{fontenc}                   % Use T1 encoding instead of OT1
+\usepackage[utf8]{inputenc}                % Use UTF8 input encoding
+\usepackage{microtype}                     % Improve typography
+
+% stuff for numbering on paragraphs and subparagraphs, as well as TOC fixes
+\usepackage[outermarks]{titlesec}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}
+  {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titleformat{\subparagraph}
+  {\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{}
+\titlespacing*{\section}      {0pt}{3.5ex plus 1ex minus .2ex} {2.3ex plus .2ex}
+\titlespacing*{\subsection}   {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\paragraph}    {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\subparagraph} {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\setcounter{secnumdepth}{7}
+\setcounter{tocdepth}{7} 
+\cftsetindents{section}{1em}{1.5em}
+\cftsetindents{subsection}{2em}{2.0em}
+\cftsetindents{subsubsection}{3em}{2.5em}
+\cftsetindents{paragraph}{4em}{3.5em}
+\cftsetindents{subparagraph}{5em}{4.5em}
+
+% top/bottom margins
+\renewcommand{\topfraction}{0.9}	% max fraction of floats at top
+\renewcommand{\bottomfraction}{0.8}	% max fraction of floats at bottom
+
+% stuff for hyperlinks in tikz pictures
+\tikzset{
+    hyperlink node/.style={
+        alias=sourcenode,
+        append after command={
+            let     \p1 = (sourcenode.north west),
+                \p2=(sourcenode.south east),
+                \n1={\x2-\x1},
+                \n2={\y1-\y2} in
+            node [inner sep=0pt, outer sep=0pt,anchor=north west,at=(\p1)] {\hyperlink{#1}{\phantom{\rule{\n1}{\n2}}}}
+        }
+    }
+}
+
+% Raised hypertargets for section hyperlinks. Note that we need to use
+% hypertargets in section headings only when jumping here from a tikz hyperlink.
+% Regular links should use labels and \ref{}
+\makeatletter
+  \newcommand{\sechypt}[1]{\Hy@raisedlink{\hypertarget{#1}{}}}
+\makeatother
+
+% tabularx centering stretching column
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+% put the table of contents in the pdf bookmarks
+\addtocontents{toc}{\protect{\pdfbookmark[1]{\contentsname}{toc}}}
+
+% setup for simple backreferencing
+\makeatletter
+
+  % all refs will get a global unique index
+  \newcounter{num@backrefs}
+
+  % whenever we use ref, we hook into the backref labelling
+  \AtBeginDocument{%
+    \let\origref\ref%
+    \renewcommand*\ref[1]{\origref{#1}\backreflabel{#1}}%
+  }%
+
+  % here we make a unique label for the ref and add it to a list
+  \newrobustcmd*\backreflabel[1]{%
+    \stepcounter{num@backrefs}% increment the global backref counter
+    \label{#1\arabic{num@backrefs}}% create new label for this ref instance
+    \xifinlistcs{\arabic{num@backrefs}}{back@refs@#1}
+    {}% if this label already in list, do nothing
+    {% if not, add label to list of backref labels for this reference
+      \listcsxadd{back@refs@#1}{#1\arabic{num@backrefs}}%
+    }%
+  }%
+
+  % command to use to create the list of backreferenced pages
+  \newrobustcmd*\backlabelref[1]{%
+    \ifcsdef{back@refs@#1}{%
+      \def\@br@sep{}%
+      \renewcommand*{\do}[1]{% define the do loop
+        \@ifundefined{r@##1}% check for a real label
+        {}% do nothing if not a real label
+        {%
+          \edef\@backref@page{\getpagerefnumber{##1}}%
+          \xifinlistcs{\@backref@page}{#1@pages}%
+          {}% do nothing if page already in list of used pages
+          {%
+            \@br@sep\pageref{##1}%
+            \def\@br@sep{,\xspace}%
+            \listcsxadd{#1@pages}{\@backref@page}% add page to list of used pages
+          }%
+        }%
+      }%
+      \dolistcsloop{back@refs@#1}% execute the do loop
+    }%
+    {}% do nothing if backref list empty
+  }%
+\makeatother
+
+% shortcut for big red missing reference
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=red!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\newcommand{\missing}{\mybox[fill=red!30]{\large\color{red}\ref{num:missing}}}
+
+% paragraph formatting
+\setlength{\parskip}{10pt plus 1pt minus 1pt}
+\parindent=0pt
+
+% page styles
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markboth{Section \thesection. #1}{}}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{rev. \theversion}
+\fancyfoot[C]{\thepage}
+
+% include other environments
+\input{./frontmatter/environments.tex}

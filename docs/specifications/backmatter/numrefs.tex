@@ -1,0 +1,1665 @@
+% Bibtex References section
+\clearpage
+\pagestyle{plain}
+\phantomsection
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{unsrt}
+\bibliography{BEAVRS}
+
+% Source References
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{Source Details}
+\section*{Source Details}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Core Arrangement of Fuel Assemblies]{num:assycore}
+  This information is reported on the Core Arrangement worksheet.
+  \numrefrefs{\cite{spreadsheet}}%
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Cycle 2 Shuffling Pattern]{num:c2shuffle}
+  This information is reported on the C2 Core Shuffle worksheet.
+  \numrefrefs{\cite{spreadsheet}}%
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Fuel Assembly Loading]{num:assyload}
+  This information is reported on the Assembly Loading worksheet.
+  \numrefrefs{\cite{spreadsheet}}%
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Fuel Lattice Specifications]{num:fuellattice}
+  This information is reported on the Fuel Lattice worksheet provided by the utility.
+  \numrefrefs{\cite{spreadsheet}}%
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Active Core Height]{num:fuelheight}
+  This information is reported on the Fuel Lattice worksheet (Source \ref{num:fuellattice}). The active fuel length is
+\[
+    L_{f} = 144\,\mathrm{in} \cdot 2.54 \mathrm{\frac{cm}{in}} = 365.76\,\mathrm{cm}
+\] 
+  \numrefrefs{\cite{spreadsheet}}
+  \numrefval{365.76}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Nominal Core Power]{num:measurement}
+  Nominal Core Power is taken to be that for Catawba, which is available online
+  from Power etrack.
+  \numrefrefs{\cite{poweretrack}}%
+ \numrefval{3411}
+  \numrefunits{MWth}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Core Mass Flow Rate]{num:flowrate}
+  From an email communication with the utility, the total pump flow rate is $61.5\times 10^6$ kg/hr. Normally, about 5\% of the flow goes into the bypass region, so 95\% of flow is through the core area, and the flow in the guide tubes is very low. It is assumed that this has no impact on active cooling flow. It is common to take 5\% for the flow fraction through the bypass region although it is not known precisely. 
+\numrefrefs{\cite{utility_email1}}
+\numrefval{$61.5\times 10^6$}
+\numrefunits{kg/hr}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Fuel Pellet Radius]{num:fuelpellrad}
+  This information is reported on the Fuel Lattice worksheet (Source \ref{num:fuellattice}). The fuel pellet radius is calculated in the spreadsheet with the following formula:
+\[
+    R_{f} = \frac{0.3088\,\mathrm{in}}{2}\cdot 2.54 \mathrm{\frac{cm}{in}} = 0.39218\,\mathrm{cm}
+\]
+  It can be inferred that the diameter of the fuel pellet that this radius was derived as was 0.3088 in.  
+  \numrefrefs{\cite{spreadsheet}}
+  \numrefval{0.39218}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Fuel Cladding Inner Radius]{num:fuelIRrad}
+  This information is reported on the Fuel Lattice worksheet (Source \ref{num:fuellattice}). The fuel rod inner radius is calculated in the spreadsheet with the following formula:
+\[
+    R_{IR} = \frac{0.36\,\mathrm{in} - 0.0225\,\mathrm{in}\cdot 2}{2}\cdot 2.54 \mathrm{\frac{cm}{in}} = 0.40005\,\mathrm{cm}
+\]
+  It can be inferred that the cladding thickness is 0.0225 in.
+  
+  \numrefrefs{\cite{spreadsheet}}
+  \numrefval{0.40005}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Fuel Cladding Outer Radius]{num:fuelORrad}
+  This information is reported on the Fuel Lattice worksheet (Source \ref{num:fuellattice}). The fuel rod outer radius given is calculated in the spreadsheet with the following formula:
+\[
+    R_{OR} = \frac{0.36\,\mathrm{in}}{2}\cdot 2.54 \mathrm{\frac{cm}{in}} = 0.45720\,\mathrm{cm}
+\]
+  It can be inferred that the diameter of the fuel rod is 0.36 in.
+  
+  \numrefrefs{\cite{spreadsheet}}
+  \numrefval{0.45720}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Plenum Spring Radius]{num:plenum_spring}
+
+  The radius for the mass of Inconel approximating the plenum spring is chosen
+  to be the equivalent radius for the volume of an approximate helical spring.
+  The spring wire diameter $d_{spgw}$ and number of turns $v_s$ for the helical
+  spring are taken from the FRAPCON-3 Integral Assessment Document in the
+  appendix regarding the Westinghouse BR-3 fuel rods, which are assumed to be
+  similar to the fuel rods in this plant. The helix diameter $d_{spg}$ was
+  chosen such that the ratio of the outer fuel rod cladding diameter $d_{co}$ to the
+  helix diameter was the same.
+  
+\[
+  \begin{aligned}
+    v_s &= 8\,\mathrm{turns} \\
+    d_{co,BR-3} &= 0.422\,\mathrm{in} \\
+    d_{spg,BR-3} &= 0.37\,\mathrm{in} \\
+    \\
+    d_{spg} &= d_{co}\frac{d_{spg,BR-3}}{d_{co,BR-3}} = 0.3156\,\mathrm{in} \\
+  \end{aligned}
+\]
+
+  From here volume of the helical spring is calculated as
+  
+\[
+  \begin{aligned}
+    V_{spring} &= v_s \pi \left(\frac{d_{spgw}}{2}\right)^2 \pi \left(d_{dspg}-d_{spgw}\right) \\
+    V_{spring} &= 8 \pi \left(\frac{0.055\,\mathrm{in}}{2}\right)^2 \pi (0.3156\,\mathrm{in}-0.055\,\mathrm{in}) \\
+    V_{spring} &= 0.01556\,\mathrm{in}^3
+  \end{aligned}
+\]
+
+  Finally, the equivalent radius $r_e$ is found with the plenum height $h_{pl} =
+  7.66\,\mathrm{in}$ as
+  
+\[
+  \begin{aligned}
+    r_e &= \sqrt{\frac{V_{spring}}{\pi h_{pl}}} \\
+    r_e &= \sqrt{\frac{0.01556\,\mathrm{in}^3}{\pi 7.66\,\mathrm{in}}} \\
+    r_e &= 0.02543\,\mathrm{in} \\
+    r_e &= 0.06459\,\mathrm{cm} \\
+  \end{aligned}
+\]
+
+  \numrefrefs{\cite{frapcon_spring}}
+  \numrefval{0.06459}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[RCCA Plenum Spring Radius]{num:cr_plenum_spring}
+
+  The plenum spring radius used in the control rod plenum was assumed to be the
+  same as radius used for fuel pins.  This makes no attempt to conform to the
+  true volume of inconel in this region.
+
+  \numrefval{0.06459}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Guide Tube Inner Radius]{num:GTIRrad}
+  This information is reported on the Fuel Lattice worksheet (Source \ref{num:fuellattice}). The guide tube inner radius is calculated in the spreadsheet with the following formula:
+\[
+    R_{IR} = \frac{0.442\,\mathrm{in}}{2}\cdot 2.54 \mathrm{\frac{cm}{in}} = 0.56134\,\mathrm{cm}
+\]
+  It can be inferred that the inner diameter of the guide tube is 0.442 in. Note that this dimension is also used for instrumentation tubes.
+  
+  \numrefrefs{\cite{spreadsheet}}
+  \numrefval{0.56134}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Guide Tube Outer Radius]{num:GTORrad}
+  This information is reported on the Fuel Lattice worksheet (Source \ref{num:fuellattice}). The guide tube outer radius is calculated in the spreadsheet with the following formula:
+\[
+    R_{OR} = \frac{0.474\,\mathrm{in}}{2}\cdot 2.54 \mathrm{\frac{cm}{in}} = 0.60198\,\mathrm{cm}
+\]
+  It can be inferred that the outer diameter of the guide tube is 0.474 in. Note that this dimension is also used for instrumentation tubes.
+  \numrefrefs{\cite{spreadsheet}}
+  \numrefval{0.60198}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Guide Tube Inner Radius at Dashpot]{num:GTDPIRrad}
+  This information is reported on the Fuel Lattice worksheet (Source \ref{num:fuellattice}). The guide tube inner radius is calculated in the spreadsheet with the following formula:
+\[
+    R_{IR} = \frac{0.397\,\mathrm{in}}{2}\cdot 2.54 \mathrm{\frac{cm}{in}} = 0.50419\,\mathrm{cm}
+\]
+  It can be inferred that the inner diameter of the guide tube is 0.397 in. 
+  
+  \numrefrefs{\cite{spreadsheet}}
+  \numrefval{0.50419}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Guide Tube Outer Radius at Dashpot]{num:GTDPORrad}
+  This information is reported on the Fuel Lattice worksheet (Source \ref{num:fuellattice}). The guide tube outer radius is calculated in the spreadsheet with the following formula:
+\[
+    R_{OR} = \frac{0.43\,\mathrm{in}}{2}\cdot 2.54 \mathrm{\frac{cm}{in}} = 0.54610\,\mathrm{cm}
+\]
+  It can be inferred that the outer diameter of the guide tube at dashpot is 0.43 in.
+  
+  \numrefrefs{\cite{spreadsheet}}
+  \numrefval{0.54610}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Instrumentation Tube Thimble Inner Radius]{num:ITthimIR}
+  The instrumentation tube thimble inner radius was not reported in the spreadsheet. It is assumed that this dimension is the same as the burnable poison outer cladding inner radius (Source \ref{num:BPoutercladIR}).
+  \numrefrefs{\cite{spreadsheet}}
+  \numrefval{0.43688}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Instrumentation Tube Thimble Outer Radius]{num:ITthimOR}
+The instrumentation tube thimble outer radius is not reported in the spreadsheet. It is assumed that this dimension is the same as the burnable poison outer cladding inner radius (Source \ref{num:BPoutercladOR}).
+  
+  \numrefrefs{\cite{spreadsheet}}
+  \numrefval{0.48387}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Inner Cladding Inner Radius of \acs{BP} Pin]{num:BPinnercladIR}
+  The \ac{BP} inner cladding inner radius is reported in the Fuel Lattice worksheet (Source \ref{num:fuellattice}). This number was calculated with the following formula:
+  \[
+      R_{ICIR} = 0.08425\,\mathrm{in}\cdot 2.54 \mathrm{\frac{cm}{in}} = 0.21400\,\mathrm{cm}
+  \]
+  
+  \numrefrefs{\cite{spreadsheet}}
+  \numrefval{0.21400}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Inner Cladding Outer Radius of \acs{BP} Pin]{num:BPinnercladOR}
+  The \ac{BP} inner cladding outer radius is reported in the Fuel Lattice worksheet (Source \ref{num:fuellattice}). This number was calculated with the following formula:
+  \[
+      R_{ICOR} = 0.09075\,\mathrm{in}\cdot 2.54 \mathrm{\frac{cm}{in}} = 0.23051\,\mathrm{cm}
+  \]
+  
+  \numrefrefs{\cite{spreadsheet}}
+  \numrefval{0.23051}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Inner Radius of Poison of \acs{BP} Pin]{num:BPpoisonIR}
+  The \ac{BP} inner radius is reported in the Fuel Lattice worksheet (Source \ref{num:fuellattice}). This number was calculated with the following formula:
+  \[
+      R_{PIR} = 0.095\,\mathrm{in}\cdot 2.54 \mathrm{\frac{cm}{in}} = 0.24130\,\mathrm{cm}
+  \]
+  
+  \numrefrefs{\cite{spreadsheet}}
+  \numrefval{0.24130}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Outer Radius of Poison of \acs{BP} Pin]{num:BPpoisonOR}
+  The \ac{BP} outer radius is reported in the Fuel Lattice worksheet (Source \ref{num:fuellattice}). This number was calculated with the following formula:
+  \[
+      R_{POR} = 0.168\,\mathrm{in}\cdot 2.54 \mathrm{\frac{cm}{in}} = 0.42672\,\mathrm{cm}
+  \]
+  
+  \numrefrefs{\cite{spreadsheet}}
+  \numrefval{0.42672}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Outer Cladding Inner Radius of \acs{BP} Pin]{num:BPoutercladIR}
+  The \ac{BP} outer cladding inner radius is reported in the Fuel Lattice worksheet (Source \ref{num:fuellattice}). This number was calculated with the following formula:
+  \[
+      R_{OCIR} = 0.172\,\mathrm{in}\cdot 2.54 \mathrm{\frac{cm}{in}} = 0.43688\,\mathrm{cm}
+  \]
+  
+  \numrefrefs{\cite{spreadsheet}}
+  \numrefval{0.43688}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Outer Cladding Outer Radius of \acs{BP} Pin]{num:BPoutercladOR}
+  The \ac{BP} outer cladding outer radius is reported in the Fuel Lattice worksheet (Source \ref{num:fuellattice}). This number was calculated with the following formula:
+  \[
+      R_{OCOR} = 0.1905\,\mathrm{in}\cdot 2.54 \mathrm{\frac{cm}{in}} = 0.48387\,\mathrm{cm}
+  \]
+  
+  \numrefrefs{\cite{spreadsheet}}
+  \numrefval{0.48387}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Control Rod Thimble Inner Radius]{num:CRthimIR}
+  The control rod thimble inner radius was taken from page 15 of
+  \cite{ml033530020}.
+  
+  \numrefrefs{\cite{ml033530020}}
+  \numrefval{0.38608}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Control Rod Thimble Outer Radius]{num:CRthimOR}
+  The control rod thimble outer radius was taken from page 15 of
+  \cite{ml033530020}.
+  
+  \numrefrefs{\cite{ml033530020}}
+  \numrefval{0.48387}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Control Rod AIC Outer Radius]{num:CRaicOR}
+  The control rod outer radius for the lower absorber region was taken from page
+  15 of \cite{ml033530020}.
+  
+  \numrefrefs{\cite{ml033530020}}
+  \numrefval{0.38227}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Control Rod B4C Outer Radius]{num:CRb4cOR}
+  The control rod outer radius for the upper absorber region was taken from page
+  15 of \cite{ml033530020}.
+  
+  \numrefrefs{\cite{ml033530020}}
+  \numrefval{0.37338}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Control Rod Spacer Outer Radius]{num:CRspacerOR}
+  The control rod outer radius for the spacer region was taken from page
+  15 of \cite{ml033530020}.
+  
+  \numrefrefs{\cite{ml033530020}}
+  \numrefval{0.37845}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Fuel Assembly Pitch]{num:ass_pitch}
+  The fuel assembly pitch is taken from the Fuel Lattice worksheet (Source \ref{num:fuellattice}). The formula for calculating this parameter is
+\[
+    S_a = 8.466\,\mathrm{in}\cdot 2.54\mathrm{\frac{cm}{in}} = 21.50364 \,\mathrm{cm}
+\]
+  \numrefrefs{\cite{spreadsheet}}
+  \numrefval{21.50364}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Fuel Pin Pitch]{num:pin_pitch}
+  The fuel pin pitch is taken from the Fuel Lattice worksheet (Source \ref{num:fuellattice}). The formula for calculating this parameter is
+\[
+    S_p = 0.496\,\mathrm{in}\cdot 2.54\mathrm{\frac{cm}{in}} = 1.25984 \,\mathrm{cm}
+\]
+  \numrefrefs{\cite{spreadsheet}}
+  \numrefval{1.25984}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Inconel Grid Weight]{num:grid_in_weight}
+  Taken from email correspondence with an engineer at the utility. The weight of
+  Inconel-718 for one end grid spacer is 332 lbs. The following formula is used
+  to calculate the weight of Inconel per top/bottom grid:
+\[
+    W_{in} = 332\,\mathrm{lb} \cdot 453.59237\mathrm{\frac{g}{lb}} \cdot \frac{1}{193\,\mathrm{assemblies}} = 780.273\,\mathrm{g}.
+\]
+  \numrefrefs{\cite{utility_email1}}
+  \numrefval{780.273}
+  \numrefunits{g}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Zircaloy Grid Weight]{num:grid_zr_weight}
+  Taken from email correspondence with an engineer at the utility. The weight of Zircaloy-4 for the grid spacers is 2985 lbs. The following formula is used to calculate the weight of Zircaloy-4 per intermediate grid:
+\[
+    W_{zr} = 2985\,\mathrm{lb} \cdot 453.59237\mathrm{\frac{g}{lb}} \cdot \frac{1}{193\,\mathrm{assemblies}} \cdot \frac{1}{6\,\mathrm{grids}} = 1,169.23\,\mathrm{g}.
+\]
+  \numrefrefs{\cite{utility_email1}}
+  \numrefval{1,169.23}
+  \numrefunits{g}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Stainless Steel Grid Weight]{num:grid_ss_weight}
+  Calculated from the volume of steel reported in Table 2-2 in
+  \cite{ml033530020} ($11.3366 \mathrm{cm}^3$) and the density of
+  SS304 $\rho_{SS304}$ ($8.03 g/\mathrm{cm}^3$).
+  
+  \numrefrefs{\cite{ml033530020}}
+  \numrefval{91.0329}
+  \numrefunits{g}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Burnable Poison Specifications]{num:sheet_BPs}
+  Taken from the data spreadsheet provided by the utility, on the sheet named BP Arrangement.
+  \numrefrefs{\cite{spreadsheet}}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Grid Spacers]{num:grid_spacer}
+
+  The axial positioning of the grid centers was taken from the Fuel Lattice
+  worksheet. Upper and lower planes for each grid were found using the grid
+  heights specified in \cite{ml033530020}.
+  
+  The masses for determining radial grid spacer dimensions are taken from
+  Sources \ref{num:grid_in_weight}, \ref{num:grid_zr_weight}, and
+  \ref{num:grid_ss_weight}.
+  
+  \textbf{Top/Bottom Grid Sleeve}
+  
+  As shown in Figure \ref{fig_grid_assembly}, the grid sleeve is a box shell
+  defined by inner and outer square pitch parameters $P_i$ and $P_o$, where
+  $P_i$ is found using the pin pitch as $17\times S_p$.  Using the density of
+  SS304 $\rho_{SS304}$, the estimated mass for each grid $W_{SS304}$, and the
+  height of the grid, the outer pitch is found as:
+  
+\[
+  \begin{aligned}
+    P_o = \sqrt{P_i^2 + \frac{W_{SS304}/\rho_{SS304}}{h_{tb}}} &=
+          \sqrt{(17\times1.25984\,\mathrm{cm})^2 +
+          \frac{91.0329\,\mathrm{g}/8.03\,\frac{\mathrm{g}}{\mathrm{cm}^3}}{1.322\,
+          \mathrm{in}\times2.54\mathrm{\frac{cm}{in}}}} \\
+        & = 21.4960\,\mathrm{cm}
+  \end{aligned}
+\]
+
+  This fits between assemblies, as $P_o$ is less than the assembly pitch
+  ($21.50364\,\mathrm{cm}$). The square radius reported in Figure
+  \ref{fig_grid_assembly} is half of $P_o$.
+
+  \textbf{Top/Bottom Egg-Crate}
+  
+  As shown in Figure \ref{fig_grid_pin_tb}, the egg-crate is defined by a box
+  shell defined by inner and outer square pitch parameters $p_i$ and $p_o$,
+  where $p_o$ is simply the outer pincell pitch $S_p$. It is assumed that the
+  entire mass of Inconel reported from Source \ref{num:grid_in_weight} is
+  uniformly distributed between all pincells in an assembly. Thus the mass of
+  Inconel per pincell is $w_{in} = \frac{W_{in}}{17\times17} =
+  2.69990\,\mathrm{g}$. Using this with the density of Inconel $\rho_{in}$ and
+  the height of the grid, the inner pitch is found as:
+  
+\[
+  \begin{aligned}
+    p_i = \sqrt{p_o^2 - \frac{w_{in}/\rho_{in}}{h_{tb}}} &=
+          \sqrt{(1.25984\,\mathrm{cm})^2 -
+          \frac{2.69990\,\mathrm{g}/8.2\,\frac{\mathrm{g}}{\mathrm{cm}^3}}{1.322\,
+          \mathrm{in}\times2.54\mathrm{\frac{cm}{in}}}} \\
+        & = 1.22030\,\mathrm{cm}
+  \end{aligned}
+\]
+
+  This fits between the pin and outer pincell pitch for all pincell types, as
+  $p_i$ is greater than the guide tube diameter ($1.20396\,\mathrm{cm}$). The
+  square radius reported in Figure \ref{fig_grid_pin_tb} is half of $p_i$.
+  
+  \textbf{Intermediate Grid Sleeve}
+  
+  The dimensions for the intermediate grid sleeves are taken to be identical to
+  those for the top/bottom grid sleeves.
+  
+  \textbf{Intermediate Egg-Crate}
+  
+  The intermediate grid egg-crate dimensions are found in the same way as the
+  top/bottom grids, using the appropriate Zircaloy masses and densities. Here,
+  the weight of Zircaloy $w_{zr,egg}$ used to calculate the egg-crate dimensions
+  is the total grid weight of Zircaloy $W_{zr}$ from Source
+  \ref{num:grid_zr_weight}, less the weight of Zircaloy in the intermediate grid
+  sleeve $w_{zr,sleeve}$, divided by the number of pincells. The weight in the
+  sleeve is found using the density of Zircaloy and the volume of the sleeve
+  from the intermediate grid height and the previously-calculated grid sleeve
+  pitch parameters.
+
+\[
+  \begin{aligned}
+    w_{zr,sleeve} &= \rho_{zr} h_{int} \left(P_o^2 - P_i^2\right) \\
+                  &= 6.55 \mathrm{\frac{g}{cm^3}}\times2.25\,\mathrm{in}\times2.54\mathrm{\frac{cm}{in}}\left((21.4960\,\mathrm{cm})^2 - (21.41728\,\mathrm{cm})^2\right)\\
+                  &= 126.455\,\mathrm{g}\\
+                  \\
+    w_{zr,egg}    &= \frac{1}{17\times17}\left ( W_{zr} - w_{zr,sleeve}\right) \\
+    w_{zr,egg}    &= \frac{1}{17\times17}\left ( 1169.23\,\mathrm{g} - 126.455\,\mathrm{g}\right) \\
+    w_{zr,egg}    &= 3.60850\,\mathrm{g}
+  \end{aligned}
+\]
+
+\[
+  \begin{aligned}
+    p_i = \sqrt{p_o^2 - \frac{w_{zr,egg}/\rho_{zr}}{h_{int}}} &=
+          \sqrt{(1.25984\,\mathrm{cm})^2 -
+          \frac{3.60850\,\mathrm{g}/6.55\,\frac{\mathrm{g}}{\mathrm{cm}^3}}{2.25\,
+          \mathrm{in}\times2.54\mathrm{\frac{cm}{in}}}} \\
+        & = 1.22098\,\mathrm{cm}
+  \end{aligned}
+\]
+
+  This fits between the pin and outer pincell pitch for all pincell types, as
+  $p_i$ is greater than the guide tube diameter ($1.20396\,\mathrm{cm}$). The
+  square radius reported in Figure \ref{fig_grid_pin_i} is half of $p_i$.
+
+  \numrefrefs{\cite{spreadsheet} \cite{ml033530020}}
+
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Core Baffle Thickness]{num:core_baffle}
+  Taken from email correspondence with an engineer at the utility. The core baffle is 7/8 inches thick. Converting this to centimeters:
+\[
+    T_{baf} = \frac{7}{8}\,\mathrm{in} \cdot 2.54 \mathrm{\frac{cm}{in}} = 2.22250\,\mathrm{cm}
+\]
+  \numrefrefs{\cite{utility_email1}}
+  \numrefval{2.22250}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Core Barrel Inner Radius]{num:core_barrelIR}
+  Taken from email corresponding with an engineer at the utility. The inner diameter of the core barrel is 148.0 inches. The inner radius of the core barrel is calculated to be
+\[
+    R_{bar} = \frac{148.0\,\mathrm{in}}{2} \cdot 2.54 \mathrm{\frac{cm}{in}} = 187.96\,\mathrm{cm}
+\]
+  \numrefrefs{\cite{utility_email1}}
+  \numrefval{187.96}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Core Barrel Outer Radius]{num:core_barrelOR}
+  Taken from email correspondence with an engineer at the utility. The outer diameter of the core barrel is 152.5 inches. The outer radius of the core barrel is calculated to be
+\[
+    R_{bar} = \frac{152.5\,\mathrm{in}}{2} \cdot 2.54 \mathrm{\frac{cm}{in}} = 193.675\,\mathrm{cm}
+\]
+  \numrefrefs{\cite{utility_email1}}
+  \numrefval{193.675}
+  \numrefunits{cm}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Core Barrel Material]{num:core_barrelmat}
+    From email correspondence with the utility, the core barrel is made out of Stainless Steel 304.
+\numrefrefs{\cite{utility_email1}}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[RPV, Liner, and Shield Panels]{num:rpv}
+    
+    Core structural dimensions were taken from \cite{ml033530020}, with the
+    exception of the baffle and core barrel dimensions that were provided by
+    engineers at the utility. The water gap between fuel assemblies and the
+    baffle was also taken from \cite{ml033530020}, which also indicates the
+    material as Stainless Steel 304.
+    
+\numrefrefs{\cite{ml033530020}}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Instrument Tube Axial Planes]{num:instr_axials}
+  
+  The instrument tube thimble penetrates the bottom of the reactor vessel and
+  extends to the end of guide tubes at the bottom of the upper nozzle. The
+  source for these planes is described in Source \ref{num:catawba}.
+  
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Burnable Absorber Axial Planes]{num:ba_axials}
+  
+  Burnable absorbers are inserted from the top of assemblies with a spider
+  assembly similar to those that hold control rods. The burnable absorber axial
+  planes were set to be consistent with \cite{ml033530020}, Figure 2-9.
+  
+  \numrefrefs{\cite{ml033530020}}
+  
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Guide Tube Axial Planes]{num:gtu_axials}
+  
+  The guide tubes are the structural components of the assemblies, connecting
+  the top of the lower nozzle to the bottom of the upper nozzle. The dashpot
+  axial plane is placed at the control rod step 0 (see
+  Source~\ref{num:control_rod_axials}).
+  
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Control Rod Axial Planes]{num:control_rod_axials}
+  
+  The control rod axial planes for full insertion were set to be consistent with
+  \cite{ml033530020}, Figure 2-8. The step width of 1.582cm was calculated by
+  dividing the active absorbing height (142 in.) by 228.
+  
+  \numrefrefs{\cite{spreadsheet} \cite{ml033530020}}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Assembly Nozzles]{num:watts_bar}
+
+  Upper nozzle and water gap axial spacings were estimated from the Watts
+  Bar Unit 2 Safety Analysis Report, Section 4, Figure 4.2-2.
+
+  \numrefrefs{\cite{watts_bar_fsar}}%
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Fuel Rod Axial Planes]{num:catawba}
+  
+  Fuel rod axial planes were set to be consistent with \cite{ml033530020},
+  Figure 2-7.
+
+  \numrefrefs{\cite{ml033530020}}%
+\end{numitem}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Location of Instrument Tubes]{num:instr_locs}
+  The locations of the instrumentation tubes were inferred from \ac{HZP} detector measurement files. There are 58 locations in various locations around the core.
+  \numrefrefs{\cite{measurement}}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[1.6\% Enriched Fuel Composition]{num:fuel16_mat}
+  
+   Provided in the spreadsheet sent by the utility the initial Uranium heavy metal mass and U-235 mass are detailed for each assembly under the worksheet, Assembly Loading. These allow us to calculate U-235 enrichments and fuel density. To limit the number of materials, the average values for the enrichments were calculated. 
+   
+   Using the detailed assembly loadings, the actual core-averaged enrichment for the cycle 1 low-enriched bundles is $\chi_{25} = 1.61006\%$ (see Source \ref{num:assy_load}). It assumed that the enrichment of U-234 is 0.8\% of this,
+\[
+    \chi_{24} = 0.008\cdot 1.61006\% = 0.01288048\%.
+\]
+    The rest of the heavy metal in the initial fuel loading is made up of U-238 calculated as
+\[
+    \chi_{28} = 100\% - 1.61006\% - 0.01288048\% = 98.37705952\%.
+\]
+
+The atomic mass of Uranium can be calculated from these weight percents of Uranium isotopes and the isotopic masses taken from Source \ref{num:isotopic_masses}:
+\[
+    M_U = \left[ \frac{\chi_{24}}{M_{24}} + \frac{\chi_{25}}{M_{25}} + \frac{\chi_{28}}{M_{28}} \right ]^{-1} = 238.001241436\,\mathrm{amu}. 
+\]
+The weight fractions of Uranium in Uranium Dioxide and Oxygen in Uranium Dioxide can be determined by the following two expressions:
+\[
+    \omega_{U} = \frac{M_U}{M_U + 2\cdot M_O} = 0.881485944114
+\]
+and
+\[
+    \omega_{O} = 1 - \omega_{U} = 0.118514055886.
+\]
+
+From the Uranium heavy metal weight percent, and detailed heavy metal loadings reported in the spreadsheet, the average density can be calculated. The total Uranium heavy metal mass for low enriched bundles is $m_f = 27.570971\,\mathrm{MT}$ (see Source \ref{num:assy_load}).  If there are 65 low enriched bundles, the volume can be calculated with
+\[
+    V_f = \pi \cdot R_f^2 \cdot H \cdot N_{assy} \cdot N_{pins}
+\]
+\[
+    V_f = \pi \cdot 0.39218^2 \cdot 365.76 \cdot 65 \cdot 264 = 3032733.5050\,\mathrm{cm^3}.
+\]
+See Sources \ref{num:fuelpellrad}, \ref{num:fuelheight} and Figures \ref{ass_base} and \ref{fig_enr_ba_pos}.
+
+The fuel density can be calculated by computing the Uranium heavy metal density and dividing by its fractional weight
+\[
+    \rho_f = \frac{m_f}{V_f\cdot\omega_{U}} = 10.31341\,\mathrm{\frac{g}{cm^3}}.
+\]
+
+Isotopic number densities for Uranium are then calculated with
+\[
+    N = \frac{\widetilde{\rho} \cdot A}{M}.
+\]
+The parameter $A$ is Avagadro's number $=0.60221415\cdot 10^{24}\,\frac{atom}{mol}$ and $\widetilde{\rho}$ is the isotopic mass density. The isotopic mass density is calculated by multiplying the weight fraction of the element by the weight fraction of the isotopic in that element $\left(\omega\cdot\chi\right)$ multiplied by the fuel mass density,
+\[
+  \widetilde{\rho} = \rho_f\cdot \omega \cdot \chi.
+\]
+
+For oxygen, the total number density of oxygen is calculated with
+\[
+    N_O = \frac{\rho_f \cdot \omega_O \cdot A}{M_O}.
+\]
+Isotopic number densities are then determined by multiplying by fractional abundances provided in Source \ref{num:isotopic_abund}.
+
+\numrefrefs{\cite{spreadsheet}}
+
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[2.4\% Enriched Fuel Composition]{num:fuel24_mat}
+  
+   Provided in the spreadsheet sent by the utility the initial Uranium heavy metal mass and U-235 mass are detailed for each assembly under the worksheet, Assembly Loading. These allow us to calculate U-235 enrichments and fuel density. To limit the number of materials, the average values for the enrichments were calculated. 
+   
+   Using the detailed assembly loadings, the actual core-averaged enrichment for the cycle 1 medium-enriched bundles is $\chi_{25} = 2.39993\%$ (see Source \ref{num:assy_load}). It assumed that the enrichment of U-234 is 0.8\% of this,
+\[
+    \chi_{24} = 0.008\cdot 2.39993\% = 0.01919944\%.
+\]
+    The rest of the heavy metal in the initial fuel loading is made up of U-238 calculated as
+\[
+    \chi_{28} = 100\% - 2.39993\% - 0.01919944\% = 97.58087056\%.
+\]
+
+The atomic mass of Uranium can be calculated from these weight percents of Uranium isotopes and the isotopic masses taken from Source \ref{num:isotopic_masses}:
+\[
+    M_U = \left[ \frac{\chi_{24}}{M_{24}} + \frac{\chi_{25}}{M_{25}} + \frac{\chi_{28}}{M_{28}} \right ]^{-1} = 237.976942215\,\mathrm{amu}. 
+\]
+The weight fractions of Uranium in Uranium Dioxide and Oxygen in Uranium Dioxide can be determined by the following two expressions:
+\[
+    \omega_{U} = \frac{M_U}{M_U + 2\cdot M_O} = 0.881475277232 
+\]
+and
+\[
+    \omega_{O} = 1 - \omega_{U} = 0.118524722768. 
+\]
+
+From the Uranium heavy metal weight percent, and detailed heavy metal loadings reported in the spreadsheet, the average density can be calculated. The total Uranium heavy metal mass for medium enriched bundles is $m_f = 27.104522\,\mathrm{MT}$ (see Source \ref{num:assy_load}).  If there are 64 medium enriched bundles, the volume can be calculated with
+\[
+    V_f = \pi \cdot R_f^2 \cdot H \cdot N_{assy} \cdot N_{pins}
+\]
+\[
+    V_f = \pi \cdot 0.39218^2 \cdot 365.76 \cdot 64 \cdot 264 = 2986076.0665\,\mathrm{cm^3}.
+\]
+See Sources \ref{num:fuelpellrad}, \ref{num:fuelheight} and Figures \ref{ass_base} and \ref{fig_enr_ba_pos}.
+
+The fuel density can be calculated by computing the Uranium heavy metal density and dividing by its fractional weight
+\[
+    \rho_f = \frac{m_f}{V_f\cdot\omega_{U}} = 10.29748\,\mathrm{\frac{g}{cm^3}}.
+\]
+
+Isotopic number densities for Uranium are then calculated with
+\[
+    N = \frac{\widetilde{\rho} \cdot A}{M}.
+\]
+The parameter $A$ is Avagadro's number $=0.60221415\cdot 10^{24}\,\frac{atom}{mol}$ and $\widetilde{\rho}$ is the isotopic mass density. The isotopic mass density is calculated by multiplying the weight fraction of the element by the weight fraction of the isotopic in that element $\left(\omega\cdot\chi\right)$ multiplied by the fuel mass density,
+\[
+  \widetilde{\rho} = \rho_f\cdot \omega \cdot \chi.
+\]
+
+For oxygen, the total number density of oxygen is calculated with
+\[
+    N_O = \frac{\rho_f \cdot \omega_O \cdot A}{M_O}.
+\]
+Isotopic number densities are then determined by multiplying by fractional abundances provided in Source \ref{num:isotopic_abund}.
+
+\numrefrefs{\cite{spreadsheet}}
+
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[3.1\% Enriched Fuel Composition]{num:fuel31_mat}
+  
+   Provided in the spreadsheet sent by the utility the initial Uranium heavy metal mass and U-235 mass are detailed for each assembly under the worksheet, Assembly Loading. These allow us to calculate U-235 enrichments and fuel density. To limit the number of materials, the average values for the enrichments were calculated. 
+   
+   Using the detailed assembly loadings, the actual core-averaged enrichment for the cycle 1 high-enriched bundles is $\chi_{25} = 3.10221\%$ (see Source \ref{num:assy_load}). It assumed that the enrichment of U-234 is 0.8\% of this,
+\[
+    \chi_{24} = 0.008\cdot 3.10221\% = 0.02481768\%.
+\]
+    The rest of the heavy metal in the initial fuel loading is made up of U-238 calculated as
+\[
+    \chi_{28} = 100\% - 3.10221\% - 0.02481768\% = 96.87297232\%.
+\]
+
+The atomic mass of Uranium can be calculated from these weight percents of Uranium isotopes and the isotopic masses taken from Source \ref{num:isotopic_masses}:
+\[
+    M_U = \left[ \frac{\chi_{24}}{M_{24}} + \frac{\chi_{25}}{M_{25}} + \frac{\chi_{28}}{M_{28}} \right ]^{-1} = 237.955341741\,\mathrm{amu}. 
+\]
+The weight fractions of Uranium in Uranium Dioxide and Oxygen in Uranium Dioxide can be determined by the following two expressions:
+\[
+    \omega_{U} = \frac{M_U}{M_U + 2\cdot M_O} = 0.881464534041
+\]
+and
+\[
+    \omega_{O} = 1 - \omega_{U} = 0.118535465959. 
+\]
+
+From the Uranium heavy metal weight percent, and detailed heavy metal loadings reported in the spreadsheet, the average density can be calculated. The total Uranium heavy metal mass for high enriched bundles is $m_f = 27.115256\,\mathrm{MT}$ (see Source \ref{num:assy_load}).  If there are 64 high enriched bundles, the volume can be calculated with
+\[
+    V_f = \pi \cdot R_f^2 \cdot H \cdot N_{assy} \cdot N_{pins}
+\]
+\[
+    V_f = \pi \cdot 0.39218^2 \cdot 365.76 \cdot 64 \cdot 264 = 2986076.0665\,\mathrm{cm^3}.
+\]
+See Sources \ref{num:fuelpellrad}, \ref{num:fuelheight} and Figures \ref{ass_base} and \ref{fig_enr_ba_pos}.
+
+The fuel density can be calculated by computing the Uranium heavy metal density and dividing by its fractional weight
+\[
+    \rho_f = \frac{m_f}{V_f\cdot\omega_{U}} = 10.30166\,\mathrm{\frac{g}{cm^3}}.
+\]
+
+Isotopic number densities for Uranium are then calculated with
+\[
+    N = \frac{\widetilde{\rho} \cdot A}{M}.
+\]
+The parameter $A$ is Avagadro's number $=0.60221415\cdot 10^{24}\,\frac{atom}{mol}$ and $\widetilde{\rho}$ is the isotopic mass density. The isotopic mass density is calculated by multiplying the weight fraction of the element by the weight fraction of the isotopic in that element $\left(\omega\cdot\chi\right)$ multiplied by the fuel mass density,
+\[
+  \widetilde{\rho} = \rho_f\cdot \omega \cdot \chi.
+\]
+
+For oxygen, the total number density of oxygen is calculated with
+\[
+    N_O = \frac{\rho_f \cdot \omega_O \cdot A}{M_O}.
+\]
+Isotopic number densities are then determined by multiplying by fractional abundances provided in Source \ref{num:isotopic_abund}.
+
+\numrefrefs{\cite{spreadsheet}}
+
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[3.2\% Enriched Fuel Composition]{num:fuel32_mat}
+  
+   Provided in the spreadsheet sent by the utility the initial Uranium heavy metal mass and U-235 mass are detailed for each assembly under the worksheet, Assembly Loading. These allow us to calculate U-235 enrichments and fuel density. To limit the number of materials, the average values for the enrichments were calculated. 
+   
+   Using the detailed assembly loadings, the actual average enrichment for these fresh assemblies is $\chi_{25} = 3.19547\%$ (see Source \ref{num:assy_load_c2}). It assumed that the enrichment of U-234 is 0.8\% of this,
+\[
+    \chi_{24} = 0.008\cdot 3.19547\% = 0.02556376\%.
+\]
+    The rest of the heavy metal in the initial fuel loading is made up of U-238 calculated as
+\[
+    \chi_{28} = 100\% - 3.19547\% - 0.02556376\% = 96.77896624\%.
+\]
+
+The atomic mass of Uranium can be calculated from these weight percents of Uranium isotopes and the isotopic masses taken from Source \ref{num:isotopic_masses}:
+\[
+    M_U = \left[ \frac{\chi_{24}}{M_{24}} + \frac{\chi_{25}}{M_{25}} + \frac{\chi_{28}}{M_{28}} \right ]^{-1} = 237.952473579\,\mathrm{amu}. 
+\]
+The weight fractions of Uranium in Uranium Dioxide and Oxygen in Uranium Dioxide can be determined by the following two expressions:
+\[
+    \omega_{U} = \frac{M_U}{M_U + 2\cdot M_O} = 0.881465793436
+\]
+and
+\[
+    \omega_{O} = 1 - \omega_{U} = 0.118535465959.
+\]
+
+From the Uranium heavy metal weight percent, and detailed heavy metal loadings reported in the spreadsheet, the average density can be calculated. The total Uranium heavy metal mass for high enriched bundles is $m_f = 20.414365\,\mathrm{MT}$ (see Source \ref{num:assy_load_c2}).  If there are 48 bundles, the volume can be calculated with
+\[
+    V_f = \pi \cdot R_f^2 \cdot H \cdot N_{assy} \cdot N_{pins}
+\]
+\[
+    V_f = \pi \cdot 0.39218^2 \cdot 365.76 \cdot 48 \cdot 264 = 2239557.0499\,\mathrm{cm^3}.
+\]
+See Sources \ref{num:fuelpellrad}, \ref{num:fuelheight} and Figures \ref{ass_base} and \ref{fig_enr_ba_pos_c2}.
+
+The fuel density can be calculated by computing the Uranium heavy metal density and dividing by its fractional weight
+\[
+    \rho_f = \frac{m_f}{V_f\cdot\omega_{U}} = 10.34115\,\mathrm{\frac{g}{cm^3}}.
+\]
+
+Isotopic number densities for Uranium are then calculated with
+\[
+    N = \frac{\widetilde{\rho} \cdot A}{M}.
+\]
+The parameter $A$ is Avagadro's number $=0.60221415\cdot 10^{24}\,\frac{atom}{mol}$ and $\widetilde{\rho}$ is the isotopic mass density. The isotopic mass density is calculated by multiplying the weight fraction of the element by the weight fraction of the isotopic in that element $\left(\omega\cdot\chi\right)$ multiplied by the fuel mass density,
+\[
+  \widetilde{\rho} = \rho_f\cdot \omega \cdot \chi.
+\]
+
+For oxygen, the total number density of oxygen is calculated with
+\[
+    N_O = \frac{\rho_f \cdot \omega_O \cdot A}{M_O}.
+\]
+Isotopic number densities are then determined by multiplying by fractional abundances provided in Source \ref{num:isotopic_abund}.
+
+\numrefrefs{\cite{spreadsheet}}
+
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[3.4\% Enriched Fuel Composition]{num:fuel34_mat}
+  
+   Provided in the spreadsheet sent by the utility the initial Uranium heavy metal mass and U-235 mass are detailed for each assembly under the worksheet, Assembly Loading. These allow us to calculate U-235 enrichments and fuel density. To limit the number of materials, the average values for the enrichments were calculated. 
+   
+   Using the detailed assembly loadings, the actual core-averaged enrichment for these fresh assemblies is $\chi_{25} = 3.40585\%$ (see Source \ref{num:assy_load_c2}). It assumed that the enrichment of U-234 is 0.8\% of this,
+\[
+    \chi_{24} = 0.008\cdot 3.40585\% = 0.02724680\%.
+\]
+    The rest of the heavy metal in the initial fuel loading is made up of U-238 calculated as
+\[
+    \chi_{28} = 100\% - 3.40585\% - 0.02724680\% = 96.56690320\%.
+\]
+
+The atomic mass of Uranium can be calculated from these weight percents of Uranium isotopes and the isotopic masses taken from Source \ref{num:isotopic_masses}:
+\[
+    M_U = \left[ \frac{\chi_{24}}{M_{24}} + \frac{\chi_{25}}{M_{25}} + \frac{\chi_{28}}{M_{28}} \right ]^{-1} = 237.946003706,\mathrm{amu}. 
+\]
+The weight fractions of Uranium in Uranium Dioxide and Oxygen in Uranium Dioxide can be determined by the following two expressions:
+\[
+    \omega_{U} = \frac{M_U}{M_U + 2\cdot M_O} = 0.881461693055
+\]
+and
+\[
+    \omega_{O} = 1 - \omega_{U} = 0.118538306945. 
+\]
+
+From the Uranium heavy metal weight percent, and detailed heavy metal loadings reported in the spreadsheet, the average density can be calculated. The total Uranium heavy metal mass for high enriched bundles is $m_f = 6.816624\,\mathrm{MT}$ (see Source \ref{num:assy_load_c2}).  If there are 16 bundles, the volume can be calculated with
+\[
+    V_f = \pi \cdot R_f^2 \cdot H \cdot N_{assy} \cdot N_{pins}
+\]
+\[
+    V_f = \pi \cdot 0.39218^2 \cdot 365.76 \cdot 16 \cdot 264 = 746519.0166\,\mathrm{cm^3}.
+\]
+See Sources \ref{num:fuelpellrad}, \ref{num:fuelheight} and Figures \ref{ass_base} and \ref{fig_enr_ba_pos_c2}.
+
+The fuel density can be calculated by computing the Uranium heavy metal density and dividing by its fractional weight
+\[
+    \rho_f = \frac{m_f}{V_f\cdot\omega_{U}} = 10.35917\,\mathrm{\frac{g}{cm^3}}.
+\]
+
+Isotopic number densities for Uranium are then calculated with
+\[
+    N = \frac{\widetilde{\rho} \cdot A}{M}.
+\]
+The parameter $A$ is Avagadro's number $=0.60221415\cdot 10^{24}\,\frac{atom}{mol}$ and $\widetilde{\rho}$ is the isotopic mass density. The isotopic mass density is calculated by multiplying the weight fraction of the element by the weight fraction of the isotopic in that element $\left(\omega\cdot\chi\right)$ multiplied by the fuel mass density,
+\[
+  \widetilde{\rho} = \rho_f\cdot \omega \cdot \chi.
+\]
+
+For oxygen, the total number density of oxygen is calculated with
+\[
+    N_O = \frac{\rho_f \cdot \omega_O \cdot A}{M_O}.
+\]
+Isotopic number densities are then determined by multiplying by fractional abundances provided in Source \ref{num:isotopic_abund}.
+
+\numrefrefs{\cite{spreadsheet}}
+
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Composition of Air]{num:air_mat}
+   The density of air was referenced from Engineering toolbox at 300 C to be $\rho_{air} = 0.000616$ g/cc.  The composition of air included here contains Oxygen, Nitrogen, Argon and Carbon. Note that Hydrogen, Neon, Helium, Krypton and Xenon were all neglected as they contribute very little. Abundances were gathered from Engineering Toolbox and are listed below.
+ \begin{center}
+  \begin{tabular}{l c l c}
+    \toprule
+    Element & Fractional Abundance & Element & Fractional Abundance \\
+    \midrule
+    \midrule
+ O   &  0.2095  &  N  &   0.7809 \\
+Ar   &  0.00933 &  C  &   0.00027$^\dagger$   \\
+    \bottomrule
+  \end{tabular}
+   \\ $\dagger$ \footnotesize{Carbon adjusted slightly so sum is unity.}
+ \end{center}
+ 
+    Using these abundances and elemental masses in Source \ref{num:element_mass}, the mass of air can be calculated with
+\[
+    M_{air} = \sum_i \alpha_i M_i = 14.6657850715\,\mathrm{amu},
+\]
+where $\alpha$ represents the abundance fraction. The total number density of air can be calculated with
+\[
+    N_{air} = \frac{\rho_{air} \cdot A}{M_{air}} =  2.52945147219\times 10^{-5}\,\mathrm{\frac{atom}{barn\cdot cm}}.
+\]
+The parameter $A$ is Avagadro's number $=0.60221415\cdot 10^{24}\,\frac{atom}{mol}$.
+Elemental number densities can be calculated by multiplying the number density of air by their respective abundances,
+\[
+    N_i = \alpha_i \cdot N_{air}.
+\]
+Similarly, the isotopic number densities can be calculated by multiplying the elemental number densities by isotopic abundances reported in Source \ref{num:isotopic_abund}.
+
+\numrefrefs{\cite{airdens}} 
+
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Composition of Borosilicate Glass]{num:borosilicate_mat}
+   The density of Borosilicate glass was referenced from the CASMO-4 manual to be $\rho_{bp} = 2.26$ g/cc.  The composition, according to the manual is
+ \begin{center}
+  \begin{tabular}{l c l c}
+    \toprule
+    Element/Isotope & Weight Fraction & Element/Isotope & Weight Fraction \\
+    \midrule
+    \midrule
+ O   &  0.5481   &  Al  &   0.0344 \\
+Si   &  0.3787 &  B-10  &   0.0071   \\
+B-11   &  0.0317 &   &    \\
+    \bottomrule
+  \end{tabular}
+ \end{center}
+The relative weight fractions of B-10 and B-11 in Boron can be calculated using the absolute weight fractions above,
+\[
+    \chi_{50} = \frac{\omega_{50}}{\omega_{50} + \omega_{51}} \qquad \chi_{51} = \frac{\omega_{51}}{\omega_{50} + \omega_{51}}.
+\]
+The elemental mass of Boron can be done using isotopic masses in Source \ref{num:isotopic_masses},
+\[
+    M_{B} = \left[ \frac{\chi_{50}}{M_{50}} + \frac{\chi_{51}}{M_{51}} \right]^{-1} = 10.812422457829642\,\mathrm{amu}.
+\]
+To compute the number densities of the elements/isotopes listed in the table above, the following formula can be used:
+\[
+    N_i = \frac{\omega_i\cdot\rho_{bp}\cdot A}{M_i}.
+\]
+The parameter $A$ is Avagadro's number $=0.60221415\cdot 10^{24}\,\frac{atom}{mol}$. The isotopic number densities of the elements listed in the table can be calculated by multiplying the elemental number densities by isotopic abundances reported in Source \ref{num:isotopic_abund}.
+
+\numrefrefs{\cite{casmo4}} 
+
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Composition of Ag-In-Cd Control Rods]{num:aic_rod_mat}
+   The density of Ag-In-Cd control rods was referenced from the CASMO-4 manual to be $\rho_{cr} = 10.16$ g/cc.  The composition, as given in the manual is 80\% Ag, 15\% In and 5\% Cd.
+
+Using these weight percents and elemental masses from Source \ref{num:element_mass}, the number densities of each element can be calculated with.
+\[
+    N_i = \frac{\omega_i\cdot\rho_{cr}\cdot A}{M_i}.
+\]
+The parameter $A$ is Avagadro's number $=0.60221415\cdot 10^{24}\,\frac{atom}{mol}$. The isotopic number densities of the elements listed in the table can be calculated by multiplying the elemental number densities by isotopic abundances reported in Source \ref{num:isotopic_abund}.
+
+\numrefrefs{\cite{casmo4}} 
+
+\end{numitem}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Composition of B4C Control Rods]{num:b4c_rod_mat}
+   The density of B4C control rods was referenced from the CASMO-4 manual to be $\rho_{cr} = 1.76$ g/cc.  The composition, as given in the manual is 78.26\% B and 21.74\% C.
+
+Using these weight percents and elemental masses from Source \ref{num:element_mass}, the number densities of each element can be calculated with.
+\[
+    N_i = \frac{\omega_i\cdot\rho_{cr}\cdot A}{M_i}.
+\]
+The parameter $A$ is Avagadro's number $=0.60221415\cdot 10^{24}\,\frac{atom}{mol}$. The isotopic number densities of the elements listed in the table can be calculated by multiplying the elemental number densities by isotopic abundances reported in Source \ref{num:isotopic_abund}.
+
+\numrefrefs{\cite{casmo4}} 
+
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Composition of Helium]{num:helium_mat}
+   The density of Helium gas was retrieved from NIST from a pressure of 2 MPa and temperature of 600 K. The density was given as $\rho_{He} = 0.0015981$ g/cc. The number density can be computed along with the element mass from Source \ref{num:element_mass},
+\[
+    N_{He} = \frac{\rho_{He}\cdot A}{M_{He}}.
+\]
+The parameter $A$ is Avagadro's number $=0.60221415\cdot 10^{24}\,\frac{atom}{mol}$.
+
+\numrefrefs{\cite{hedens}} 
+
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Composition of Inconel]{num:inconel_mat}
+   The density of Inconel-718 was referenced from the CASMO-4 manual to be $\rho_{in} = 8.2$ g/cc.  The composition, according to the manual is
+ \begin{center}
+  \begin{tabular}{l c l c}
+    \toprule
+    Element/Isotope & Weight Fraction & Element/Isotope & Weight Fraction \\
+    \midrule
+    \midrule
+Si   &  0.0035  &  Cr  &   0.1896 \\
+Mn   &  0.0087  &  Fe  &   0.2863$^\dagger$   \\
+Ni   &  0.5119  &   &    \\
+    \bottomrule
+  \end{tabular}
+  \\$^\dagger$ weight fraction adjust such that sum is unity
+ \end{center}
+
+To compute the number densities of the elements/isotopes listed in the table above, the following formula can be used:
+\[
+    N_i = \frac{\omega_i\cdot\rho_{in}\cdot A}{M_i}.
+\]
+The parameter $A$ is Avagadro's number $=0.60221415\cdot 10^{24}\,\frac{atom}{mol}$. The isotopic number densities of the elements listed in the table can be calculated by multiplying the elemental number densities by isotopic abundances reported in Source \ref{num:isotopic_abund}.
+
+\numrefrefs{\cite{casmo4}} 
+
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Composition of Stainless Steel]{num:SS304_mat}
+   The density of Stainless Steel-304 was referenced from AK Steel Product Data Sheet to be $\rho_{ss} = 8.03$ g/cc.  The composition, according to the data sheet is
+ \begin{center}
+  \begin{tabular}{l c l c}
+    \toprule
+    Element/Isotope & Weight Fraction & Element/Isotope & Weight Fraction \\
+    \midrule
+    \midrule
+Si   &  0.0060  &  Cr  &   0.1900 \\
+Mn   &  0.0200  &  Fe  &   0.6840$^\dagger$   \\
+Ni   &  0.1000  &   &    \\
+    \bottomrule
+  \end{tabular}
+  \\$^\dagger$ weight fraction adjust such that sum is unity
+ \end{center}
+
+To compute the number densities of the elements/isotopes listed in the table above, the following formula can be used:
+\[
+    N_i = \frac{\omega_i\cdot\rho_{ss}\cdot A}{M_i}.
+\]
+The parameter $A$ is Avagadro's number $=0.60221415\cdot 10^{24}\,\frac{atom}{mol}$. The isotopic number densities of the elements listed in the table can be calculated by multiplying the elemental number densities by isotopic abundances reported in Source \ref{num:isotopic_abund}.
+
+\numrefrefs{\cite{aksteel}} 
+
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Composition of Zircaloy]{num:zirc_mat}
+   The density of Zircaloy 4 was referenced from the CASMO-4 manual to be $\rho_{zr} = 6.55$ g/cc.  The composition, according to the manual is
+ \begin{center}
+  \begin{tabular}{l c l c}
+    \toprule
+    Element/Isotope & Weight Fraction & Element/Isotope & Weight Fraction \\
+    \midrule
+    \midrule
+O    &  0.00125 &  Cr  &   0.0010 \\
+Fe   &  0.0021  &  Zr  &   0.98115$^\dagger$   \\
+Sn   &  0.0145  &   &    \\
+    \bottomrule
+  \end{tabular}
+  \\ $^\dagger$ weight fraction adjust such that sum is unity
+ \end{center}
+
+To compute the number densities of the elements/isotopes listed in the table above, the following formula can be used:
+\[
+    N_i = \frac{\omega_i\cdot\rho_{zr}\cdot A}{M_i}.
+\]
+The parameter $A$ is Avagadro's number $=0.60221415\cdot 10^{24}\,\frac{atom}{mol}$. The isotopic number densities of the elements listed in the table can be calculated by multiplying the elemental number densities by isotopic abundances reported in Source \ref{num:isotopic_abund}.
+
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Composition of Borated Water]{num:water_mat}
+
+    This source block describes how to compute the number density of isotopes in borated water. This block will show the necessary formulas, but the density and concentration of boron may change depending on cycle time. For a given reactor pressure and temperature, density of water is obtained from NIST. From the water density and boron weight percent, the density of borated water will be obtained.
+    
+    For a given concentration of boron, the weight percent of boron in water is
+\[
+   \omega_B = C_B\mathrm{\,\left[ppm\right]^{-1}}\times10^{-6}.
+\]
+The molecular mass of water can be determined from elemental masses in Source \ref{num:element_mass} as
+\[
+    M_{H_2O} = 2\cdot M_H + M_O.
+\]
+The number density of water can then be computed as
+\[
+    N_{H_2O} = \frac{\rho_{H_2O}\cdot A}{M_{H_2O}}.
+\]
+The parameter $A$ is Avagadro's number $=0.60221415\cdot 10^{24}\,\frac{atom}{mol}$. The number density of hydrogen and oxygen are given as:
+\[
+    N_H = 2\cdot N_{H_2O} \qquad N_O = N_{H_2O}.
+\]
+
+The density of borated water can be computed from the density of water and the weight percent of boron,
+\[
+    \rho_{BW} = \frac{\rho_{H_2O}}{\omega_B}
+\]
+To compute the number density of boron, the following expression is used:
+\[
+    N_B = \frac{\omega_B\cdot\rho_{BW}\cdot A}{M_B}.
+\]
+The isotopic number densities of the elements can be calculated by multiplying the elemental number densities by isotopic abundances reported in Source \ref{num:isotopic_abund}.
+
+\numrefrefs{\cite{h2odens}} 
+
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{numitem}[Composition of Borated Water in Nozzle and Support Plate Region]{num:water_spn_mat}
+
+To conserve the mass of borated water in the nozzle and support plate region, the
+density of borated water is adjusted using formula:
+
+\[
+    \rho^\prime_{water} = \frac{\rho_{water} \times V_{water}}{V^\prime_{water}}
+\]
+
+where $\rho_{water}$ and $V_{water}$ are the actual density and volume of water
+while $\rho^\prime_{water}$ and $V^\prime_{water}$ are the density and volume
+in the model.
+
+According to Section \ref{par:nozzle}, the volume of water in the nozzle and
+support plate region is
+
+\[
+   V^\prime_{water} = S_a^2 - n_{pins}\times \pi \times R_{pin}^2 = 21.50364^2 - 264\times\pi\times 0.45720^2 = 289.03961\,\rm{cm^3}
+\]
+
+From Reference \cite{ml033530020}, the volume fractions of water in the nozzle 
+and support plate is 0.8280, so the actual volume of water should be:
+
+\[
+    V_{water} = S_a^2\times 0.8280 = 382.87261\,\rm{cm^3}
+\]
+
+
+The adjusted density of borated water is:
+
+\[
+    \rho^\prime_{water} = 0.740582067516 \times 382.87261 / 289.03961 = 0.9810025\,\rm{g/cm^3}
+\]
+
+The adjusted density can then be used to calculate number densities 
+of nuclides in borated water described in Source \ref{num:water_mat}.
+
+\numrefrefs{\cite{ml033530020}} 
+
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{numitem}[Composition of Stainless Steel in Nozzle and Support Plate Region]{num:ss_spn_mat}
+
+To conserve the mass of stainless steel in the nozzle and support plate region,
+the density of stainless steel is adjusted using formula:
+
+\[
+    \rho^\prime_{ss} = \frac{\rho_{ss} \times V_{ss}}{V^\prime_{ss}}
+\]
+
+where $\rho_{ss}$ and $V_{ss}$ are the actual density and volume of stainless steel
+while $\rho^\prime_{ss}$ and $V^\prime_{ss}$ are the density and volume
+in the model.
+
+According to Section \ref{par:nozzle}, the volume of stainless steel in the nozzle and
+support plate region is
+
+\[
+   V^\prime_{ss} = n_{pins}\times \pi \times R_{pin}^2 = 264\times\pi\times 0.45720^2 = 173.36692\,\rm{cm^3}
+\]
+
+From Reference \cite{ml033530020}, the volume fractions of stainless steel in the nozzle 
+and support plate is 0.1720, so the actual volume of stainless steel should be:
+
+\[
+    V_{ss} = S_a^2\times 0.1720 = 79.533924\,\rm{cm^3}
+\]
+
+
+The adjusted density of stainless steel is:
+
+\[
+    \rho^\prime_{ss} = 8.03 \times 79.533924 / 173.36692 = 3.683848\,\rm{g/cm^3}
+\]
+
+The adjusted density can then be used to calculate number densities 
+of nuclides in stainless steel described in Source \ref{num:SS304_mat}.
+
+\numrefrefs{\cite{ml033530020}} 
+
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Composition of Carbon Steel]{num:carbonsteel_mat}
+   The density of Carbon Steel was assumed to be $\rho_{cs} = 7.8$ g/cc.  The composition, according to the ranges in an ASTM datasheet is
+ \begin{center}
+  \begin{tabular}{l c l c}
+    \toprule 
+    Element/Isotope & Weight Fraction & Element/Isotope & Weight Fraction \\
+    \midrule
+    \midrule
+C    &  0.00270  &  Mn  &   0.00750  \\
+P    &  0.00025  &  Si  &   0.00400  \\
+Mo   &  0.00625  &  Ni  &   0.00750  \\
+Fe   &  0.96487  &  S   &   0.00025  \\
+Cr   &  0.00350  &  V   &   0.00050  \\
+Nb   &  0.00010  &  Cu  &   0.00200  \\
+Ca   &  0.00015  &  B   &   0.00003  \\
+Ti   &  0.00015  &  Al  &   0.00025  \\
+    \bottomrule
+  \end{tabular}
+ \end{center}
+
+To compute the number densities of the elements/isotopes listed in the table above, the following formula can be used:
+\[
+    N_i = \frac{\omega_i\cdot\rho_{cs}\cdot A}{M_i}.
+\]
+The parameter $A$ is Avagadro's number $=0.60221415\cdot 10^{24}\,\frac{atom}{mol}$. The isotopic number densities of the elements listed in the table can be calculated by multiplying the elemental number densities by isotopic abundances reported in Source \ref{num:isotopic_abund}.
+
+\numrefrefs{\cite{astm}} 
+
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Missing Data]{num:missing}
+  This reference box lists all of the values that were estimated:
+  \begin{itemize}
+      \item Lower support plate and nozzle heights were guessed
+  \end{itemize}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Isotopic Masses]{num:isotopic_masses}
+ \begin{center}
+  \begin{tabular}{l c l c}
+    \toprule
+    Isotope & Mass [amu] & Isotope & Mass [amu] \\
+    \midrule
+    \midrule
+ H-1   &   1.0078250    &  H-2   &   2.0141018    \\
+He-4   &   4.0026032542 &  B-10  &  10.0129370    \\
+ B-11  &  11.0093054    &  C-12  &  12.0000000    \\
+ C-13  &  13.003354838  &  O-16  &  15.9949146196 \\
+ O-17  &  16.9991317    &  O-18  &  17.999161     \\
+ N-14  &  14.003074005  &  N-15  &  15.000108898  \\
+Si-28  &  27.976926532  & Si-29  &  28.97649470   \\
+Si-30  &  29.97377017   & P-31   &  30.9737616    \\
+Al-27  &  26.9815386    & Ar-36  &  35.96754511   \\
+Ar-38  &  37.9627324    & Ar-40  &  39.962383123  \\
+Cr-50  &  49.946044     & Cr-52  &  51.940507     \\
+Cr-53  &  52.940649     & Cr-54  &  53.938880     \\
+Mn-55  &  54.938045     & Fe-54  &  53.939611     \\
+Fe-56  &  55.934937     & Fe-57  &  56.935394     \\
+Fe-58  &  57.933276     & Ni-58  &  57.935343     \\
+Ni-60  &  59.930786     & Ni-61  &  60.931056     \\
+Ni-62  &  61.928345     & Ni-64  &  63.927966     \\
+Zr-90  &  89.904704     & Zr-91  &  90.905646     \\
+Zr-92  &  91.905041     & Zr-94  &  93.906315     \\
+Zr-96  &  95.908273     & Mo-92  &  91.906811     \\
+Mo-94  &  93.905088     & Mo-95  &  94.905842     \\
+Mo-96  &  95.904679     & Mo-97  &  96.906021     \\
+Mo-98  &  97.905408     & Mo-100 &  99.90748      \\
+Ag-107 & 106.905097     & Ag-109 & 108.904752     \\
+Cd-106 & 105.90646      & Cd-108 & 107.90418      \\
+Cd-110 & 109.903002     & Cd-111 & 110.904178     \\
+Cd-112 & 111.902758     & Cd-113 & 112.904402     \\
+Cd-114 & 113.903359     & Cd-116 & 115.904756     \\
+In-113 & 112.904058     & In-115 & 114.903878     \\
+Sn-112 & 111.904818     & Sn-114 & 113.902779     \\
+Sn-115 & 114.903342     & Sn-116 & 115.901741     \\
+Sn-117 & 116.902952     & Sn-118 & 117.901603     \\
+Sn-119 & 118.903308     & Sn-120 & 119.902195     \\
+Sn-122 & 121.903439     & Sn-124 & 123.905274     \\
+ U-234 & 234.040952     &  U-235 & 235.043930     \\
+ U-238 & 238.050788     & \\
+    \bottomrule
+  \end{tabular}
+ \end{center}
+  \numrefrefs{\cite{chart_nuclides}}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Isotopic Natural Abundances]{num:isotopic_abund}
+ \begin{center}
+\input{backmatter/isotope_abundances}
+ \end{center}
+  \numrefrefs{\cite{meija2016isotopic}}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Elemental Masses]{num:element_mass}
+ \begin{center}
+\input{backmatter/element_masses}
+ \end{center}
+  \numrefrefs{\cite{chart_nuclides}}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Cycle 1 Assembly Loadings]{num:assy_load}
+ \begin{center}
+  \begin{longtable}{c c c c}
+    \toprule
+    Assembly ID & Uranium [g] & U-235 [g] & Enrichment [\%] \\
+    \midrule
+    \midrule
+A05&424944&13162&3.0973492978\\
+A06&420716&13030&3.0971011324\\
+A07&426067&13160&3.0887160939\\
+A08&424475&13142&3.0960598386\\
+A09&425874&13192&3.0976298154\\
+A10&425803&13186&3.0967372236\\
+A11&420801&13069&3.1057435700\\
+B03&424193&13136&3.0967036231\\
+B04&422216&13097&3.1019667658\\
+B05&420894&13253&3.1487738005\\
+B06&425287&6846 &1.6097364838\\
+B07&425899&13198&3.0988567712\\
+B08&423432&6792 &1.6040355949\\
+B09&425449&13182&3.0983737181\\
+B10&424324&6852 &1.6148037820\\
+B11&424062&13129&3.0960095458\\
+B12&422104&13159&3.1174781570\\
+B13&423343&13140&3.1038661322\\
+C02&424937&13163&3.0976356495\\
+C03&424170&13119&3.0928637103\\
+C04&421871&10124&2.3997857165\\
+C05&424615&6829 &1.6082804423\\
+C06&423086&10146&2.3980940045\\
+C07&422483&6783 &1.6055083873\\
+C08&424345&10192&2.4018192744\\
+C09&424595&6849 &1.6130665693\\
+C10&424891&10221&2.4055581314\\
+C11&424941&6844 &1.6105765271\\
+C12&421583&10130&2.4028483122\\
+C13&423048&13127&3.1029575840\\
+C14&421975&13192&3.1262515552\\
+D02&424800&13159&3.0976930320\\
+D03&424180&10156&2.3942665849\\
+D04&424406&10169&2.3960547212\\
+D05&424911&10202&2.4009733803\\
+D06&424399&6848 &1.6135759038\\
+D07&424181&10210&2.4069913551\\
+D08&425152&6833 &1.6071898991\\
+D09&422222&10147&2.4032381070\\
+D10&424412&6847 &1.6132908589\\
+D11&424304&10181&2.3994588785\\
+D12&423100&10150&2.3989600567\\
+D13&424783&10202&2.4016968664\\
+D14&424281&13124&3.0932330225\\
+E01&423404&13084&3.0901928182\\
+E02&420730&13039&3.0991372139\\
+E03&424543&6843 &1.6118508608\\
+E04&421801&10123&2.3999468944\\
+E05&424255&6837 &1.6115308011\\
+E06&423596&10170&2.4008725295\\
+E07&421655&6786 &1.6093725913\\
+E08&423553&10191&2.4060743284\\
+E09&423530&6836 &1.6140533138\\
+E10&423784&10167&2.3990995413\\
+E11&426061&6882 &1.6152616644\\
+E12&420485&10097&2.4012747185\\
+E13&423910&6809 &1.6062371730\\
+E14&424243&13137&3.0965743689\\
+E15&423782&13111&3.0938076653\\
+F01&421004&13280&3.1543643291\\
+F02&424776&6817 &1.6048458482\\
+F03&423535&10162&2.3993294533\\
+F04&423810&6823 &1.6099195394\\
+F05&423695&10149&2.3953551493\\
+F06&424865&6872 &1.6174549563\\
+F07&421380&10157&2.4104134036\\
+F08&421443&6782 &1.6092330398\\
+F09&423216&10180&2.4053911005\\
+F10&424117&6837 &1.6120551640\\
+F11&424105&10174&2.3989342262\\
+F12&425283&6862 &1.6135138249\\
+F13&421755&10118&2.3990231295\\
+F14&424904&6840 &1.6097753846\\
+F15&424964&13164&3.0976741559\\
+G01&423798&13121&3.0960504769\\
+G02&425033&13158&3.0957596234\\
+G03&424241&6834 &1.6108768365\\
+G04&423025&10162&2.4022220909\\
+G05&423622&6839 &1.6144109607\\
+G06&424373&10207&2.4051954295\\
+G07&424759&6831 &1.6082060651\\
+G08&423952&10177&2.4005076046\\
+G09&421474&6782 &1.6091146785\\
+G10&423211&10156&2.3997485888\\
+G11&425181&6847 &1.6103729941\\
+G12&424361&10148&2.3913601863\\
+G13&424788&6847 &1.6118628586\\
+G14&426234&13199&3.0966558276\\
+G15&423030&13097&3.0959979198\\
+H01&424112&13134&3.0968234806\\
+H02&423343&6793 &1.6046090286\\
+H03&423810&10136&2.3916377622\\
+H04&422511&6778 &1.6042185884\\
+H05&423653&10164&2.3991332529\\
+H06&424642&6822 &1.6065297356\\
+H07&421497&10187&2.4168618045\\
+H08&423849&6823 &1.6097714044\\
+H09&422875&10143&2.3985811410\\
+H10&424615&6825 &1.6073384124\\
+H11&424072&10157&2.3951121508\\
+H12&425265&6865 &1.6142875619\\
+H13&422934&10150&2.3999016395\\
+H14&424688&6836 &1.6096522624\\
+H15&425788&13194&3.0987251872\\
+J01&420911&13082&3.1080204604\\
+J02&425904&13192&3.0974116233\\
+J03&424409&6824 &1.6078829620\\
+J04&424468&10163&2.3942912069\\
+J05&425512&6859 &1.6119404388\\
+J06&424294&10208&2.4058789424\\
+J07&423432&6834 &1.6139545429\\
+J08&423016&10153&2.4001456210\\
+J09&424375&6824 &1.6080117820\\
+J10&424281&10221&2.4090166658\\
+J11&424993&6847 &1.6110853591\\
+J12&424165&10176&2.3990664010\\
+J13&421347&6753 &1.6027170005\\
+J14&424730&13157&3.0977326772\\
+J15&421853&13063&3.0965762955\\
+K01&422860&13118&3.1022087689\\
+K02&424618&6826 &1.6075625621\\
+K03&421148&10132&2.4058050851\\
+K04&424555&6819 &1.6061523242\\
+K05&421432&10140&2.4060821200\\
+K06&423746&6824 &1.6103986822\\
+K07&424555&10169&2.3952138121\\
+K08&424044&6818 &1.6078520154\\
+K09&422699&10153&2.4019455925\\
+K10&424649&6832 &1.6088581393\\
+K11&423288&10149&2.3976583319\\
+K12&424956&6839 &1.6093430849\\
+K13&423244&10138&2.3953086163\\
+K14&422255&6776 &1.6047175285\\
+K15&424116&13121&3.0937290741\\
+L01&422352&13092&3.0997840664\\
+L02&420794&13073&3.1067458186\\
+L03&425338&6828 &1.6053115405\\
+L04&424261&10159&2.3945165830\\
+L05&424742&6849 &1.6125082992\\
+L06&424150&10166&2.3967935872\\
+L07&423764&6831 &1.6119821410\\
+L08&424256&10154&2.3933662694\\
+L09&425410&6872 &1.6153828072\\
+L10&424950&10200&2.4002823862\\
+L11&421625&6792 &1.6109101690\\
+L12&423639&10192&2.4058219380\\
+L13&424023&6813 &1.6067524639\\
+L14&424050&13133&3.0970404433\\
+L15&424459&13147&3.0973545148\\
+M02&425885&13193&3.0977846132\\
+M03&424014&10131&2.3893079002\\
+M04&421257&10112&2.4004348889\\
+M05&425262&10201&2.3987565313\\
+M06&423693&6822 &1.6101280880\\
+M07&423907&10139&2.3917982010\\
+M08&424198&6854 &1.6157549069\\
+M09&424072&10153&2.3941689147\\
+M10&425652&6843 &1.6076513208\\
+M11&422201&10199&2.4156740510\\
+M12&424551&10155&2.3919387777\\
+M13&425089&10199&2.3992622721\\
+M14&425657&13183&3.0970946090\\
+N02&421693&13265&3.1456533545\\
+N03&422588&13124&3.1056253372\\
+N04&421881&10131&2.4013880691\\
+N05&423101&6785 &1.6036360113\\
+N06&424140&10176&2.3992078087\\
+N07&425284&6870 &1.6153911269\\
+N08&424883&10175&2.3947769151\\
+N09&425421&6872 &1.6153410386\\
+N10&424268&10175&2.3982482770\\
+N11&424275&6852 &1.6149902775\\
+N12&424620&10163&2.3934341293\\
+N13&422582&13101&3.1002267016\\
+N14&425319&13149&3.0915618630\\
+P03&424427&13146&3.0973524305\\
+P04&425671&13187&3.0979324408\\
+P05&422784&13107&3.1001646231\\
+P06&423297&6826 &1.6125793474\\
+P07&425103&13163&3.0964260426\\
+P08&423857&6827 &1.6106847357\\
+P09&420685&13284&3.1577070730\\
+P10&424630&6827 &1.6077526317\\
+P11&423052&13116&3.1003280921\\
+P12&423471&13111&3.0960797788\\
+P13&422419&13108&3.1030801171\\
+R05&423062&13099&3.0962364854\\
+R06&422801&13119&3.1028781862\\
+R07&426100&13196&3.0969256043\\
+R08&424656&13155&3.0978015146\\
+R09&425240&13172&3.0975449158\\
+R10&422084&13071&3.0967769449\\
+R11&421775&13100&3.1059214036\\
+    \bottomrule
+  \end{longtable} \end{center}
+  \raggedright
+  To determine core-averaged enrichment for each enrichment type (1.6\%, 2.4\% and 3.1\%), the Enrichment column was first separated by enrichment type. Then, all the enrichments for a given type were averaged. In order to compute densities, the total mass of Uranium is needed for each enrichment type. Both of these values are reported in the table below.
+   \begin{center}
+  \begin{tabular}{c c c}
+    \toprule
+    Enrichment Type & Actual Core-averaged Enrichment & Total Heavy Metal [g] \\
+    \midrule
+    \midrule
+ 1.6\%   &    1.6100562050\% & 27570971 \\
+ 2.4\%   &    2.3999267408\% & 27104522  \\
+ 3.1\%   &    3.1022104528\% & 27115256 \\
+     \midrule
+     Core avg. enrichment & 2.366789812\% \\ 
+     Total Heavy Metal Mass & 81.79 MT \\
+    \bottomrule
+  \end{tabular}
+ \end{center}
+  \numrefrefs{\cite{spreadsheet}}
+\end{numitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{numitem}[Cycle 2 Assembly Loadings]{num:assy_load_c2}
+ \begin{center}
+  \begin{longtable}{c c c c}
+    \toprule
+    Assembly ID & Uranium [g] & U-235 [g] & Enrichment [\%] \\
+    \midrule
+    \midrule
+A06&426378&14523&3.4061325866\\
+A07&425150&13582&3.1946371869\\
+A08&426115&14522&3.4080001877\\
+A09&425256&13588&3.1952518013\\
+A10&425004&14481&3.4072620493\\
+B04&424679&13568&3.1948836651\\
+B05&424804&13591&3.1993578215\\
+B11&425385&13581&3.1926372580\\
+B12&425013&13591&3.1977845384\\
+C03&426452&14523&3.4055415381\\
+C06&425896&13653&3.2057121926\\
+C10&425229&13600&3.1982766933\\
+C13&426588&14507&3.4007051300\\
+D02&425787&13600&3.1940853056\\
+D05&426941&13636&3.1938839324\\
+D11&425586&13580&3.1908944373\\
+D14&425027&13576&3.1941500187\\
+E02&424137&13537&3.1916574126\\
+E04&426071&13608&3.1938338915\\
+E06&423952&13485&3.1807846171\\
+E10&426192&13632&3.1985583962\\
+E12&424567&13551&3.1917223901\\
+E14&424969&13613&3.2032924755\\
+F01&426533&14524&3.4051292632\\
+F03&425176&13601&3.1989105688\\
+F05&425158&13594&3.1973995550\\
+F11&424465&13545&3.1910758249\\
+F13&424866&13596&3.2000677861\\
+F15&426756&14527&3.4040529014\\
+G01&424316&13554&3.1943174427\\
+G15&425838&13648&3.2049746617\\
+H01&424172&14448&3.4061654235\\
+H15&426814&14554&3.4099162633\\
+J01&426796&13635&3.1947347210\\
+J15&424420&13552&3.1930634749\\
+K01&424667&14464&3.4059627897\\
+K03&424774&13549&3.1896961678\\
+K05&425597&13596&3.1945713903\\
+K11&425570&13629&3.2025283737\\
+K13&424532&13566&3.1955188301\\
+K15&426322&14520&3.4058763095\\
+L02&425023&13605&3.2010032398\\
+L04&427865&13665&3.1937643883\\
+L06&425056&13597&3.1988726191\\
+L10&424429&13585&3.2007709181\\
+L12&424652&13520&3.1837834274\\
+L14&424696&13559&3.1926366154\\
+M02&425055&13586&3.1962922445\\
+M05&424994&13578&3.1948686334\\
+M11&424679&13566&3.1944127211\\
+M14&426884&13639&3.1950131652\\
+N03&427113&14526&3.4009735129\\
+N06&424710&13587&3.1991241082\\
+N10&425867&13611&3.1960682561\\
+N13&427170&14549&3.4059039727\\
+P04&425199&13588&3.1956801404\\
+P05&425430&13593&3.1951202313\\
+P11&426461&13632&3.1965408326\\
+P12&425352&13585&3.1938253494\\
+R06&425527&14493&3.4058943381\\
+R07&426122&13614&3.1948596881\\
+R08&426663&14554&3.4111230643\\
+R09&425742&13589&3.1918391890\\
+R10&424350&14449&3.4049723106\\
+    \bottomrule
+  \end{longtable} \end{center}
+  \raggedright
+  To determine core-averaged enrichment for each enrichment type (3.2\% and 3.4\%), the Enrichment column was first separated by enrichment type. Then, all the enrichments for a given type were averaged. In order to compute densities, the total mass of Uranium is needed for each enrichment type. Both of these values are reported in the table below.
+   \begin{center}
+  \begin{tabular}{c c c}
+    \toprule
+    Enrichment Type & Actual Core-averaged Enrichment & Total Heavy Metal [g] \\
+    \midrule
+    \midrule
+ 3.2\%   &    3.1954737208\% & 21066701 \\
+ 3.4\%   &    3.4058507275\% & 7048788  \\
+    \bottomrule
+  \end{tabular}
+ \end{center}
+  \numrefrefs{\cite{spreadsheet}}
+\end{numitem}

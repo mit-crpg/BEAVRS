@@ -1,0 +1,162 @@
+%\immediate\write18{specifications/figs/make_axial_figs.py}
+
+While some of the previously-described radial features are uniform along the
+entire height of the model, many have several different axial zones. For
+instance, the models of the baffle, core barrel, neutron shield panels, and
+reactor pressure vessel do not change axially, in contrast to the pincells
+that make up the fuel assemblies. As presented in the following sections, the
+axial zones are treated at the pincell level to facilitate easier modelling,
+since the boundaries for the axial zones for each pincell type are not all at
+the same planes. With this type of definition, the final aggregate geometry
+inside the core barrel need only consist of the fuel assemblies, which are made
+up of only the inter-assembly gridstraps and the pincells that are defined for
+the entire axial extent.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Fuel Rods}
+
+Figure \ref{fig_fuel_axials} shows all different axial sections used in the fuel
+rod pincell occupying each fuel position in the assemblies.  In most
+places the pincells described in Section \ref{sec:pintypes} are used, however
+where indicated the pincell is filled either entirely with water, or with solid
+pins of either stainless steel or Zircaloy.  These solid pins use the outer-most
+radius of the regular fuel rod pincell.
+
+\input{specifications/axial/figs/fuel_rod} % label: fig_fuel_axials
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Guide Tubes}
+
+Figure \ref{fig_gtu_axials} shows the empty guide tube axial differentiation,
+referring to the pincells described in Section \ref{sec:pintypes}.  As with
+the fuel rods, the pincell is replaced by water below the fuel region.
+
+\input{specifications/axial/figs/guide_tube} % label: fig_gtu_axials
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Instrument Tubes}
+
+Figure \ref{fig_instr_axials} shows the instrument tube axial differentiation,
+referring to the pincells described in Section \ref{sec:pintypes}. This
+follows the same pattern as the guide tube axial specification, with the caveat
+that below the fuel region the inner section of the instrument tubes (that is,
+without the surrounding guide tube) is used through the lowest extent of the
+geometry.  Also note that regardless of whether or not the central instrument
+tube contains the inner instrument thimble, the outer guide tube does not shrink
+for the dashpot.
+
+\input{specifications/axial/figs/instr_tube} % label: fig_instr_axials
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Burnable Absorbers}
+
+Figure \ref{fig_ba_axials} shows the axial regions of the burnable absorber
+pincells. Here, the active region of burnable absorber rods as presented in
+Section \ref{sec:pintypes} extend from a plane a few inches above the bottom of the
+active fuel to a plane just below the top of the active fuel region. Above
+there, the outermost inner radius of the burnable absorber rods (or arrow 6 in
+Figure \ref{fig_ba_pin}) is used to create a solid stainless steel pin tube
+through the top of the upper nozzle, inside the guide tube where appropriate.
+
+\input{specifications/axial/figs/ba} % label: fig_ba_axials
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Control Rods}
+\label{sec:axial_cr}
+
+Figure \ref{fig_cr_axials} shows the control rod axial layout, which depending
+on the degree of insertion can either be occupied by the empty guide tube
+pincell or the control rod pincell described in Section \ref{sec:pintypes}. The
+details of insertion depend on the radial location of the specific control rod
+cluster, i.e. which control or shutdown bank it belongs to. Unlike the other
+axial descriptions in this section, Figure~\ref{fig_cr_axials} presents the
+axial sections \emph{only} for the control rod thimble that fits inside the
+guide tube. It is presented for the fully-inserted position; all intermediate
+planes should be shifted according to the number of steps withdrawn, and the
+appropriate axial sections created in combination with the surrounding guide
+tube and grid spacer pincell.
+
+In this model, when fully-inserted the top of the upper control rod active
+absorber region should be flush with the top of the active fuel region. Control
+rods are considered to be withdrawn in 228 "steps" until the active region is
+drawn completely out of the active fuel region. When withdrawn 228 steps, the
+bottom of the lower control rod active absorber region should be flush with the
+top of the active fuel region. The total height of the lower and upper control
+rod regions is 360.68 cm, meaning the step height is 1.58193 cm.
+
+The actual axial planes used depend on the the number of steps of insertion of
+the rod, and may be superseded by the highest axial plane when appropriate. In
+other words, the planes presented in Figure~\ref{fig_cr_axials} should be
+shifted upwards by the number of steps withdrawn times the step height.
+
+The control and shutdown banks can have any level of partial insertion, where
+the bottom tips of the rods can be at any axial step level between step 0 and
+step 228. While each of these banks move their control rod clusters together,
+their movement is often staggered with the other control rod banks, described in
+Figure \ref{fig_cr_algorithm} with an insertion sequence example. However,
+insertion levels for each individual bank are provided for most of the data
+presented in this benchmark, so the algorithm in Figure \ref{fig_cr_algorithm}
+may not be needed.
+
+\input{specifications/axial/figs/cr} % label: fig_cr_axials
+
+\input{specifications/axial/figs/cr_seq}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Aggregate}
+
+By defining the full extent of the axial geometry in the pincells, several
+features remain to be described or examined in the final combination of each
+element of the model. In aggregate it is useful to see an exhaustive list of
+all axial planes used in the model, as presented in Figure \ref{fig_all_axials}.
+Control rod insertions are treated separately, as discussed in Section
+\ref{sec:axial_cr}.
+
+\input{specifications/axial/figs/all_axials} % label: fig_all_axials
+
+\paragraph{Grid Spacers}
+
+Nearly all axial features of the model are captured in the axial pincell
+specifications. However, the stainless steel grid sleeve described in Section
+\ref{sec:rad_grids} for each of the 8 grid spacers needs to be defined on the
+assembly level, as it is not contained within any of the pincell elements.  The
+axial planes used for the grid sleeves are the same as those used for the grids
+in the pincells, as listed in Figure \ref{fig_all_axials}.
+
+\paragraph{Nozzles and Support Plate}\label{par:nozzle}
+
+By defining pincells as solid material pins below and
+above the fuel rod regions, the model implicitly approximates the nozzle and
+support plate regions as depicted in Figure \ref{fig_nozzles}.  While the axial
+planes used here were taken from Source \ref{num:watts_bar}, this does not
+necessarily represent the true geometry of this portion of the reactor.  However,
+the special densities of water and steel for the nozzle sections were
+calculated such that the mass and volume fractions of the materials are
+consistent with \cite{ml033530020}. The material compositions of borated water 
+and steel in the nozzle and support plate are in Material \ref{mat_water_spn}
+and Material \ref{mat_ss_spn} respectively.
+Thus, when modeling, the material "Nozzle / Support Plate Stainless Steel"
+(\ref{mat_ss_spn}) rather than "Stainless Steel" should be used for all the fuel
+rods in the upper and lower nozzle / support plate regions as depicted in Figure
+\ref{fig_fuel_axials}, while the material "Nozzle / Support Plate Borated Water"
+(\ref{mat_ss_spn}) rather than "Borated Water" should be used for the water in
+the nozzles and support plate (Figure \ref{fig_gtu_axials}). Figures
+\ref{fig_fuel_axials} through \ref{fig:tb_detail} illustrate the modeling details
+with material names and colors that preserve the actual masses of material. 
+Note that since the bottom nozzle and
+support plate are both stainless steel, no distinction is made between the two
+regions.
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=3in]{specifications/axial/figs/J8_nozzle.png}
+  \caption{Radial picture of nozzles and support plate in aggregate model \label{fig_nozzles}}
+\end{figure}
+
+\paragraph{Top and Bottom of the Core}
+
+For verification, Figure \ref{fig:tb_detail} shows scale
+views close to the bottom and top regions of the core resulting from the
+aggregate pincell specification as defined previously.
+
+\input{specifications/axial/figs/tb_detail}

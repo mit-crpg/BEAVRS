@@ -1,0 +1,15 @@
+\begin{tikzpicture}[scale=6,auto]
+        \draw (0,0) circle (0.43688);
+      \draw[->] (0,0) -- node[pos=0.65] {1} (0.218,0.378);
+      \draw (0,0) circle (0.48387);
+      \draw[->] (0,0) -- node[pos=0.65] {2} (0.419,0.242);
+
+      \end{tikzpicture}
+      \begin{tikzpicture}
+       \matrix [matrix of nodes]
+      {
+          Arrow & Radius (cm) & Material & \numrefheader \\
+        1 & 0.43688 & \node[hyperlink node=mat_air]{Air}; & \ref{num:ITthimIR}\\ 
+        2 & 0.48387 & \node[hyperlink node=mat_zirc]{Zircaloy}; & \ref{num:ITthimOR}\\ 
+      };
+\end{tikzpicture}

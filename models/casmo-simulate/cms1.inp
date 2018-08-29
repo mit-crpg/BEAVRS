@@ -1,0 +1,86 @@
+'NEW' 'cms.pwr-all.lib'/
+'COM' ADF gives discontinuity factors for 4 surfaces of the assembly
+'ADF' 'ON'/
+'COM' .cax file name, segname, hot/cold library, reflector type, [spare variable, initial enrichment, initital burnable aborber, present number of BP pins, original number of BP pins, initital plutonium loading]
+'COM' The set of variables in brackets override the SIM block data
+'CAS' 'c5.pwru160c00.cax'/
+'STA'/
+'CAS' 'c5.pwru240c00.cax'/
+'STA'/
+'CAS' 'c5.pwru310c00.cax'/
+'STA'/
+'CAS' 'c5.pwru240w12.cax'/
+'STA'/
+'CAS' 'c5.pwru240c00.cax' 'PWRU240P12'/
+'CAS' 'c5.pwru240w12.cax' 'PWRU240P12'/
+'STA'/
+'CAS' 'c5.pwru240c00.cax' 'PWRU240P16'/
+'CAS' 'c5.pwru240w16.cax' 'PWRU240P16'/
+'STA'/
+'CAS' 'c5.pwru240w16.cax'/
+'STA'/
+'CAS' 'c5.pwru310c00.cax' 'PWRU310P08'/
+'CAS' 'c5.pwru310w08.cax' 'PWRU310P08'/
+'STA'/
+'CAS' 'c5.pwru310w08.cax'/
+'STA'/
+'CAS' 'c5.pwru310c00.cax' 'PWRU310P12'/
+'CAS' 'c5.pwru310w12.cax' 'PWRU310P12'/
+'STA'/
+'CAS' 'c5.pwru310w12.cax' 'PWRU310W12'/
+'STA'/
+'CAS' 'c5.pwru310c00.cax' 'PWRU310P14'/
+'CAS' 'c5.pwru310w14.cax' 'PWRU310P14'/
+'STA'/
+'CAS' 'c5.pwru310w14.cax'/
+'STA'/
+'CAS' 'c5.pwru310c00.cax' 'PWRU310P16'/
+'CAS' 'c5.pwru310w16.cax' 'PWRU310P16'/
+'STA'/
+'CAS' 'c5.pwru310w16.cax'/
+'STA'/
+'CAS' 'c5.pwru310c00.cax' 'PWRU310P20'/
+'CAS' 'c5.pwru310w20.cax' 'PWRU310P20'/
+'STA'/
+'CAS' 'c5.pwru310w20.cax'/
+'STA'/
+'CAS' 'c5.pwru310c00.cax' 'PWRU310P24'/
+'CAS' 'c5.pwru310w24.cax' 'PWRU310P24'/
+'STA'/
+'CAS' 'c5.pwru310w24.cax'/
+'STA'/
+'CAS' 'c5.pwru320c00.cax'/
+'STA'/
+'CAS' 'c5.pwru320w04.cax'/
+'STA'/
+'CAS' 'c5.pwru320w08.cax'/
+'STA'/
+'CAS' 'c5.pwru320w12.cax'/
+'STA'/
+'CAS' 'c5.pwru340c00.cax'/
+'STA'/
+'CAS' 'c5.seg13.cax'/
+'STA'/
+'CAS' 'c5.seg14.cax'/
+'STA'/
+'CAS' 'c5.seg15.cax'/
+'STA'/
+'CAS' 'c5.seg16.cax'/
+'STA'/
+'CAS' 'c5.seg17.cax'/
+'STA'/
+'CAS' 'c5.seg18.cax'/
+'STA'/
+'CAS' 'c5.seg19.cax'/
+'STA'/
+'CAS' 'c5.seg20.cax'/
+'STA'/
+'CAS' 'c5.botref.cax',,,'BOT'/
+'STA'/
+'CAS' 'c5.radref.cax','RADREF',,'RAD'/
+'STA'/
+'CAS' 'c5.topref.cax',,,'TOP'/
+'STA'/
+'CAS' 'c5.radbar.cax','RADBAR',,'RAD'/
+'STA'/
+'END'/

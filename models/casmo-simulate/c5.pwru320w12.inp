@@ -1,0 +1,36 @@
+* -----------------------------------------------------*
+*              BEAVRS PWR MODEL                        *
+* -----------------------------------------------------*
+
+TTL  * BEAVRS PWR MODEL - FUEL PWRU320W12 BASE AND BRANCHES
+
+***** Details from RELEASE rev. 3.0
+***** Source of info indicated by [page number] in comments
+
+INC 'c5.general.inc'
+INC 'c5.bp.inc'
+
+***** SEGMENT SPECIFIC
+*      SEGNAME
+SIM, 'PWRU320W12'
+FUE 1, 10.34115 / 3.20 * Fuel enrichment [134]
+
+LPI
+2
+1  1
+1  1  1
+4  1  1  3
+1  1  1  1  1
+1  1  1  1  1  3
+3  1  1  4  1  1  1
+1  1  1  1  1  1  1  1
+1  1  1  1  1  1  1  1  1
+
+*  12 BP [18]
+*****
+
+ROD 'PYR'
+DEP,-60.00
+S3C 'HOT'
+STA
+END

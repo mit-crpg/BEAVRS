@@ -1,0 +1,219 @@
+'COM'  * --------------------------------------------*
+'COM'  *                                             *
+'COM'  *                    BEAVRS                   *
+'COM'  *                 UO 2 DESGIGN                *
+'COM'  *                C Y C L E    1               *
+'COM'  *                                             *
+'COM'  * --------------------------------------------*
+
+'COM' Details from RELEASE rev. 3.0
+'COM' Source of info indicated by [page number] in comments
+
+'DIM.PWR' 15/                                      * PWR with 15 rows of fuel assemblies  [27]
+'DIM.CAL' 24, 4/                                   * 24 axial nodes in the fuel, FULL core
+'DIM.DEP' 'EXP' 'SAM' 'HBOR' 'HTMO' 'PIN' 'EBP' 'HTF'/  * Select depletion arguments
+
+'COR.DAT' 21.50, 365.76 104.5, 683.0, 560/     * core data [13,3,3,?,?]
+'COR.SYM' 'ROT'/                                  * Core symmetry
+
+'TIT.CAS' 'PWR CYCLE 1 U02 CORE - NOMINAL CYCLE'/      * Title for each case in run
+'TIT.PRO' 'BEAVRS PWR EQUILIBRIUM CYCLE'/        * Project name
+
+'FUE.TYP' 1
+  4*0             1   1   1   1   1   1   1   1   1             4*0
+  2*0     21  21  21  6   17  6   17  6   17  6   21  21  21    2*0
+  0   21  21  6   6   7   2   8   2   8   2   7   6   6   21  21  0
+  0   21  6   19  5   2   5   2   5   2   5   2   5   20  6   21  0
+  1   21  6   5   3   5   2   4   2   4   2   5   3   5   6   21  1
+  1   6   7   2   5   2   4   2   4   2   4   2   5   2   7   6   1
+  1   16  2   5   2   4   2   4   2   4   2   4   2   5   2   14  1
+  1   6   8   2   4   2   4   2   5   2   4   2   4   2   8   6   1
+  1   16  2   5   2   4   2   5   2   5   2   4   2   5   2   14  1
+  1   6   8   2   4   2   4   2   5   2   4   2   4   2   8   6   1
+  1   16  2   5   2   4   2   4   2   4   2   4   2   5   2   14  1
+  1   6   7   2   5   2   4   2   4   2   4   2   5   2   7   6   1
+  1   21  6   5   3   5   2   4   2   4   2   5   3   5   6   21  1
+  0   21  6   18  5   2   5   2   5   2   5   2   5   15  6   21  0
+  0   21  21  6   6   7   2   8   2   8   2   7   6   6   21  21  0
+  2*0     21  21  21  6   13  6   13  6   13  6   21  21  21    2*0
+  4*0             1   1   1   1   1   1   1   1   1             4*0/
+
+'COM'  LOADING PATTERN [27]
+
+'LIB' 'cms.pwr-all.lib'/    * Library created by CMSLINK
+
+'COM' Reflector composition: Link segment name 'RADREF'in the CMSLINK library
+'REF.LIB'  01 'RADREF'/
+'REF.LIB'  02 'TOPREF'/
+'REF.LIB'  03 'BOTREF'/
+
+'COM' Enrichment data [127 - 132]
+'SEG.ADF'  0 1,2,3,4,5,6,7,8/
+
+'SEG.LIB'  04 'PWRU160C00'/
+'SEG.DAT'  04 1.61,, 0, 0/
+
+'SEG.LIB'  05 'PWRU240C00'/
+'SEG.DAT'  05 2.40,, 0, 0/
+
+'SEG.LIB'  06 'PWRU240W12'/
+'SEG.DAT'  06 2.40,, 12,12/
+
+'SEG.LIB'  07 'PWRU240W16'/
+'SEG.DAT'  07 2.40,,  16, 16/
+
+'SEG.LIB'  08 'PWRU310C00'/
+'SEG.DAT'  08 3.10,, 0,0/
+
+'SEG.LIB'  09 'PWRU310W08'/
+'SEG.DAT'  09 3.10,, 08,08/
+
+'SEG.LIB'  10 'PWRU310W14'/
+'SEG.DAT'  10 3.10,, 14,14/
+
+'SEG.LIB'  11 'PWRU310W12'/
+'SEG.DAT'  11 3.10,, 12,12/
+
+'SEG.LIB'  12 'PWRU310W16'/
+'SEG.DAT'  12 3.10,, 16,16/
+
+'SEG.LIB'  13 'PWRU310W20'/
+'SEG.DAT'  13 3.10,, 20,20/
+
+'SEG.LIB'  14 'PWRU310W24'/
+'SEG.DAT'  14 3.10,, 24,24/
+
+'REF.LIB'  15 'RADBAR'/
+
+'SEG.LIB'  16 'PWRUSEG13'/
+'SEG.DAT'  16 3.10,, 6,6/
+'SEG.ADF'  16 1,2,3,4,5,6,7,8/
+
+'SEG.LIB'  17 'PWRUSEG14'/
+'SEG.DAT'  17 3.10,, 6,6/
+'SEG.ADF'  17 1,2,3,4,5,6,7,8/
+
+'SEG.LIB'  18 'PWRUSEG15'/
+'SEG.DAT'  18 3.10,, 15,15/
+'SEG.ADF'  18 1,2,3,4,5,6,7,8/
+
+'SEG.LIB'  19 'PWRUSEG16'/
+'SEG.DAT'  19 3.10,, 6,6/
+'SEG.ADF'  19 1,2,3,4,5,6,7,8/
+
+'SEG.LIB'  20 'PWRUSEG17'/
+'SEG.DAT'  20 3.10,, 6,6/
+'SEG.ADF'  20 1,2,3,4,5,6,7,8/
+
+'SEG.LIB'  21 'PWRUSEG18'/
+'SEG.DAT'  21 3.10,, 15,15/
+'SEG.ADF'  21 1,2,3,4,5,6,7,8/
+
+'SEG.LIB'  22 'PWRUSEG19'/
+'SEG.DAT'  22 3.10,, 15,15/
+'SEG.ADF'  22 1,2,3,4,5,6,7,8/
+
+'SEG.LIB'  23 'PWRUSEG20'/
+'SEG.DAT'  23 3.10,, 15,15/
+'SEG.ADF'  23 1,2,3,4,5,6,7,8/
+
+'FUE.ZON'  01, 1, 'RADIALREF'   3,0.0  1, 365.76  2/
+'FUE.ZON'  02, 1, 'PWRU160C00'  3,0.0  4, 365.76  2/
+'FUE.ZON'  03, 1, 'PWRU240C00'  3,0.0  5, 365.76  2/
+'FUE.ZON'  04, 1, 'PWRU240W12'  3,0.0  6, 365.76  2/
+'FUE.ZON'  05, 1, 'PWRU240W16'  3,0.0  7, 365.76  2/
+'FUE.ZON'  06, 1, 'PWRU310C00'  3,0.0  8, 365.76  2/
+'FUE.ZON'  07, 1, 'PWRU310W16'  3,0.0  12,365.76  2/
+'FUE.ZON'  08, 1, 'PWRU310W20'  3,0.0  13,365.76  2/
+
+'FUE.ZON'  09, 1, 'PWRU310W12'  3,0.0  11,365.76  2/
+'FUE.ZON'  10, 1, 'PWRU310W08'  3,0.0  09,365.76  2/
+'FUE.ZON'  11, 1, 'PWRU310W14'  3,0.0  10,365.76  2/
+'FUE.ZON'  12, 1, 'PWRU310W24'  3,0.0  14,365.76  2/
+
+'FUE.ZON'  13, 1, 'PWRUSEG13'  3,0.0   16,365.76  2/
+'FUE.ZON'  14, 1, 'PWRUSEG14'  3,0.0   17,365.76  2/
+'FUE.ZON'  15, 1, 'PWRUSEG15'  3,0.0   18,365.76  2/
+'FUE.ZON'  16, 1, 'PWRUSEG16'  3,0.0   19,365.76  2/
+'FUE.ZON'  17, 1, 'PWRUSEG17'  3,0.0   20,365.76  2/
+'FUE.ZON'  18, 1, 'PWRUSEG18'  3,0.0   21,365.76  2/
+'FUE.ZON'  19, 1, 'PWRUSEG19'  3,0.0   22,365.76  2/
+'FUE.ZON'  20, 1, 'PWRUSEG20'  3,0.0   23,365.76  2/
+'FUE.ZON'  21, 1, 'RADBAR'     3,0.0   15,365.76  2/
+
+'BAT.LAB'  1,'CYC-1' /
+
+'COM' GENERIC MODEL:  FUEL TEMPERATURE CALCULATION
+
+'COM' Segment fuel temperature fit calculated by INTERPIN used in GENERIC MODEL
+'SEG.TFU', 0,    0.0,  217.0,   17.0/
+
+'COM' EXPOSURE IN GWD/MT
+
+'TAB.TFU'   1, 0, 'EXP', 8, 'POW',      1
+           0.0    5.0   10.0   15.0   20.0   30.0   40.0   50.0
+   1.0,   68.2   23.7   3.4    0.0   -1.6   -0.9   -0.6   -2.1/
+
+'COM' Grid cross-section data (zircaloy grids - example listed in manual)
+'SEG.GRD' 0 'GRD' 0.906 0.989/
+
+'COM' Bottom of active fuel is listed as 36.748 (top of bottom end plug)
+
+'FUE.GRD' 'ON' 64.135 5.715 'GRD'
+              116.332 5.715 'GRD'
+              168.529 5.715 'GRD'
+              220.726 5.715 'GRD'
+              272.923 5.715 'GRD'
+              325.200 5.715 'GRD'/               * Explicit spacer (grid) modeling [40]
+
+'COM' CONTROL RODS [31]
+'COM' BANK   D  C  B  A  SE  SD  SC  SB  SA
+'COM'  #     1  2  3  4  5   6   7   8   9
+'CRD.GRP' 1
+4*0                  0   0   0   0   0   0   0                  4*0
+2*0          0   9   0   3   0   2   0   3   0   9   0          2*0
+0        0   0   0   6   0   8   0   8   0   7   0   0   0        0
+0        9   0   1   0   0   0   5   0   0   0   1   0   9        0
+     0   0   7   0   0   0   0   0   0   0   0   0   6   0   0
+     0   3   0   0   0   2   0   4   0   2   0   0   0   3   0
+     0   0   8   0   0   0   0   0   0   0   0   0   8   0   0
+     0   2   0   5   0   4   0   1   0   4   0   5   0   2   0
+     0   0   8   0   0   0   0   0   0   0   0   0   8   0   0
+     0   3   0   0   0   2   0   4   0   2   0   0   0   3   0
+     0   0   6   0   0   0   0   0   0   0   0   0   7   0   0
+0        9   0   1   0   0   0   5   0   0   0   1   0   9        0
+0        0   0   0   7   0   8   0   8   0   6   0   0   0        0
+2*0          0   9   0   3   0   2   0   3   0   9   0          2*0
+4*0                  0   0   0   0   0   0   0                  4*0/
+
+'CRD.DAT' 228 1.58193/                         * CRD spacing [38]
+'CRD.ZON' 1,1 'CRD1' 0, 3.21, 10, 106.68, 20, 365.76/    * calculated CRD lengths [37]
+'HYD.ITE'/                                    * Hydraulic iteration
+
+'COM' Run Specific Data
+
+'COR.BOR' 975/                                * Critical boron for HZP [63]
+'ITE.BOR' 900/                                * Soluble boron criticality search [?]
+
+'COM' Initialize cycle exposure and the starting date for the cycle
+'DEP.CYC' 'CYCLE01' 0.0,01 /
+
+'COM' Execute the pin reconstruction and edit given parameters in sum. list
+'PIN.EDT' 'ON' 'SUMM' '2PIN' '2PLO' '2RR1'/
+'PIN.DET' 92235/                             * Use U-235 fission detectors
+
+'FUE.INI','JILAB'/
+
+'PRI.STA' '2EXP' '2RPF' '2KIN' /
+'WRE' 's3.pwr.uo2.c01.hzp.res' 0.0/       * Save results at first, last exposure values
+
+'CMS.EDT' 'ON' '2EXP' '3EXP'  '3RPF' '3PIN' '2PIN'/ * Turn on desired edits (output data)
+
+'COR.TIN' 560/                                 * Set core inlet temperature [63]
+'COR.OPE' 0.7, 100.0, 2250/                    * Set core operating power, flow and pressure [63]
+
+'COM' 'ERR.CHK' 'PERMIT'/  * Uncomment to allow runs with error checking faults
+'CRD.BNK' 213 8*228/       * D bank insertion to 213 / 228 [63]
+
+'STA'/
+'END'/

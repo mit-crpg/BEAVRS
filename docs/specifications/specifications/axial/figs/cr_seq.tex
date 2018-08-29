@@ -1,0 +1,52 @@
+
+\begin{figure}
+
+  \centering
+  \fbox{
+    \begin{minipage}{6.5in}
+      \textbf{Control Rod Insertion Sequence}
+      ~\\
+      ~\\
+      Starting from all rods fully withdrawn:
+      
+      \begin{itemize}
+        \item First D moves in alone, until it gets to 113 steps withdrawn
+        \item Now D and C move together until C gets to 113 steps withdrawn \\(D is all the way in when C is at 115)
+        \item Now C and B move together until B gets to 113 steps withdrawn \\(C is all the way in when B is at 115)
+        \item Now B and A move together until A gets to 0 steps withdrawn \\(B is all the way in when A is at 115)
+      \end{itemize}
+      
+      Assuming only movement of each control rod bank by one step at a time, in
+      total this sequence yields 574 unique positions, which we denote with
+      integer $\mathbb{S}$ steps withdrawn. If $\mathbb{S}=0$ all control rods
+      are out of the core, and if $\mathbb{S}=574$ all rods are fully inserted.
+      For example for normal operation with the D bank at the bite position of
+      $\mathbb{S}_D = 213$ steps withdrawn, $\mathbb{S}=228-213=15$. With this
+      notation, the following algorithm provides the elevation of the axial
+      planes of the active region in each control rod bank ($s_i^{\mathrm{bot}}$
+      and $s_i^{\mathrm{top}}$) for a given $\mathbb{S}$ with the fully inserted
+      elevation $s_0$ and step width $\delta$.
+
+      \begin{align*}
+        \mathbb{S}_D &=  \max(0,~228-\mathbb{S}) \\
+        \mathbb{S}_C &=  (\mathbb{S}_D<113) ~?~ \max(0,~228-\mathbb{S}+113  +3) ~:~ 228 \\
+        \mathbb{S}_B &=  (\mathbb{S}_C<113) ~?~ \max(0,~228-\mathbb{S}+113\times 2+5) ~:~ 228 \\
+        \mathbb{S}_A &=  (\mathbb{S}_B<113) ~?~ \max(0,~228-\mathbb{S}+113\times 3+7) ~:~ 228 \\
+\\
+        s_A^{\mathrm{bot}} &=  s_0 + \delta \times \mathbb{S}_A \\
+        s_B^{\mathrm{bot}} &=  s_0 + \delta \times \mathbb{S}_B \\
+        s_C^{\mathrm{bot}} &=  s_0 + \delta \times \mathbb{S}_C \\
+        s_D^{\mathrm{bot}} &=  s_0 + \delta \times \mathbb{S}_D \\
+\\
+        s_A^{\mathrm{top}} &=  s_A^{\mathrm{bot}} + \delta \times 228 \\
+        s_B^{\mathrm{top}} &=  s_B^{\mathrm{bot}} + \delta \times 228 \\
+        s_C^{\mathrm{top}} &=  s_C^{\mathrm{bot}} + \delta \times 228 \\
+        s_D^{\mathrm{top}} &=  s_D^{\mathrm{bot}} + \delta \times 228 \\
+      \end{align*}
+      
+    \end{minipage}
+  }
+  
+  \caption[Control rod insertion sequence and axial specification]{ Control rod insertion sequence and axial specification \cite{smith_comm}. \label{fig_cr_algorithm}}
+
+\end{figure}

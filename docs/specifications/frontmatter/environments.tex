@@ -1,0 +1,70 @@
+% list of all custom environments
+
+% mdframed environments
+\newmdenv[nobreak=false, skipabove=2ex, skipbelow=2ex, innerlinewidth=3pt, innerlinecolor=black, backgroundcolor=mitgray!75, roundcorner=10pt, frametitlerule=true, frametitlerulewidth=2.5pt, frametitlefont=\color{white}\Large\bfseries, frametitlealignment=\centering, frametitlebackgroundcolor=mitred, frametitleaboveskip=2ex, frametitlebelowskip=2ex, innertopmargin=3ex, innerbottommargin=2ex]{numrefbox}
+
+% custom colors
+\definecolor{mitred}{rgb}{0.698,0.0314,0.216}
+\definecolor{mitgray}{rgb}{0.690,0.694,0.710}
+
+% define new list of for source environment
+\newlistof{numref}{los}{List of Source References}
+\renewcommand{\cftlostitlefont}{\Large\bfseries}
+\renewcommand{\cftnumrefindent}{1.5em}
+\renewcommand{\cftnumrefnumwidth}{2.3em}
+
+% number reference column header
+\def\numrefheader{Source}
+\makeatletter
+ % \newcounter{numref}
+  \newcommand\numrefval[1]{%
+    \subsubsection*{Value}
+    #1
+  }%
+  \newcommand\numrefunits[1]{%
+    \subsubsection*{Units}
+    #1
+  }%
+  \newcommand\numrefrefs[1]{%
+    \subsubsection*{References}
+    #1
+  }%
+
+  \NewEnviron{numitem}[2][notdef]{
+    \ifnumcomp{\arabic{numref}}{=}{0}{}{\newpage}%
+    \refstepcounter{numref}
+    \phantomsection
+    \def\num{\label{#2}\arabic{numref}}%
+    \addcontentsline{los}{numref}{\protect\numberline{\arabic{numref}}{\ignorespaces #1}}
+    \begin{numrefbox}[frametitle={Source \num\ifstrequal{#1}{notdef}{}{\phantom{~}---\phantom{~}{#1}}}]
+      \BODY
+      \subsubsection*{Pages}
+      \backlabelref{#2}
+    \end{numrefbox}
+  }
+  \newfloat{Material}{h}{lom}
+  \NewEnviron{matitem}[3]{\begin{Material}
+        \phantomsection
+      \addcontentsline{toc}{subsubsection}{#1}
+      \refstepcounter{table}
+      \label{#2}
+      \addcontentsline{lot}{table}{\protect\numberline {\arabic{table}}{\ignorespaces #1}}
+    \begin{numrefbox}[frametitle={Table \arabic{table} \phantom{~}---\phantom{~} \protect\sechypt{#2}{#1}}]
+      \BODY
+      \\\vspace{2ex}\raggedright Source: \ref{#3}
+    \end{numrefbox}\end{Material}
+  }
+  
+    \newfloat{Geometry}{h}{lop}
+  \NewEnviron{geoitem}[2]{\begin{Geometry}
+        \phantomsection
+        \addcontentsline{toc}{paragraph}{#1}
+        \refstepcounter{figure}
+        \label{#2}
+        \addcontentsline{lof}{figure}{\protect\numberline {\arabic{figure}}{\ignorespaces #1}}
+    \begin{numrefbox}[frametitle={Figure \arabic{figure} \phantom{~}---\phantom{~}\protect\sechypt{#2}{#1}}]
+      \BODY
+    \end{numrefbox}\end{Geometry}
+  }
+  
+\makeatother

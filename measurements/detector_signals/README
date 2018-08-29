@@ -1,0 +1,36 @@
+The detector map folders for each cycle contain:
+
+  summary
+
+    Document containing a listing of the data passes that were processed to
+    produce the detector maps, as well as a few plots and tables of the data.
+    Also shows boron concentrations and the number of steps withdrawn for each
+    control rod bank.
+
+  axial_signals
+
+    Datafile containing the processed axial trace for each detector location
+    with valid data.  Signals are listed from bottom to top (i.e. the first row
+    is at the bottom of the core and the last row is the top of the core)
+
+  radial_measurements_full
+
+    Datafile containing the axially-integrated detector signals, normalized such
+    that the sum of the integrated signals adds up to the number detector
+    locations (see specifications document).
+
+  radial_measurements_full_tc
+
+    Datafile containing the tilt-corrected maps of axially-integrated detector
+    signals (see specifications document). Note that there is no definitive
+    explanation for why this tilt in the data arises or the validity of the
+    planar tilt correction, so this data should be utilized at the user’s own
+    discretion.
+
+  radial_measurements_quarter
+
+    Datafile containing the same axially-integrated detector signals as
+    radial_measurements_full, folded to quarter core. The second and third data
+    columns are the number of averaged signals and the standard deviation of the
+    values for that position, if applicable.
+

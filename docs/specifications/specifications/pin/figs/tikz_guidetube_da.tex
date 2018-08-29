@@ -1,0 +1,15 @@
+\begin{tikzpicture}[scale=6,auto]
+        \draw (0,0) circle (0.50419);
+      \draw[->] (0,0) -- node[pos=0.65] {1} (0.252,0.437);
+      \draw (0,0) circle (0.5461);
+      \draw[->] (0,0) -- node[pos=0.65] {2} (0.473,0.273);
+
+      \end{tikzpicture}
+      \begin{tikzpicture}
+       \matrix [matrix of nodes]
+      {
+          Arrow & Radius (cm) & Material & \numrefheader \\
+        1 & 0.50419 & \node[hyperlink node=mat_water]{Water}; & \ref{num:GTDPIRrad}\\ 
+        2 & 0.54610 & \node[hyperlink node=mat_zirc]{Zircaloy}; & \ref{num:GTDPORrad}\\ 
+      };
+\end{tikzpicture}

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+find -name \*.aux -exec rm {} \;
+rm BEAVRS.bbl
+pdflatex -interaction nonstopmode BEAVRS
+bibtex BEAVRS
+pdflatex -interaction nonstopmode BEAVRS
+pdflatex -interaction nonstopmode BEAVRS

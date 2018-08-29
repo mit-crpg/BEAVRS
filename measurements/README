@@ -1,0 +1,9 @@
+This folder contains all of the measured data to compare against.
+
+assem_mass_loading.xlsx: Excel file with detailed assembly-wise mass and enrichment loadings
+assem_mass_loading.csv: Comma-separated value list of assembly-wise mass and enrichment loadings
+boron_letdown.xlsx: Excel file wih boron letdown curve
+boron_letdown.csv: Comma-separated value list of boron letdown curve
+detector_signals/: directory containing detector measurement data
+power_history/: directory containing detailed cycle power history
+
