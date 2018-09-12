@@ -57,22 +57,23 @@ class Core(object):
         'J___1', 'J___2', 'J___3', 'J___8', 'J___9', 'K__15', 'K__14', 'K__13',
         'K__12', 'K__11', 'K__10']
 
-    def __init__(self, pincells, assemblies, baffle):
+    def __init__(self, pincells, assemblies, baffle, is_symmetric=False):
         """ Creates BEAVRS core lattice universe """
-    
+
         self.pins = pincells
         self.assem = assemblies
         self.baffle = baffle
-    
+        self.is_symmetric = is_symmetric
+
         self._set_enrichment_positions()
         self._set_instrument_tube_positions()
         self._set_bpra_positions()
         self._set_rcca_positions()
         self._make_core_universe()
-    
+
     def _set_enrichment_positions(self):
         """ Sets the specification for BEAVRS assembly enrichment positions """
-    
+
         self.enr_positions ={
                                                                           'L___1': '3.1%', 'K___1': '3.1%', 'J___1': '3.1%', 'H___1': '3.1%', 'G___1': '3.1%', 'F___1': '3.1%', 'E___1': '3.1%',
                                         'N___2': '3.1%', 'M___2': '3.1%', 'L___2': '3.1%', 'K___2': '1.6%', 'J___2': '3.1%', 'H___2': '1.6%', 'G___2': '3.1%', 'F___2': '1.6%', 'E___2': '3.1%', 'D___2': '3.1%', 'C___2': '3.1%',
@@ -116,7 +117,7 @@ class Core(object):
 
     def _set_bpra_positions(self):
         """ Sets the specification for BEAVRS BPRA positions """
-    
+
         self.ba_positions = {
                                                                                    'K___1': '6S',                'H___1': '6S',                'F___1': '6S',
                                                                     'L___2': '16',                'J___2': '20',                'G___2': '20',                'E___2': '16',
@@ -137,7 +138,7 @@ class Core(object):
 
     def _set_rcca_positions(self):
         """ Sets the specification for BEAVRS RCCA positions """
-    
+
         self.rcca_positions = {
                                                  'M___2': 'SA',                'K___2': 'B',                'H___2':  'C',                'F___2': 'B',                'D___2': 'SA',
                                                                 'L___3': 'SD',               'J___3': 'SB',                'G___3': 'SB',               'E___3': 'SC',
@@ -172,12 +173,15 @@ class Core(object):
                 ba = "RCCA {0}".format(self.rcca_positions[pos])
             else:
                 ba = 'no BAs'
-            if pos in self.instr_positions:
-                instr = 'instr'
-            else:
+            if self.is_symmetric:
                 instr = 'no instr'
+            else:
+                if pos in self.instr_positions:
+                    instr = 'instr'
+                else:
+                    instr = 'no instr'
             lattice.setPosition(pos, self.assem.u_fuel[enr][ba][instr])
         lattice.finalize()
-    
+
         self.u_coreLattice = lattice
 

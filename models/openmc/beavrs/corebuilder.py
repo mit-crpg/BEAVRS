@@ -18,7 +18,7 @@ class TemplatedLattice(openmc.RectLattice):
 
     def setTemplate(self, template):
         """ Set the lattice template
-    
+
         :param template:
         """
         self.template = template
@@ -26,13 +26,13 @@ class TemplatedLattice(openmc.RectLattice):
     def setPosition(self, key, univ):
         """Set an individual position in the lattice"""
         self.positions[key] = univ
-  
+
     def updatePositions(self, univs):
         """Update multiple positions in the lattice with a dictionary"""
         self.positions.update(univs)
 
     def finalize(self):
-  
+
         if self.template == []:
             raise Exception("No template set for:\n{0}".format(self))
 
@@ -54,14 +54,14 @@ _created_cells = {}
 
 class InfinitePinCell(openmc.Universe):
     """ Class for creating a simple pincell universe infinite in the z direction
-  
+
     InfinitePinCells consist of a set of radii and materials that define rings.
-  
+
     This class provides an easy way to wrap a pincell inside additional rings, or
     a square grid around the outside.
 
     """
-  
+
     def __init__(self, *args, **kwargs):
         """ Create a new InfinitePinCell
         """
@@ -74,19 +74,19 @@ class InfinitePinCell(openmc.Universe):
 
     def add_ring(self, fill, surf, box=False, rot=None):
         """ Adds a ring to the pincell
-    
+
         Pincells must be built from the inside out. Materials for new rings are from
         the surface of the previous ring to the provided new surface.
-    
+
         If the ring we want to add is a box, surf should be a rectangular prism.
 
         It's up to the user to check for overlapping cell definitions.
-    
+
         :param fill: material or filling universe for new ring
         :param surf: outer surface of new ring (or a rectangular region)
         :param box: whether or not we're adding a boxy ring (e.g. for grids)
         :param rot: openmc rotation string for filled cells
-    
+
         """
         self.radii.append(surf)
         self.box.append(box)
@@ -195,12 +195,12 @@ class InfinitePinCell(openmc.Universe):
 
 class AxialPinCell(openmc.Universe):
     """ Class for containing a complete axial description of a pincell
-  
+
     AxialPinCells consist of a set of InfinitePincells and the axial planes that
     define the axial boundaries of each.  They also allow for a fully-constructed
     pincell to be "wrapped" by another pincell, e.g., pincells containing grids or
     guide tubes.
-  
+
     """
 
     def __init__(self, *args, **kwargs):
@@ -214,11 +214,11 @@ class AxialPinCell(openmc.Universe):
 
     def add_axial_section(self, axial_plane, pincell):
         """ Adds an axial section to the stack
-    
+
         Stacks must be built from the bottom-up. Each new section goes from the
         previous axial_plane to the given axial_plane (or from infinity to the
         given plane if it's the first section added).
-    
+
         It's up to the user to ensure that all planes are z-planes, and that
         sections are added in the correct order.
 
@@ -235,9 +235,9 @@ class AxialPinCell(openmc.Universe):
 
     def add_last_axial_section(self, pincell):
         """ Adds the last axial section to the top of the stack
-    
+
         :param pincell: InfinitePincell or material that goes to infinity at the top
-    
+
         """
         self.pincells.append(pincell)
         if isinstance(pincell, InfinitePinCell):
@@ -265,7 +265,7 @@ class AxialPinCell(openmc.Universe):
 
     def add_wrapper(self, wrapper, surf=None):
         """ Adds a pincell to wrap the height, returning a new InfinitePinCell
-    
+
         This should only be called AFTER all axial sections are added.
 
         If the splitting surface is not given, this function will use the outer-most
@@ -306,7 +306,7 @@ class AxialPinCell(openmc.Universe):
 
         # Fill the outermost ring with the wrapping universe
         new_pin.add_last_ring(wrapper)
-    
+
         _created_cells[new_name] = new_pin
 
         return new_pin
@@ -321,7 +321,7 @@ class AxialPinCell(openmc.Universe):
         for pin in self.pincells:
             if isinstance(pin, InfinitePinCell) and not pin.finalized:
                 pin.finalize()
-    
+
         # Instantiate the axial cells
         for i, (pin, plane) in enumerate(zip(self.pincells, self.axials)):
 
@@ -342,8 +342,8 @@ class AxialPinCell(openmc.Universe):
         label = "{0} axial top: {1}".format(self.name, self.pincells[-1].name)
         cell = openmc.Cell(name=label, fill=self.pincells[-1])
         cell.region = +self.axials[-1]
-  
+
         self.add_cell(cell)
-  
+
         self.finalized = True
 

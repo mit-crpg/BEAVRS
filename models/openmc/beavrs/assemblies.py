@@ -34,7 +34,7 @@ class Assemblies(object):
 
     def __init__(self, pincells, mats):
         """ Creates BEAVRS pincell universes """
-    
+
         self.pins = pincells
         self.mats = mats
 
@@ -63,12 +63,12 @@ class Assemblies(object):
 
     def _add_bpra_layouts(self):
         """ Adds BEAVRS BPRA layouts """
-    
+
         self.ba_specs = []
-    
+
         u_gt = self.pins.u_gt
         u_bp = self.pins.u_bp
-    
+
         self.ba_specs.append(('no BAs',{
                       'a': u_gt,  'b': u_gt,  'c': u_gt,
                 'd': u_gt,                          'e': u_gt,
@@ -169,7 +169,7 @@ class Assemblies(object):
                 'u': u_gt,                          'v': u_gt,
                       'w': u_gt,  'x': u_gt,  'y': u_gt,
         }))
-    
+
         self.ba_specs.append(('15SW',{
                       'a': u_gt,  'b': u_gt,  'c': u_gt,
                 'd': u_gt,                          'e': u_gt,
@@ -179,7 +179,7 @@ class Assemblies(object):
                 'u': u_bp,                          'v': u_gt,
                       'w': u_bp,  'x': u_bp,  'y': u_bp,
         }))
-    
+
         self.ba_specs.append(('15SE',{
                       'a': u_gt,  'b': u_gt,  'c': u_gt,
                 'd': u_gt,                          'e': u_gt,
@@ -215,7 +215,7 @@ class Assemblies(object):
         """ Adds BEAVRS RCCA layouts """
 
         self.cr_specs = []
-        for bank_label, u_b in self.pins.u_rcca.items():
+        for bank_label, u_b in sorted(self.pins.u_rcca.items()):
             self.cr_specs.append(("RCCA {0}".format(bank_label),{
                       'a':  u_b,  'b':  u_b,  'c':  u_b,
                 'd':  u_b,                          'e':  u_b,
@@ -229,24 +229,24 @@ class Assemblies(object):
 
     def _add_all_assembly_combinations(self):
         """ Adds all BEAVRS assembly layouts
-    
+
         Here we make every possible combination of enrichments, control and shutdown
         banks, with or without instrument tubes.
-    
+
         """
-    
+
         types_fuel = self.pins.enrichments
         types_gt = self.ba_specs + self.cr_specs
         types_instr = [(self.pins.u_it_nt,'no instr'), (self.pins.u_it,'instr')]
-    
+
         self.u_fuel = {}
         self.u_fuel_no_sleeve = {}
         for enr in types_fuel:
-    
+
             self.u_fuel[enr] = {}
             self.u_fuel_no_sleeve[enr] = {}
             for gt_label, gt_spec in types_gt:
-      
+
                 self.u_fuel[enr][gt_label] = {}
                 self.u_fuel_no_sleeve[enr][gt_label] = {}
                 for u_c, center_label in types_instr:
@@ -262,14 +262,14 @@ class Assemblies(object):
                     lattice.setPosition('fuel', self.pins.u_fuel_p[enr])
                     lattice.updatePositions(gt_spec)
                     lattice.finalize()
-          
+
                     # Wrap the lattice with the grid sleeve universe
                     u_lattice = InfinitePinCell(name='{0} universe'.format(name))
                     u_lattice.add_ring(lattice, self.lattice_surfs, box=True)
                     u_lattice.add_last_ring(self.pins.u_gridsleeve)
                     self.u_fuel[enr][gt_label][center_label] = u_lattice
                     u_lattice.finalize()
-          
+
                     # Store the lattice without the gridsleeve
                     u_latticePins = InfinitePinCell(name='{0} pins'.format(name))
                     u_latticePins.add_ring(lattice, self.lattice_surfs, box=True)

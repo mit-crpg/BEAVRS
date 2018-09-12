@@ -147,7 +147,7 @@ class Pincells(object):
         self.u_gridsleeve.add_axial_section(self.s_struct_upperNozzle_top, self.mats['Water SPN'])
         self.u_gridsleeve.add_last_axial_section(self.mats['Borated Water'])
         self.u_gridsleeve.finalize()
-    
+
     def _add_fuel_pincells(self):
         """ Adds BEAVRS fuel pincells """
 
@@ -173,7 +173,7 @@ class Pincells(object):
         self.s_fuel_upperFitting_top = openmc.ZPlane(name='Fuel upper fitting top', z0=c.fuel_UpperFitting_top)
 
         # Fuel pincell universes
-    
+
         self.u_fuel_active_pin = {}
         for enr in self.enrichments:
             self.u_fuel_active_pin[enr] = InfinitePinCell(name='Fuel rod active region - {0} enr'.format(enr))
@@ -207,7 +207,7 @@ class Pincells(object):
 
     def _add_guide_tube_pincells(self):
         """ Adds BEAVRS guide tube pincells """
-    
+
         # GT radial surfaces
 
         self.s_gt_IR = openmc.ZCylinder(name='Guide tube IR', R=c.guideTubeIR)
@@ -346,7 +346,7 @@ class Pincells(object):
 
     def _add_rcca_pincells(self):
         """ Adds BEAVRS RCCA pincells """
-    
+
         # RCCA rod radial surfaces
 
         self.s_rcca_clad_IR = openmc.ZCylinder(name='RCCA rod clad IR', R=c.rcca_clad_IR)
@@ -364,7 +364,7 @@ class Pincells(object):
         self.s_rcca_b4c_top = {}
         self.s_rcca_spacer_top = {}
         self.s_rcca_plenum_top = {}
-        for b in c.rcca_banks:
+        for b in sorted(c.rcca_banks):
             d = c.rcca_bank_steps_withdrawn[b]*c.rcca_StepWidth
             self.s_rcca_rod_bot[b] = openmc.ZPlane(name='Bottom of RCCA rod bank {0}'.format(b), z0=c.rcca_Rod_bot + d)
             self.s_rcca_lowerFitting_top[b] = openmc.ZPlane(name='Top of RCCA rod lower fitting bank {0}'.format(b), z0=c.rcca_LowerFitting_top + d)
@@ -386,23 +386,23 @@ class Pincells(object):
         self.u_rcca_aic.add_ring(self.mats['Air'], self.s_rcca_clad_IR)
         self.u_rcca_aic.add_last_ring( self.mats['Zircaloy 4'])
         self.u_rcca_aic.finalize()
-    
+
         self.u_rcca_b4c = InfinitePinCell(name='RCCA B4C')
         self.u_rcca_b4c.add_ring(self.mats['B4C'], self.s_rcca_b4c_OR)
         self.u_rcca_b4c.add_ring(self.mats['Air'], self.s_rcca_clad_IR)
         self.u_rcca_b4c.add_last_ring(self.mats['Zircaloy 4'])
         self.u_rcca_b4c.finalize()
-    
+
         self.u_rcca_spacer = InfinitePinCell(name='RCCA Spacer')
         self.u_rcca_spacer.add_ring(self.mats['SS304'], self.s_rcca_spacer_OR)
         self.u_rcca_spacer.add_ring(self.mats['Air'], self.s_rcca_clad_IR)
         self.u_rcca_spacer.add_last_ring(self.mats['Zircaloy 4'])
         self.u_rcca_spacer.finalize()
-    
+
         # RCCA rod axial stack
 
         self.u_rcca = {}
-        for b in c.rcca_banks:
+        for b in sorted(c.rcca_banks):
             self.u_rcca[b] = AxialPinCell(name='RCCA bank {0}'.format(b))
             self.u_rcca[b].add_axial_section(self.s_struct_supportPlate_bot, self.mats['Borated Water'])
             self.u_rcca[b].add_axial_section(self.s_struct_lowerNozzle_top, self.mats['Water SPN'])

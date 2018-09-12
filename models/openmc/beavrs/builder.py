@@ -18,14 +18,13 @@ from beavrs.core import Core
 from beavrs.univzero import UniverseZero
 from beavrs.plots import Plots
 
-
 # Suppress DeprecationWarnings from OpenMC's Cell.add_surface(...) method
 warnings.simplefilter('once', DeprecationWarning)
 
 class BEAVRS(object):
     """ Main BEAVRS class"""
 
-    def __init__(self, boron_ppm=c.nominalBoronPPM):
+    def __init__(self, boron_ppm=c.nominalBoronPPM, is_symmetric=False, is_2d=False):
         """ We build the entire geometry in memory in the constructor """
 
         # TODO: make the control rod bank insertion heights attributes
@@ -36,8 +35,8 @@ class BEAVRS(object):
         self.pincells = Pincells(self.mats)
         self.assemblies = Assemblies(self.pincells, self.mats)
         self.baffle = Baffle(self.assemblies, self.mats)
-        self.core = Core(self.pincells, self.assemblies, self.baffle)
-        self.main_universe = UniverseZero(self.core, self.mats)
+        self.core = Core(self.pincells, self.assemblies, self.baffle, is_symmetric=is_symmetric)
+        self.main_universe = UniverseZero(self.core, self.mats, is_2d=is_2d)
 
         self.openmc_geometry = openmc.Geometry(self.main_universe)
 
@@ -45,8 +44,12 @@ class BEAVRS(object):
         self.settings_inactive = 5
         self.settings_particles = 1000
         baffle_flat = 7.5*c.latticePitch
-        self.settings_sourcebox = [-baffle_flat, -baffle_flat, c.fuel_Rod_bot,
-                                   baffle_flat, baffle_flat, c.fuel_Rod_top]
+        if is_2d:
+            self.settings_sourcebox = [-baffle_flat, -baffle_flat, c.struct_LowestExtent_2d,
+                                       baffle_flat, baffle_flat, c.struct_HighestExtent_2d]
+        else:
+            self.settings_sourcebox = [-baffle_flat, -baffle_flat, c.fuel_Rod_bot,
+                                       baffle_flat, baffle_flat, c.fuel_Rod_top]
         self.settings_output_tallies = False
         self.settings_summary = True
         self.settings_output_distribmats = False
