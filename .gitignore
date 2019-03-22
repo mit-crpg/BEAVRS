@@ -1,0 +1,24 @@
+# emacs backups
+*~
+
+# vi backups
+*swp
+
+# Python
+*.pyc
+
+# LATEX
+*.aux
+*.toc
+*.lo*
+*.bbl
+*.blg
+
+# OpenMC output files
+*.out
+*.binary
+*.h5
+*.ppm
+
+docs/specifications/*.pdf
+docs/uq_report/*.pdf
