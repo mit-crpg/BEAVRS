@@ -2,7 +2,7 @@ set terminal pdf
 set key noautotitle font ",5" box top left width -2
 set title 'Cycle 1 Complete Power History'
 set output 'cycle1.pdf'
-set xrange [0.0:574.0]
+set xrange [0.0:575.0]
 set yrange [0:115]
 set xlabel 'Calendar Days From BOC'
 set ylabel 'Percent Rated Power [%]'
@@ -533,6 +533,7 @@ plot '-' using 1:2 with steps, '-' using 1:2 with points title 'Detector Map Pos
 567.0 70.0
 573.0 69.93722
 574.0 5.705946
+575.0 0.0
 end
 0.0 1.598205
 6.0 1.99135
