@@ -250,13 +250,13 @@ class AxialPinCell(openmc.Universe):
         else:
             if isinstance(self.outermost.radii[-1], openmc.ZCylinder):
                 # current is a cylinder
-                current = self.outermost.radii[-1].coefficients['R']
+                current = self.outermost.radii[-1].coefficients['r']
             else:
                 # current is a box
                 current = self.outermost.radii[-1][-1]._surface.y0
             if isinstance(pincell.radii[-1], openmc.ZCylinder):
                 # new one is a cylinder
-                new = pincell.radii[-1].coefficients['R']
+                new = pincell.radii[-1].coefficients['r']
             else:
                 # new one is a box
                 new = self.outermost.radii[-1][-1]._surface.y0
@@ -346,4 +346,3 @@ class AxialPinCell(openmc.Universe):
         self.add_cell(cell)
 
         self.finalized = True
-

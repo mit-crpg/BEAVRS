@@ -153,7 +153,7 @@ rpvOR              =  241.300 # ML033530020
 
 neutronShieldIR    = 194.840 # ML033530020
 neutronShieldOR    = 201.630 # ML033530020
-neutronShield_NWbot_SEtop = {'A': 1, 'B': math.tan(math.pi/3 + math.pi/180), 'C': 0, 'D': 0}
-neutronShield_NWtop_SEbot = {'A': 1, 'B': math.tan(math.pi/6 - math.pi/180), 'C': 0, 'D': 0}
-neutronShield_NEbot_SWtop = {'A': 1, 'B': math.tan(-math.pi/3 - math.pi/180), 'C': 0, 'D': 0}
-neutronShield_NEtop_SWbot = {'A': 1, 'B': math.tan(-math.pi/6 + math.pi/180), 'C': 0, 'D': 0}
+neutronShield_NWbot_SEtop = {'a': 1, 'b': math.tan(math.pi/3 + math.pi/180), 'c': 0, 'd': 0}
+neutronShield_NWtop_SEbot = {'a': 1, 'b': math.tan(math.pi/6 - math.pi/180), 'c': 0, 'd': 0}
+neutronShield_NEbot_SWtop = {'a': 1, 'b': math.tan(-math.pi/3 - math.pi/180), 'c': 0, 'd': 0}
+neutronShield_NEtop_SWbot = {'a': 1, 'b': math.tan(-math.pi/6 + math.pi/180), 'c': 0, 'd': 0}

@@ -37,22 +37,22 @@ class UniverseZero(openmc.Universe):
 
         # RPV
 
-        self.s_RPVOR = openmc.ZCylinder(name='RPV OR', R=c.rpvOR, boundary_type='vacuum')
-        self.s_RPVIR = openmc.ZCylinder(name='RPV IR', R=c.rpvIR)
+        self.s_RPVOR = openmc.ZCylinder(name='RPV OR', r=c.rpvOR, boundary_type='vacuum')
+        self.s_RPVIR = openmc.ZCylinder(name='RPV IR', r=c.rpvIR)
         self.c_RPV = openmc.Cell(name="RPV", fill=self.mats['Carbon Steel'])
         self.c_RPV.region = (-self.s_RPVOR & +self.s_RPVIR &
                              -self.s_upperBound & +self.s_lowerBound)
 
         # RPV liner
 
-        self.s_linerIR = openmc.ZCylinder(name='RPV Liner IR', R=c.linerIR)
+        self.s_linerIR = openmc.ZCylinder(name='RPV Liner IR', r=c.linerIR)
         self.c_liner = openmc.Cell(name="RPV Liner", fill=self.mats['SS304'])
         self.c_liner.region = (-self.s_RPVIR & +self.s_linerIR &
                                -self.s_upperBound & +self.s_lowerBound)
 
         # Downcomer
 
-        self.s_neutronShieldOR = openmc.ZCylinder(name='Shield Panel OR', R=c.neutronShieldOR)
+        self.s_neutronShieldOR = openmc.ZCylinder(name='Shield Panel OR', r=c.neutronShieldOR)
         self.c_downcomer = openmc.Cell(name="Downcomer", fill=self.mats['Borated Water'])
         self.c_downcomer.region = (-self.s_linerIR & +self.s_neutronShieldOR &
                                -self.s_upperBound & +self.s_lowerBound)
@@ -62,7 +62,7 @@ class UniverseZero(openmc.Universe):
         """ Adds BEAVRS shield panels """
 
         # Shield panels
-        self.s_neutronShieldIR = openmc.ZCylinder(name='Shield Panel IR', R=c.neutronShieldIR)
+        self.s_neutronShieldIR = openmc.ZCylinder(name='Shield Panel IR', r=c.neutronShieldIR)
         self.s_ns_NWbot_SEtop = openmc.Plane(name='Shield Panel NWbot/SEtop', **c.neutronShield_NWbot_SEtop)
         self.s_ns_NWtop_SEbot = openmc.Plane(name='Shield Panel NWtop/SEbot', **c.neutronShield_NWtop_SEbot)
         self.s_ns_NEbot_SWtop = openmc.Plane(name='Shield Panel NEbot/SWtop', **c.neutronShield_NEbot_SWtop)
@@ -118,7 +118,7 @@ class UniverseZero(openmc.Universe):
                               -self.s_upperBound & +self.s_lowerBound)
         self.c_shieldPanels.append(self.c_sp_W)
 
-        self.s_coreBarrelOR = openmc.ZCylinder(name='Core Barrel OR', R=c.coreBarrelOR)
+        self.s_coreBarrelOR = openmc.ZCylinder(name='Core Barrel OR', r=c.coreBarrelOR)
         self.c_sp_inner = openmc.Cell(name='Water between barrel and shield', fill=self.mats['Borated Water'])
         self.c_sp_inner.region = (+self.s_coreBarrelOR & -self.s_neutronShieldIR &
                                   -self.s_upperBound & +self.s_lowerBound)
@@ -130,7 +130,7 @@ class UniverseZero(openmc.Universe):
 
         # Core barrel
 
-        self.s_coreBarrelIR = openmc.ZCylinder(name='Core Barrel IR', R=c.coreBarrelIR)
+        self.s_coreBarrelIR = openmc.ZCylinder(name='Core Barrel IR', r=c.coreBarrelIR)
         self.c_coreBarrel = openmc.Cell(name="Core Barrel", fill=self.mats['SS304'])
         self.c_coreBarrel.region = (-self.s_coreBarrelOR & +self.s_coreBarrelIR &
                                     -self.s_upperBound & +self.s_lowerBound)
