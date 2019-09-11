@@ -26,7 +26,7 @@ class Baffle(object):
     def _add_baffle_universes(self):
         """ Adds BEAVRS baffle universes """
 
-        self.dummy = openmc.ZCylinder(name="Dummy filling universe", R=4000.)
+        self.dummy = openmc.ZCylinder(name="Dummy filling universe", r=4000.)
 
         # North Baffle
         self.u_baffle_N = openmc.Universe(name='Baffle North')

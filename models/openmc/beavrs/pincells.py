@@ -49,13 +49,13 @@ class Pincells(object):
 
         # Rectangular prisms for grid spacers
         grid_surfs_tb = \
-            openmc.get_rectangular_prism(c.rodGridSide_tb, c.rodGridSide_tb)
+            openmc.rectangular_prism(c.rodGridSide_tb, c.rodGridSide_tb)
         grid_surfs_i = \
-            openmc.get_rectangular_prism(c.rodGridSide_i, c.rodGridSide_i)
+            openmc.rectangular_prism(c.rodGridSide_i, c.rodGridSide_i)
 
         # Rectangular prisms for lattice grid sleeves
         grid_surfs_ass = \
-            openmc.get_rectangular_prism(c.gridstrapSide, c.gridstrapSide)
+            openmc.rectangular_prism(c.gridstrapSide, c.gridstrapSide)
 
         # Grids axial surfaces
 
@@ -155,10 +155,10 @@ class Pincells(object):
 
         # Fuel radial surfaces
 
-        self.s_fuel_pellet_OR = openmc.ZCylinder(name='Fuel pellet OR', R=c.pelletOR)
-        self.s_fuel_clad_IR = openmc.ZCylinder(name='Fuel clad IR', R=c.cladIR)
-        self.s_fuel_clad_OR = openmc.ZCylinder(name='Fuel clad OR', R=c.cladOR)
-        self.s_fuel_plenumSpring_OR = openmc.ZCylinder(name='Fuel rod plenum spring OR', R=c.plenumSpringOR)
+        self.s_fuel_pellet_OR = openmc.ZCylinder(name='Fuel pellet OR', r=c.pelletOR)
+        self.s_fuel_clad_IR = openmc.ZCylinder(name='Fuel clad IR', r=c.cladIR)
+        self.s_fuel_clad_OR = openmc.ZCylinder(name='Fuel clad OR', r=c.cladOR)
+        self.s_fuel_plenumSpring_OR = openmc.ZCylinder(name='Fuel rod plenum spring OR', r=c.plenumSpringOR)
 
         # Fuel axial surfaces
 
@@ -210,10 +210,10 @@ class Pincells(object):
 
         # GT radial surfaces
 
-        self.s_gt_IR = openmc.ZCylinder(name='Guide tube IR', R=c.guideTubeIR)
-        self.s_gt_OR = openmc.ZCylinder(name='Guide tube OR', R=c.guideTubeOR)
-        self.s_gt_dashpot_IR = openmc.ZCylinder(name='Guide tube IR below dashpot', R=c.guideTubeDashIR)
-        self.s_gt_dashpot_OR = openmc.ZCylinder(name='Guide tube OR below dashpot', R=c.guideTubeDashOR)
+        self.s_gt_IR = openmc.ZCylinder(name='Guide tube IR', r=c.guideTubeIR)
+        self.s_gt_OR = openmc.ZCylinder(name='Guide tube OR', r=c.guideTubeOR)
+        self.s_gt_dashpot_IR = openmc.ZCylinder(name='Guide tube IR below dashpot', r=c.guideTubeDashIR)
+        self.s_gt_dashpot_OR = openmc.ZCylinder(name='Guide tube OR below dashpot', r=c.guideTubeDashOR)
 
         # GT axial surfaces
 
@@ -261,8 +261,8 @@ class Pincells(object):
 
         # IT radial surfaces
 
-        self.s_it_IR = openmc.ZCylinder(name='Instrument tube thimble IR', R=c.instrTubeIR)
-        self.s_it_OR = openmc.ZCylinder(name='Instrument tube thimble OR', R=c.instrTubeOR)
+        self.s_it_IR = openmc.ZCylinder(name='Instrument tube thimble IR', r=c.instrTubeIR)
+        self.s_it_OR = openmc.ZCylinder(name='Instrument tube thimble OR', r=c.instrTubeOR)
 
         # IT pincell universe
         self.u_it_p = InfinitePinCell(name='Instrument tube thimble')
@@ -294,12 +294,12 @@ class Pincells(object):
 
         # BP radial surfaces
 
-        self.s_bp_innerclad_IR = openmc.ZCylinder(name='BPRA rod radius 1', R=c.burnabs1)
-        self.s_bp_innerclad_OR = openmc.ZCylinder(name='BPRA rod radius 2', R=c.burnabs2)
-        self.s_bp_poison_IR = openmc.ZCylinder(name='BPRA rod radius 3', R=c.burnabs3)
-        self.s_bp_poison_OR = openmc.ZCylinder(name='BPRA rod radius 4', R=c.burnabs4)
-        self.s_bp_outerclad_IR = openmc.ZCylinder(name='BPRA rod radius 5', R=c.burnabs5)
-        self.s_bp_outerclad_OR = openmc.ZCylinder(name='BPRA rod radius 6', R=c.burnabs6)
+        self.s_bp_innerclad_IR = openmc.ZCylinder(name='BPRA rod radius 1', r=c.burnabs1)
+        self.s_bp_innerclad_OR = openmc.ZCylinder(name='BPRA rod radius 2', r=c.burnabs2)
+        self.s_bp_poison_IR = openmc.ZCylinder(name='BPRA rod radius 3', r=c.burnabs3)
+        self.s_bp_poison_OR = openmc.ZCylinder(name='BPRA rod radius 4', r=c.burnabs4)
+        self.s_bp_outerclad_IR = openmc.ZCylinder(name='BPRA rod radius 5', r=c.burnabs5)
+        self.s_bp_outerclad_OR = openmc.ZCylinder(name='BPRA rod radius 6', r=c.burnabs6)
 
         # BP axial surfaces
 
@@ -349,12 +349,12 @@ class Pincells(object):
 
         # RCCA rod radial surfaces
 
-        self.s_rcca_clad_IR = openmc.ZCylinder(name='RCCA rod clad IR', R=c.rcca_clad_IR)
-        self.s_rcca_clad_OR = openmc.ZCylinder(name='RCCA rod clad OR', R=c.rcca_clad_OR)
-        self.s_rcca_b4c_OR = openmc.ZCylinder(name='RCCA rod B4C OR', R=c.rcca_b4c_OR)
-        self.s_rcca_aic_OR = openmc.ZCylinder(name='RCCA rod AIC OR', R=c.rcca_aic_OR)
-        self.s_rcca_spacer_OR = openmc.ZCylinder(name='RCCA rod spacer OR', R=c.rcca_spacer_OR)
-        self.s_rcca_spring_OR = openmc.ZCylinder(name='RCCA rod plenum spring OR', R=c.rcca_spring_OR)
+        self.s_rcca_clad_IR = openmc.ZCylinder(name='RCCA rod clad IR', r=c.rcca_clad_IR)
+        self.s_rcca_clad_OR = openmc.ZCylinder(name='RCCA rod clad OR', r=c.rcca_clad_OR)
+        self.s_rcca_b4c_OR = openmc.ZCylinder(name='RCCA rod B4C OR', r=c.rcca_b4c_OR)
+        self.s_rcca_aic_OR = openmc.ZCylinder(name='RCCA rod AIC OR', r=c.rcca_aic_OR)
+        self.s_rcca_spacer_OR = openmc.ZCylinder(name='RCCA rod spacer OR', r=c.rcca_spacer_OR)
+        self.s_rcca_spring_OR = openmc.ZCylinder(name='RCCA rod plenum spring OR', r=c.rcca_spring_OR)
 
         # RCCA rod axial surfaces
 
