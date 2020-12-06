@@ -106,10 +106,10 @@ def main(base):
           os.path.join(base,"specifications{0}pin{0}figs{0}tikz_ba.tex".format(os.sep)),
           0.65)
 
-  makepin([0.21400, 0.23051, 0.43688, 0.48387, 0.50419, 0.54610],
+  makepin([0.21400, 0.23051, 0.43688, 0.48387, 0.56134, 0.60198],
           ['Air','SS304','Helium','SS304','Water','Zircaloy'],
           ['mat_air','mat_SS304','mat_helium','mat_SS304','mat_water','mat_zirc'],
-          [r.format("num:BPinnercladIR"),r.format("num:BPinnercladOR"),r.format("num:BPoutercladIR"),r.format("num:BPoutercladOR"),r.format("num:GTDPIRrad"),r.format("num:GTDPORrad")],
+          [r.format("num:BPinnercladIR"),r.format("num:BPinnercladOR"),r.format("num:BPoutercladIR"),r.format("num:BPoutercladOR"),r.format("num:GTIRrad"),r.format("num:GTORrad")],
           "Burnable absorber pin plenum geometry",
           "fig_ba_pin_plenum",
           8,
