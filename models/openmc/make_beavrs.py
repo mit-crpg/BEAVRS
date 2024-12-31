@@ -23,8 +23,5 @@ if not len(args) == 0:
     p.print_help()
 
 b = BEAVRS(is_symmetric=options.is_symmetric, is_2d=options.is_2d)
-b.write_openmc_geometry()
-b.write_openmc_materials()
-b.write_openmc_plots()
-b.write_openmc_settings()
+b.write_openmc_model()
 
