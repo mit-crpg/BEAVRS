@@ -50,7 +50,7 @@ class Assemblies(object):
 
         # Rectangular prism around the edge of the pinlattice
         self.lattice_surfs = \
-            openmc.rectangular_prism(17*c.pinPitch, 17*c.pinPitch)
+            openmc.model.RectangularPrism(17*c.pinPitch, 17*c.pinPitch)
 
 
     def _add_assembly_surfs(self):
@@ -58,7 +58,7 @@ class Assemblies(object):
 
         # Rectangular prism around the edge of the pinlattice
         self.assem_surfs = \
-            openmc.rectangular_prism(c.latticePitch, c.latticePitch)
+            openmc.model.RectangularPrism(c.latticePitch, c.latticePitch)
 
 
     def _add_bpra_layouts(self):
@@ -265,14 +265,14 @@ class Assemblies(object):
 
                     # Wrap the lattice with the grid sleeve universe
                     u_lattice = InfinitePinCell(name='{0} universe'.format(name))
-                    u_lattice.add_ring(lattice, self.lattice_surfs, box=True)
+                    u_lattice.add_ring(lattice, -self.lattice_surfs, box=True)
                     u_lattice.add_last_ring(self.pins.u_gridsleeve)
                     self.u_fuel[enr][gt_label][center_label] = u_lattice
                     u_lattice.finalize()
 
                     # Store the lattice without the gridsleeve
                     u_latticePins = InfinitePinCell(name='{0} pins'.format(name))
-                    u_latticePins.add_ring(lattice, self.lattice_surfs, box=True)
+                    u_latticePins.add_ring(lattice, -self.lattice_surfs, box=True)
                     u_latticePins.add_last_ring(self.mats['Borated Water'])
                     self.u_fuel_no_sleeve[enr][gt_label][center_label] = u_latticePins
                     u_latticePins.finalize()

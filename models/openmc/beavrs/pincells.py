@@ -49,13 +49,13 @@ class Pincells(object):
 
         # Rectangular prisms for grid spacers
         grid_surfs_tb = \
-            openmc.rectangular_prism(c.rodGridSide_tb, c.rodGridSide_tb)
+            openmc.model.RectangularPrism(c.rodGridSide_tb, c.rodGridSide_tb)
         grid_surfs_i = \
-            openmc.rectangular_prism(c.rodGridSide_i, c.rodGridSide_i)
+            openmc.model.RectangularPrism(c.rodGridSide_i, c.rodGridSide_i)
 
         # Rectangular prisms for lattice grid sleeves
         grid_surfs_ass = \
-            openmc.rectangular_prism(c.gridstrapSide, c.gridstrapSide)
+            openmc.model.RectangularPrism(c.gridstrapSide, c.gridstrapSide)
 
         # Grids axial surfaces
 
@@ -79,22 +79,22 @@ class Pincells(object):
         # Grids pincell universes
 
         self.u_grid_i = InfinitePinCell(name='Intermediate grid pincell')
-        self.u_grid_i.add_ring(self.mats['Borated Water'], grid_surfs_i, box=True)
+        self.u_grid_i.add_ring(self.mats['Borated Water'], -grid_surfs_i, box=True)
         self.u_grid_i.add_last_ring(self.mats['Zircaloy 4'])
         self.u_grid_i.finalize()
 
         self.u_grid_tb = InfinitePinCell(name='Top/Bottom grid pincell')
-        self.u_grid_tb.add_ring(self.mats['Borated Water'], grid_surfs_tb, box=True)
+        self.u_grid_tb.add_ring(self.mats['Borated Water'], -grid_surfs_tb, box=True)
         self.u_grid_tb.add_last_ring(self.mats['Inconel 718'])
         self.u_grid_tb.finalize()
 
         self.u_grid_sleeve_i = InfinitePinCell(name='Intermediate grid sleeve pincell')
-        self.u_grid_sleeve_i.add_ring(self.mats['Zircaloy 4'], grid_surfs_ass, box=True)
+        self.u_grid_sleeve_i.add_ring(self.mats['Zircaloy 4'], -grid_surfs_ass, box=True)
         self.u_grid_sleeve_i.add_last_ring(self.mats['Borated Water'])
         self.u_grid_sleeve_i.finalize()
 
         self.u_grid_sleeve_tb = InfinitePinCell(name='Top/Bottom grid sleeve pincell')
-        self.u_grid_sleeve_tb.add_ring(     self.mats['Inconel 718'], grid_surfs_ass, box=True)
+        self.u_grid_sleeve_tb.add_ring(     self.mats['Inconel 718'], -grid_surfs_ass, box=True)
         self.u_grid_sleeve_tb.add_last_ring(self.mats['Borated Water'])
         self.u_grid_sleeve_tb.finalize()
 

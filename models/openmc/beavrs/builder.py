@@ -134,7 +134,7 @@ class BEAVRS(object):
                 settings_file.dd_nodemap = self.dd_nodemap
             settings_file.dd_allow_leakage = self.dd_truncate
             settings_file.dd_count_interactions = self.dd_interactions
-        settings_file.source = openmc.Source(space=openmc.stats.Box(
+        settings_file.source = openmc.IndependentSource(space=openmc.stats.Box(
             self.settings_sourcebox[:3], self.settings_sourcebox[3:]))
         output = {'tallies': self.settings_output_tallies,
                   'summary': self.settings_summary}
