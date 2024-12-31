@@ -106,6 +106,9 @@ class BEAVRS(object):
             nuclides.append(openmc.Nuclide(nuc))
         self.depletion_nuclides = nuclides
 
+        # The OpenMC model container to be populated.
+        self.model = openmc.Model()
+
     def set_boron_ppm(self, ppm):
         self.mats = openmc_materials(ppm=ppm)
 
@@ -116,12 +119,15 @@ class BEAVRS(object):
         materials_file = openmc.Materials(self.mats.values())
         materials_file.export_to_xml()
 
+    def get_openmc_plots(self):
+        self.plots = Plots(self.mats)
+        return openmc.Plots(self.plots.plots)
+
     def write_openmc_plots(self):
         self.plots = Plots(self.mats)
-        plot_file = openmc.Plots(self.plots.plots)
-        plot_file.export_to_xml()
+        self.get_openmc_plots().export_to_xml()
 
-    def write_openmc_settings(self):
+    def get_openmc_settings_file(self):
         settings_file = openmc.Settings()
         settings_file.batches = self.settings_batches
         settings_file.inactive = self.settings_inactive
@@ -139,16 +145,36 @@ class BEAVRS(object):
         output = {'tallies': self.settings_output_tallies,
                   'summary': self.settings_summary}
         settings_file.output = output
-        settings_file.export_to_xml()
+        return settings_file
 
-    def write_openmc_tallies(self):
+    def write_openmc_settings(self):
+        self.get_openmc_settings_file().export_to_xml()
+
+    def get_openmc_tallies_file(self):
         if len(self.tallies) == 0: return
         tallies_file = openmc.Tallies()
         for mesh in self.tally_meshes:
             tallies_file.add_mesh(mesh)
         for tally in self.tallies:
             tallies_file.append(tally)
-        tallies_file.export_to_xml()
+        return tallies_file
+
+    def write_openmc_tallies(self):
+        if len(self.tallies) == 0: return
+        self.get_openmc_tallies_file().export_to_xml()
+
+    def build_openmc_model(self):
+        self.model = openmc.Model()
+        self.model.geometry = self.openmc_geometry
+        self.model.materials = openmc.Materials(self.mats.values())
+        self.model.settings = self.get_openmc_settings_file()
+        if len(self.tallies) != 0:
+            self.model.tallies = self.get_openmc_tallies_file()
+        self.model.plots = self.get_openmc_plots()
+        return self.model
+
+    def write_openmc_model(self):
+        self.build_openmc_model().export_to_model_xml()
 
     def set_params(self, particles=None, batches=None, inactive=None):
         if particles: self.settings_particles = particles
