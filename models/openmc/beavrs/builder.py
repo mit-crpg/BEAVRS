@@ -24,15 +24,13 @@ warnings.simplefilter('once', DeprecationWarning)
 class BEAVRS(object):
     """ Main BEAVRS class"""
 
-    def __init__(self, boron_ppm=c.nominalBoronPPM, is_symmetric=False, is_2d=False):
+    def __init__(self, boron_ppm=c.nominalBoronPPM, is_symmetric=False, is_2d=False, rcca_z = c.rcca_bank_steps_withdrawn_default):
         """ We build the entire geometry in memory in the constructor """
-
-        # TODO: make the control rod bank insertion heights attributes
 
         # Setup the materials
         self.mats = openmc_materials(ppm=boron_ppm)
 
-        self.pincells = Pincells(self.mats)
+        self.pincells = Pincells(self.mats, rcca_z)
         self.assemblies = Assemblies(self.pincells, self.mats)
         self.baffle = Baffle(self.assemblies, self.mats)
         self.core = Core(self.pincells, self.assemblies, self.baffle, is_symmetric=is_symmetric)

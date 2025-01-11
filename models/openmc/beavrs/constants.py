@@ -9,7 +9,7 @@ nominalBoronPPM = 975
 ############## Geometry paramters ##############
 
 ## Steps withdrawn for each RCCA bank
-rcca_bank_steps_withdrawn = {
+rcca_bank_steps_withdrawn_default = {
     'A': 228,
     'B': 228,
     'C': 228,
@@ -20,7 +20,6 @@ rcca_bank_steps_withdrawn = {
     'SD': 228,
     'SE': 228,
 }
-rcca_banks = rcca_bank_steps_withdrawn.keys()
 
 ## pincell parameters
 pelletOR        = 0.39218  #
