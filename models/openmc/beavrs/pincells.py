@@ -13,10 +13,12 @@ from beavrs.corebuilder import AxialPinCell
 
 class Pincells(object):
 
-    def __init__(self, mats):
+    def __init__(self, mats, rcca_insertion_steps):
         """ Creates BEAVRS pincell universes """
 
         self.mats = mats
+
+        self.rcca_z = rcca_insertion_steps
 
         self._add_structural_axials()
         self._add_dummy_universe()
@@ -364,8 +366,8 @@ class Pincells(object):
         self.s_rcca_b4c_top = {}
         self.s_rcca_spacer_top = {}
         self.s_rcca_plenum_top = {}
-        for b in sorted(c.rcca_banks):
-            d = c.rcca_bank_steps_withdrawn[b]*c.rcca_StepWidth
+        for b in sorted(self.rcca_z.keys()):
+            d = self.rcca_z[b]*c.rcca_StepWidth
             self.s_rcca_rod_bot[b] = openmc.ZPlane(name='Bottom of RCCA rod bank {0}'.format(b), z0=c.rcca_Rod_bot + d)
             self.s_rcca_lowerFitting_top[b] = openmc.ZPlane(name='Top of RCCA rod lower fitting bank {0}'.format(b), z0=c.rcca_LowerFitting_top + d)
             self.s_rcca_aic_top[b] = openmc.ZPlane(name='Top of RCCA rod AIC bank {0}'.format(b), z0=c.rcca_AIC_top + d)
@@ -402,7 +404,7 @@ class Pincells(object):
         # RCCA rod axial stack
 
         self.u_rcca = {}
-        for b in sorted(c.rcca_banks):
+        for b in sorted(self.rcca_z):
             self.u_rcca[b] = AxialPinCell(name='RCCA bank {0}'.format(b))
             self.u_rcca[b].add_axial_section(self.s_struct_supportPlate_bot, self.mats['Borated Water'])
             self.u_rcca[b].add_axial_section(self.s_struct_lowerNozzle_top, self.mats['Water SPN'])
