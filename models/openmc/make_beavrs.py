@@ -19,12 +19,15 @@ p.add_option('-s', '--symmetric', action='store_true', dest='is_symmetric',
              default=False, help='Create octant-symmetric input files,' \
              + ' not symmetric by default')
 p.add_option('-z', '--rcca_d_z', dest='rcca_d_z',
-             help='The number of steps withdrawn for RCC bank D, 0 by default',
+             help='The number of steps withdrawn for RCCA bank D, 0 by default',
              type=int, default=0)
 (options, args) = p.parse_args()
 
 if not len(args) == 0:
     p.print_help()
+
+if options.rcca_d_z < 0 or options.rcca_d_z > 228:
+    raise Exception('The insertion step for RCCA bank D must be between 0 and 228!')
 
 insertions = c.rcca_bank_steps_withdrawn_default
 insertions['D'] = options.rcca_d_z
