@@ -22,7 +22,8 @@ p.add_argument("--rcca-insertion", dest='rcca', nargs='*', default='', \
                + ' are insertion steps (values).' \
                + ' Valid keys are \'A\', \'B\', \'C\', \'D\', \'SA\',' \
                + ' \'SB\', \'SC\', \'SD\', and \'SE\'. Valid values are' \
-               + ' integers between 0 and 228 (inclusive).')
+               + ' integers between 0 and 228 (inclusive). All banks default' \
+               + ' to fully withdrawn.')
 args = p.parse_args()
 
 insertions = c.rcca_bank_steps_withdrawn_default
