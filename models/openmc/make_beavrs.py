@@ -12,10 +12,10 @@ os.chdir('build')
 
 p = ArgumentParser()
 p.add_argument('-d', '--2d', action='store_true', dest='is_2d', default=False, \
-               help='Create 2D BEAVRS input files 3D by default')
+               help='Create 2D BEAVRS input files, 3D by default.')
 p.add_argument('-s', '--symmetric', action='store_true', dest='is_symmetric', \
                default=False, help='Create octant-symmetric input files,' \
-               + ' not symmetric by default')
+               + ' not symmetric by default.')
 p.add_argument("--rcca-insertion", dest='rcca', nargs='*', default='', \
                help='RCCA insertion steps, provided as key-value pairs,' \
                + ' where even arguments are banks (keys) and odd arguments'
