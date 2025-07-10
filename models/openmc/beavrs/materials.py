@@ -27,10 +27,8 @@ def openmc_materials(ppm):
 ##############################################
 # Create materials that use natural abundances
 ##############################################
-
     # Create air material
     mats['Air'] = openmc.Material(name='Air')
-    mats['Air'].temperature = 300
     mats['Air'].set_density('g/cc', 0.000616)
     mats['Air'].add_element('O', 0.2095, 'ao')
     mats['Air'].add_element('N', 0.7809, 'ao')
@@ -39,7 +37,6 @@ def openmc_materials(ppm):
 
     # Create stainless steel material
     mats['SS304'] = openmc.Material(name='SS304')
-    mats['SS304'].temperature = 300
     mats['SS304'].set_density('g/cc', 8.03)
     mats['SS304'].add_element('Si', 0.0060, 'wo')
     mats['SS304'].add_element('Cr', 0.1900, 'wo')
@@ -49,7 +46,6 @@ def openmc_materials(ppm):
 
     # Create Ag-In-Cd control rod material
     mats['Ag-In-Cd'] = openmc.Material(name='Ag-In-Cd')
-    mats['Ag-In-Cd'].temperature = 300
     mats['Ag-In-Cd'].set_density('g/cc', 10.16)
     mats['Ag-In-Cd'].add_element('Ag', 0.80, 'wo')
     mats['Ag-In-Cd'].add_element('In', 0.15, 'wo')
@@ -57,20 +53,17 @@ def openmc_materials(ppm):
 
     # Create B4C control rod material
     mats['B4C'] = openmc.Material(name='B4C')
-    mats['B4C'].temperature = 300
     mats['B4C'].set_density('g/cc', 1.76)
     mats['B4C'].add_element('B', 0.7826, 'wo')
     mats['B4C'].add_element('C', 0.2174, 'wo')
 
     # Create He gas gap material
     mats['Helium'] = openmc.Material(name='Helium')
-    mats['Helium'].temperature = 300
     mats['Helium'].set_density('g/cc', 0.0015981)
     mats['Helium'].add_element('He', 1.0, 'wo')
 
     # Create inconel 718 material
     mats['Inconel 718'] = openmc.Material(name='Inconel 718')
-    mats['Inconel 718'].temperature = 300
     mats['Inconel 718'].set_density('g/cc', 8.2)
     mats['Inconel 718'].add_element('Si', 0.0035, 'wo')
     mats['Inconel 718'].add_element('Cr', 0.1896, 'wo')
@@ -80,7 +73,6 @@ def openmc_materials(ppm):
 
     # Create zircaloy 4 material
     mats['Zircaloy 4'] = openmc.Material(name='Zircaloy 4')
-    mats['Zircaloy 4'].temperature = 300
     mats['Zircaloy 4'].set_density('g/cc', 6.55)
     mats['Zircaloy 4'].add_element('O', 0.00125, 'wo')
     mats['Zircaloy 4'].add_element('Cr', 0.0010, 'wo')
@@ -90,7 +82,6 @@ def openmc_materials(ppm):
 
     # Create carbon steel material
     mats['Carbon Steel'] = openmc.Material(name='Carbon Steel')
-    mats['Carbon Steel'].temperature = 300
     mats['Carbon Steel'].set_density('g/cc', 7.8)
     mats['Carbon Steel'].add_element('C', 0.00270, 'wo')
     mats['Carbon Steel'].add_element('Mn', 0.00750, 'wo')
@@ -108,6 +99,10 @@ def openmc_materials(ppm):
     mats['Carbon Steel'].add_element('Ti', 0.00015, 'wo')
     mats['Carbon Steel'].add_element('Al', 0.00025, 'wo')
     mats['Carbon Steel'].add_element('Fe', 0.96487, 'wo')
+
+    # Set material temperatures based on isothermal conditions
+    for mat in mats.values():
+        mat.temperature = c.operating_temperature
 
 ##############################################
 # Create special materials
