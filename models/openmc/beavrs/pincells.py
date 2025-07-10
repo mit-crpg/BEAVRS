@@ -404,7 +404,7 @@ class Pincells(object):
         # RCCA rod axial stack
 
         self.u_rcca = {}
-        for b in sorted(self.rcca_z):
+        for b in sorted(self.rcca_z.keys()):
             self.u_rcca[b] = AxialPinCell(name='RCCA bank {0}'.format(b))
             self.u_rcca[b].add_axial_section(self.s_struct_supportPlate_bot, self.mats['Borated Water'])
             self.u_rcca[b].add_axial_section(self.s_struct_lowerNozzle_top, self.mats['Water SPN'])
