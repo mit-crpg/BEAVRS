@@ -143,6 +143,10 @@ class BEAVRS(object):
         output = {'tallies': self.settings_output_tallies,
                   'summary': self.settings_summary}
         settings_file.output = output
+        settings_file.temperature = {'method': 'interpolation',
+                                     'default': c.operating_temperature,
+                                     'range': (300.0, 600.0),
+                                     'tolerance': 100.0}
         return settings_file
 
     def write_openmc_settings(self):

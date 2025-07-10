@@ -5,6 +5,7 @@ import math
 
 h2oDens = 0.73986
 nominalBoronPPM = 975
+operating_temperature = 566.483 # 560 degrees Farenheit to Kelvin
 
 ############## Geometry paramters ##############
 
