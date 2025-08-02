@@ -172,37 +172,7 @@ def openmc_materials(ppm):
 
     # Density of clean water at 2250 psia T=560F NIST
     h2o_dens = 0.73986
-
-    # Compute weight percent of natural boron in borated water
-    wB_Bh2o = ppm*1.0e-6
-
-    # Borated water density
-    rho_Bh2o = h2o_dens/(1 - wB_Bh2o)
-
-    # Compute weight percent of clean water in borated water
-    wh2o_Bh2o = 1.0 - wB_Bh2o
-
-    # Compute molecular mass of clean water
-    M_h2o = 2*atomic_weight('H') + atomic_weight('O')
-
-    # Compute molecular mass of borated water
-    M_Bh2o = 1.0/(wB_Bh2o/atomic_weight('B') + wh2o_Bh2o/M_h2o)
-
-    # Compute atom fractions of boron and water
-    aB_Bh2o = wB_Bh2o*M_Bh2o/atomic_weight('B')
-    ah2o_Bh2o = wh2o_Bh2o*M_Bh2o/M_h2o
-
-    # Compute atom fractions of hydrogen
-    ah_Bh2o = 2.0*ah2o_Bh2o
-    aho_Bh2o = ah2o_Bh2o
-
-    # Create material
-    mats['Borated Water'] = openmc.Material(name='Borated Water')
-    mats['Borated Water'].set_density('g/cc', rho_Bh2o)
-    mats['Borated Water'].add_element('B', aB_Bh2o, 'ao')
-    mats['Borated Water'].add_element('H', ah_Bh2o, 'ao')
-    mats['Borated Water'].add_element('O', aho_Bh2o, 'ao')
-    mats['Borated Water'].add_s_alpha_beta(name='c_H_in_H2O')
+    mats['Borated Water'] = openmc.model.borated_water(ppm, density=h2o_dens, name='Borated Water')
 
 ########## Nozzle / Support Plate Borated Materials #################
 
@@ -218,16 +188,12 @@ def openmc_materials(ppm):
     ss_spn_actualvol = (c.latticePitch**2)*ss_vol_frac
 
     # adjust density such that mass of water and steel are conserved
+    rho_Bh2o = mats['Borated Water'].density
     rho_Bh2o_spn = (rho_Bh2o * Bh2o_spn_actualvol) / Bh2o_spn_vol
     rho_ss_spn = (8.03 * ss_spn_actualvol) / ss_spn_vol
 
-    # Create borated water
-    mats['Water SPN'] = openmc.Material(name='Water SPN')
-    mats['Water SPN'].set_density('g/cc', rho_Bh2o_spn)
-    mats['Water SPN'].add_element('B', aB_Bh2o, 'ao')
-    mats['Water SPN'].add_element('H', ah_Bh2o, 'ao')
-    mats['Water SPN'].add_element('O', aho_Bh2o, 'ao')
-    mats['Water SPN'].add_s_alpha_beta(name='c_H_in_H2O')
+    # Create SPN water
+    mats['Water SPN'] = openmc.model.borated_water(ppm, density=rho_Bh2o_spn, name='Water SPN')
 
     # Create stainless steel
     mats['SS304 SPN'] = openmc.Material(name='SS SPN')
