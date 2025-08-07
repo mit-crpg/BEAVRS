@@ -100,10 +100,6 @@ def openmc_materials(ppm):
     mats['Carbon Steel'].add_element('Al', 0.00025, 'wo')
     mats['Carbon Steel'].add_element('Fe', 0.96487, 'wo')
 
-    # Set material temperatures based on isothermal conditions
-    for mat in mats.values():
-        mat.temperature = c.operating_temperature
-
 ##############################################
 # Create special materials
 ##############################################
@@ -139,7 +135,6 @@ def openmc_materials(ppm):
         name = enr*100
         mat_name = 'Fuel {0:1.1f}%'.format(name)
         mats[mat_name] = openmc.Material(name=mat_name)
-        mats[mat_name].temperature = 300
         mats[mat_name].set_density('g/cc', den)
         mats[mat_name].add_element('O', a_O, 'ao')
         mats[mat_name].add_element('U', a_U, 'ao', enrichment=enr*100)
@@ -166,7 +161,6 @@ def openmc_materials(ppm):
 
     # Create material
     mats['Borosilicate Glass'] = openmc.Material(name='Borosilicate Glass')
-    mats['Borosilicate Glass'].temperature = 300
     mats['Borosilicate Glass'].set_density('g/cc', 2.26)
     mats['Borosilicate Glass'].add_element('O', aO_bsg, 'ao')
     mats['Borosilicate Glass'].add_element('Si', aSi_bsg, 'ao')
@@ -204,7 +198,6 @@ def openmc_materials(ppm):
 
     # Create material
     mats['Borated Water'] = openmc.Material(name='Borated Water')
-    mats['Borated Water'].temperature = 300
     mats['Borated Water'].set_density('g/cc', rho_Bh2o)
     mats['Borated Water'].add_element('B', aB_Bh2o, 'ao')
     mats['Borated Water'].add_element('H', ah_Bh2o, 'ao')
@@ -238,12 +231,15 @@ def openmc_materials(ppm):
 
     # Create stainless steel
     mats['SS304 SPN'] = openmc.Material(name='SS SPN')
-    mats['SS304 SPN'].temperature = 300
     mats['SS304 SPN'].set_density('g/cc', rho_ss_spn)
     mats['SS304 SPN'].add_element('Si', 0.0060, 'wo')
     mats['SS304 SPN'].add_element('Cr', 0.1900, 'wo')
     mats['SS304 SPN'].add_element('Mn', 0.0200, 'wo')
     mats['SS304 SPN'].add_element('Fe', 0.6840, 'wo')
     mats['SS304 SPN'].add_element('Ni', 0.1000, 'wo')
+
+    # Set material temperatures based on isothermal conditions
+    for mat in mats.values():
+        mat.temperature = c.operating_temperature
 
     return mats
