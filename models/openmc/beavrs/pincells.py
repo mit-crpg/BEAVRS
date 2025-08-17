@@ -268,7 +268,7 @@ class Pincells(object):
 
         # IT pincell universe
         self.u_it_p = InfinitePinCell(name='Instrument tube thimble')
-        self.u_it_p.add_ring(self.mats['Air'], self.s_it_IR)
+        self.u_it_p.add_ring(self.mats['Air TH'], self.s_it_IR)
         self.u_it_p.add_last_ring(self.mats['Zircaloy 4'])
         self.u_it_p.finalize()
 

@@ -57,13 +57,19 @@ class Core(object):
         'J___1', 'J___2', 'J___3', 'J___8', 'J___9', 'K__15', 'K__14', 'K__13',
         'K__12', 'K__11', 'K__10']
 
-    def __init__(self, pincells, assemblies, baffle, is_symmetric=False):
+    def __init__(self, pincells, assemblies, baffle, is_symmetric=False, instrument_per_assembly=False):
         """ Creates BEAVRS core lattice universe """
 
         self.pins = pincells
         self.assem = assemblies
         self.baffle = baffle
         self.is_symmetric = is_symmetric
+        # Whether a instrument tube per assembly should be used
+        # instead of placing instrument tubes in measured assemblies.
+        # This has a fairly large impact on k due to displacement of
+        # borated water, however it makes generating flux maps possible
+        # for 1/4 and 1/8 core models. Use with caution!
+        self.instrument_per_assembly = instrument_per_assembly
 
         self._set_enrichment_positions()
         self._set_instrument_tube_positions()
@@ -176,7 +182,7 @@ class Core(object):
             if self.is_symmetric:
                 instr = 'no instr'
             else:
-                if pos in self.instr_positions:
+                if pos in self.instr_positions or self.instrument_per_assembly:
                     instr = 'instr'
                 else:
                     instr = 'no instr'
