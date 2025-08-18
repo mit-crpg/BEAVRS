@@ -180,9 +180,12 @@ class Core(object):
             else:
                 ba = 'no BAs'
             if self.is_symmetric:
-                instr = 'no instr'
+                if not self.instrument_per_assembly:
+                  instr = 'no instr'
+                else:
+                  instr = 'instr'
             else:
-                if pos in self.instr_positions or self.instrument_per_assembly:
+                if pos in self.instr_positions:
                     instr = 'instr'
                 else:
                     instr = 'no instr'
