@@ -9,6 +9,7 @@ import openmc
 import beavrs.constants as c
 from beavrs.corebuilder import InfinitePinCell
 from beavrs.corebuilder import AxialPinCell
+import beavrs.corebuilder
 
 
 class Pincells(object):
@@ -20,6 +21,7 @@ class Pincells(object):
 
         self.rcca_z = rcca_insertion_steps
 
+        self._reset_corebuilder_cells()
         self._add_structural_axials()
         self._add_dummy_universe()
         self._add_grid_pincells()
@@ -28,6 +30,14 @@ class Pincells(object):
         self._add_instrument_tube_pincells()
         self._add_bpra_pincells()
         self._add_rcca_pincells()
+
+    def _reset_corebuilder_cells(self):
+        """ Resets _created_cells global variable in corebuilder.py.
+
+        This is needed in order to flush cell instances between BEAVRS model
+        calls in case this model is called in succession.
+        """
+        beavrs.corebuilder._created_cells = {}
 
     def _add_structural_axials(self):
         """ Adds structure axial surfaces common for most pincells """
