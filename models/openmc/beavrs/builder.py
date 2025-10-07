@@ -24,7 +24,8 @@ warnings.simplefilter('once', DeprecationWarning)
 class BEAVRS(object):
     """ Main BEAVRS class"""
 
-    def __init__(self, boron_ppm=c.nominalBoronPPM, is_symmetric=False, is_2d=False, rcca_z = c.rcca_bank_steps_withdrawn_default):
+    def __init__(self, boron_ppm=c.nominalBoronPPM, is_symmetric=False, is_2d=False, rcca_z = c.rcca_bank_steps_withdrawn_default, \
+                 instrument_per_assembly=False):
         """ We build the entire geometry in memory in the constructor """
 
         # Setup the materials
@@ -33,7 +34,7 @@ class BEAVRS(object):
         self.pincells = Pincells(self.mats, rcca_z)
         self.assemblies = Assemblies(self.pincells, self.mats)
         self.baffle = Baffle(self.assemblies, self.mats)
-        self.core = Core(self.pincells, self.assemblies, self.baffle, is_symmetric=is_symmetric)
+        self.core = Core(self.pincells, self.assemblies, self.baffle, is_symmetric=is_symmetric, instrument_per_assembly=instrument_per_assembly)
         self.main_universe = UniverseZero(self.core, self.mats, is_2d=is_2d)
 
         self.openmc_geometry = openmc.Geometry(self.main_universe)

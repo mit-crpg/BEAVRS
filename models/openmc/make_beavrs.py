@@ -16,6 +16,11 @@ p.add_argument('-d', '--2d', action='store_true', dest='is_2d', default=False, \
 p.add_argument('-s', '--symmetric', action='store_true', dest='is_symmetric', \
                default=False, help='Create octant-symmetric input files,' \
                + ' not symmetric by default.')
+p.add_argument('-i', '--sym-instrument', action='store_true', dest='sym_instrument', \
+               default=False, help='Add instrument tubes to all assemblies in an ' \
+               + 'octant-symmetric input file (only valid if the model is symmetric).' \
+               + 'This makes it easier to generate full-core fission rate maps at the ' \
+               + 'cost of displacing boronated water.')
 p.add_argument("--rcca-insertion", dest='rcca', nargs='*', default='', \
                help='RCCA insertion steps, provided as key-value pairs,' \
                + ' where even arguments are banks (keys) and odd arguments'
@@ -26,6 +31,12 @@ p.add_argument("--rcca-insertion", dest='rcca', nargs='*', default='', \
                + ' to fully withdrawn except for bank D, which is withdrawn to' \
                + ' the bite position (step 213).')
 args = p.parse_args()
+
+# Error if the user wants instrument tubes per assembly in a non-symmetric core
+# configuration.
+if not args.is_symmetric and args.sym_instrument:
+   raise Exception('Instrument tubes per assembly can only be used with an ' \
+                   + 'octant-symmetric configuration. -i must be used with -s!')
 
 insertions = c.rcca_bank_steps_withdrawn_default
 
@@ -41,6 +52,7 @@ for k in rcca_args:
      raise Exception(f'Invalid RCCA insertion step {rcca_args[k]}! Valid insertion' \
                      + ' steps are integers between 0 and 228 (inclusive).')
 
-b = BEAVRS(is_symmetric=args.is_symmetric, is_2d=args.is_2d, rcca_z=insertions)
+b = BEAVRS(is_symmetric=args.is_symmetric, is_2d=args.is_2d, rcca_z=insertions, \
+           instrument_per_assembly=args.sym_instrument)
 b.write_openmc_model()
 

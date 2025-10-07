@@ -104,6 +104,15 @@ def openmc_materials(ppm):
 # Create special materials
 ##############################################
 
+########## Air in the instrument thimble #################
+    mats['Air TH'] = openmc.Material(name='Air TH')
+    mats['Air TH'].set_density('g/cc', 0.000616)
+    mats['Air TH'].add_element('O', 0.2095, 'ao')
+    mats['Air TH'].add_element('N', 0.7809, 'ao')
+    mats['Air TH'].add_element('Ar', 0.00933, 'ao')
+    mats['Air TH'].add_element('C', 0.00027, 'ao')
+    mats['Air TH'].add_nuclide('U235', 1e-8, 'ao')
+
 ########## Enriched UO2 Fuel #################
 
     # Specify enrichments to be calculated
