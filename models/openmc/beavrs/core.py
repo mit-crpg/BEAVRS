@@ -64,8 +64,8 @@ class Core(object):
         self.assem = assemblies
         self.baffle = baffle
         self.is_symmetric = is_symmetric
-        # Whether an instrument tube per assembly should be used
-        # instead of placing instrument tubes in measured assemblies.
+        # Whether an instrument tube should be placed in the center pin
+        # position of each assembly instead of an empty guide tube.
         # This has an small impact on k due to displacement of borated
         # water, however it makes generating flux maps easier for 1/4
         # and 1/8 core models.

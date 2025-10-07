@@ -19,9 +19,8 @@ p.add_argument('-s', '--symmetric', action='store_true', dest='is_symmetric', \
 p.add_argument('-i', '--sym-instrument', action='store_true', dest='sym_instrument', \
                default=False, help='Add instrument tubes to all assemblies in an ' \
                + 'octant-symmetric input file (only valid if the model is symmetric).' \
-               + 'Defaults to not adding instrument tubes per-assembly. This makes it '
-               + 'easier to generate full-core flux maps at the cost of displacing ' \
-               + 'boronated water.')
+               + 'This makes it easier to generate full-core fission rate maps at the ' \
+               + 'cost of displacing boronated water.')
 p.add_argument("--rcca-insertion", dest='rcca', nargs='*', default='', \
                help='RCCA insertion steps, provided as key-value pairs,' \
                + ' where even arguments are banks (keys) and odd arguments'
@@ -37,7 +36,7 @@ args = p.parse_args()
 # configuration.
 if not args.is_symmetric and args.sym_instrument:
    raise Exception('Instrument tubes per assembly can only be used with an ' \
-                   + 'octant-symmetric configuration.')
+                   + 'octant-symmetric configuration. -i must be used with -s!')
 
 insertions = c.rcca_bank_steps_withdrawn_default
 
