@@ -64,11 +64,11 @@ class Core(object):
         self.assem = assemblies
         self.baffle = baffle
         self.is_symmetric = is_symmetric
-        # Whether a instrument tube per assembly should be used
+        # Whether an instrument tube per assembly should be used
         # instead of placing instrument tubes in measured assemblies.
-        # This has a fairly large impact on k due to displacement of
-        # borated water, however it makes generating flux maps possible
-        # for 1/4 and 1/8 core models. Use with caution!
+        # This has an small impact on k due to displacement of borated
+        # water, however it makes generating flux maps easier for 1/4
+        # and 1/8 core models.
         self.instrument_per_assembly = instrument_per_assembly
 
         self._set_enrichment_positions()
